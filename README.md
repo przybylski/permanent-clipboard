@@ -1,0 +1,2 @@
+permanent-clipboard
+===================
