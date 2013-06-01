@@ -1,0 +1,38 @@
+{
+  "extensionName": {
+    "message": "Permanent clipboard",
+    "description": "Extension name."
+  },
+  "extensionDescription": {
+    "message": "Allows you to store and access multiple elements in clipboard",
+    "description": "Extension description."
+  },
+  "insertFromExtension": {
+    "message": "Insert from Permanent clipboard",
+    "description": "Context menu text on editable elements."
+  },
+  "addToExtensionDB": {
+    "message": "Add to Permanent clipboard",
+    "description": "Context menu text on selected text."
+  },
+  "descriptionPlaceholder": {
+    "message": "Description",
+    "description": "Placeholder on input field in popup"
+  },
+  "addBtnText": {
+    "message": "Add",
+    "description": "Text on add button in popup"
+  },
+  "popupHint": {
+    "message": "Click on element to add it to clipboard",
+    "description": "Hint text showed in popup"
+  },
+  "popupHintNoElements": {
+    "message": "No elements in clipboard",
+    "description": "Hint visible when no elements are available"
+  },
+  "popupNewElement": {
+    "message": "New entry",
+    "description": "New element title in popup"
+  }
+}

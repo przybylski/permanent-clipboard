@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pernament Clipboard Popup</title>
+    <style>
+      body {
+        min-width: 357px;
+        overflow-x: hidden;
+        min-height: 357px;
+        font-family: Verdana, Geneva, sans-serif;
+        font-size: 10pt;
+        color: black;
+        background-color: white;
+      }
+      div.hint {
+        color: gray;
+
+      }
+      a {
+        cursor: pointer;
+      }
+      img.rembtn {
+        cursor: pointer;
+        float: right;
+      }
+      table {
+        width: 100%;
+      }
+    </style>
+    <script src="popup.js"></script>
+    <div class="hint" id="hint"></div>
+    <div id="current_div"></div>
+    <hr>
+    <div id="recent_div">
+      <div class="hint" id="recent_title"></div>
+      <div id="recent_text"></div>
+      <form>
+        <input type="input" id="recent_name"/>
+        <input type="submit" id="recent_btn"/>
+      </form>
+    </div>
+  </head>
+  <body>
+  </body>
+</html>
+
