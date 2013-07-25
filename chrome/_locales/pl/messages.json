@@ -1,29 +1,35 @@
 {
-  "extensionName": {
-    "message": "Stały schowek"
-  },
-  "extensionDescription": {
-    "message": "Pozwala na zachownie i dostęp do wielu elementów w schowku"
-  },
-  "insertFromExtension": {
-    "message": "Wstaw ze stałego schowka"
-  },
-  "addToExtensionDB": {
-    "message": "Dodaj do stałego schowka"
-  },
-  "descriptionPlaceholder": {
-    "message": "Opis"
-  },
-  "addBtnText": {
-    "message": "Dodaj"
-  },
-  "popupHint": {
-    "message": "Kliknij w element żeby skopiować go do schowka"
-  },
-  "popupHintNoElements": {
-    "message": "Brak elementów w schowku"
-  },
-  "popupNewElement": {
-    "message": "Nowy wpis"
-  }
+	"extensionName": {
+		"message": "Stały schowek"
+	},
+	"extensionDescription": {
+		"message": "Pozwala na zachownie i dostęp do wielu elementów w schowku"
+	},
+	"insertFromExtension": {
+		"message": "Wstaw ze stałego schowka"
+	},
+	"addToExtensionDB": {
+		"message": "Dodaj do stałego schowka"
+	},
+	"descriptionPlaceholder": {
+		"message": "Opis"
+	},
+	"addBtnText": {
+		"message": "Dodaj"
+	},
+	"popupHint": {
+		"message": "Kliknij w element żeby skopiować go do schowka"
+	},
+	"popupHintNoElements": {
+		"message": "Brak elementów w schowku"
+	},
+	"popupNewElement": {
+		"message": "Nowy wpis"
+	},
+	"showAddFormText": {
+		"message": "Dodaj nowy wpis"
+	},
+	"contentPlaceholder": {
+		"message": "Zawartość"
+	}
 }

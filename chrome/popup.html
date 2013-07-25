@@ -1,46 +1,53 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Pernament Clipboard Popup</title>
-    <style>
-      body {
-        min-width: 357px;
-        overflow-x: hidden;
-        min-height: 357px;
-        font-family: Verdana, Geneva, sans-serif;
-        font-size: 10pt;
-        color: black;
-        background-color: white;
-      }
-      div.hint {
-        color: gray;
-
-      }
-      a {
-        cursor: pointer;
-      }
-      img.rembtn {
-        cursor: pointer;
-        float: right;
-      }
-      table {
-        width: 100%;
-      }
-    </style>
-    <script src="popup.js"></script>
-    <div class="hint" id="hint"></div>
-    <div id="current_div"></div>
-    <hr>
-    <div id="recent_div">
-      <div class="hint" id="recent_title"></div>
-      <div id="recent_text"></div>
-      <form>
-        <input type="input" id="recent_name"/>
-        <input type="submit" id="recent_btn"/>
-      </form>
-    </div>
-  </head>
-  <body>
-  </body>
+	<head>
+		<title>Pernament Clipboard Popup</title>
+		<style>
+			body {
+				min-width: 357px;
+				overflow-x: hidden;
+				min-height: 357px;
+				font-family: Verdana, Geneva, sans-serif;
+				font-size: 10pt;
+				color: black;
+				background-color: white;
+			}
+			div.hint { color: gray; }
+			a { cursor: pointer; }
+			img.rembtn {
+				cursor: pointer;
+				float: right;
+			}
+			table { width: 100%; }
+			div.cinvisible {
+				display: none;
+			}
+		</style>
+		<script src="popup.js"></script>
+	</head>
+	<body>
+		<div class="hint" id="hint"></div>
+		<div id="current_div"></div>
+		<hr>
+		<div class="new_item_manually" id="new_item_manually">
+			<a id="new_item_content_trigger"></a>
+			<div id="new_item_content" class="cinvisible">
+				<form>
+					<input type="input" id="new_name"/>
+					<input type="input" id="new_content"/>
+					<input type="submit" id="new_btn"/>
+				</form>
+			</div>
+		</div>
+		<div id="recent_div">
+			<hr>
+			<div class="hint" id="recent_title"></div>
+			<div id="recent_text"></div>
+			<form>
+				<input type="input" id="recent_name"/>
+				<input type="submit" id="recent_btn"/>
+			</form>
+		</div>
+	</body>
 </html>
 
