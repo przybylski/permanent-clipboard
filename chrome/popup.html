@@ -11,6 +11,7 @@
 				font-size: 10pt;
 				color: black;
 				background-color: white;
+        border: 0;
 			}
 			div.hint { color: gray; }
 			a { cursor: pointer; }
@@ -22,6 +23,12 @@
 			div.cinvisible {
 				display: none;
 			}
+      div.footer #storage_type_text {
+        float: left;
+      }
+      div.footer a {
+        float:right;
+      }
 		</style>
 		<script src="popup.js"></script>
 	</head>
@@ -48,6 +55,11 @@
 				<input type="submit" id="recent_btn"/>
 			</form>
 		</div>
+		<hr>
+    <div class="footer">
+      <div id="storage_type_text"></div>
+      <a target="_blank" id="options_text"></a>
+    </div>
 	</body>
 </html>
 

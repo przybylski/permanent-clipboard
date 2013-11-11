@@ -6,6 +6,12 @@ function arrayRemove(a, from, to) {
 	return a.push.apply(a, rest);
 }
 
+function getStorage() {
+  if (localStorage["storage_type"] == "local")
+    return chrome.storage.local;
+  return chrome.storage.sync;
+}
+
 function escapeQuots(str) {
 	return str.replace(/"/g, "&quot;");
 }
@@ -31,7 +37,7 @@ function addToPermClipboardFromManually() {
 }
 
 function addToPermClipboard(name, text) {
-	chrome.storage.sync.get('clipboard', function(items) {
+  getStorage().get('clipboard', function(items) {
 		if (!(items.clipboard instanceof Array))
 			items.clipboard = new Array();
 		var element = {
@@ -40,7 +46,7 @@ function addToPermClipboard(name, text) {
 		};
 		items.clipboard.push(element);
 
-		chrome.storage.sync.set({'clipboard':items.clipboard, 'recent':0}, function() {
+    getStorage().set({'clipboard':items.clipboard, 'recent':0}, function() {
 			chrome.runtime.sendMessage({event:'rebuildMenus'});
 			location.reload();
 		});
@@ -48,11 +54,12 @@ function addToPermClipboard(name, text) {
 }
 
 function removeElement(s) {
-	chrome.storage.sync.get('clipboard', function(items) {
+  storage = getStorage();
+  storage.get('clipboard', function(items) {
 		if (items.clipboard) {
 			var e = parseInt(s.srcElement.id);
 			arrayRemove(items.clipboard, e, e);
-			chrome.storage.sync.set({'clipboard':items.clipboard}, function(){
+      storage.set({'clipboard':items.clipboard}, function(){
 				chrome.runtime.sendMessage({event:'rebuildMenus'});
 				location.reload();
 			});
@@ -69,6 +76,8 @@ function init_i18n() {
 	document.getElementById("new_name").placeholder = chrome.i18n.getMessage("descriptionPlaceholder");
 	document.getElementById("new_content").placeholder = chrome.i18n.getMessage("contentPlaceholder");
 	document.getElementById("new_item_content_trigger").innerHTML = chrome.i18n.getMessage("showAddFormText");
+  document.getElementById("storage_type_text").innerHTML = chrome.i18n.getMessage(localStorage["storage_type"] == "local" ? "localStorageUsed" : "syncedStorageUsed");
+  document.getElementById("options_text").innerHTML = chrome.i18n.getMessage("optionsText");
 }
 
 function copyToClipboard(s) {
@@ -100,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	var elem = document.getElementById('current_div');
-	chrome.storage.sync.get('clipboard', function(items) {
+  getStorage().get('clipboard', function(items) {
 		if (items.clipboard && items.clipboard.length > 0) {
 			var k = "<hr><table>"; 
 			var i = 0;
@@ -127,9 +136,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.getElementById("hint").innerHTML = chrome.i18n.getMessage("popupHintNoElements");
 		}
 
+    var options = document.getElementById("options_text");
+    options.onclick = function() {
+      chrome.tabs.create({url:'options.html'});
+    };
+
 	});
 
-	chrome.storage.sync.get('recent', function(recent) {
+  getStorage().get('recent', function(recent) {
 		if (recent.recent) {
 			var div = document.getElementById('recent_text');
 			if (div)
@@ -137,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		} else {
 			var div = document.getElementById('recent_div');
 			if (div)
-				div.style.visibility = 'hidden';
+				div.style.display = 'none';
 		}
 	});
 	init_i18n();

@@ -1,7 +1,31 @@
+function getStorage(storageName) {
+  if (storageName == "local")
+    return chrome.storage.local;
+  return chrome.storage.sync;
+}
+
+var postponedActions = new Array();
+
 function onCopy(e) {
   var selection = document.getSelection();
-  if (selection.toString().length > 0)
-    chrome.storage.sync.set({'recent': selection.toString()});
+  if (selection.toString().length > 0) {
+    chrome.runtime.sendMessage({event:"getStorageName"}, function(response) {
+      getStorage(response.name).set({'recent': selection.toString()});
+    });
+  }
+}
+
+function handleAddSelection(selection, storageName) {
+  var selection = document.getSelection().toString();
+      getStorage().get("clipboard", function(items) {
+        if (!(items.clipboard instanceof Array)) {
+          items.clipboard = new Array()
+        }
+        items.clipboard.push({value: selection, desc: selection});
+        getStorage().set({clipboard: items.clipboard}, function() {
+          chrome.runtime.sendMessage({event: "rebuildMenus"});
+        });
+      });
 }
 
 chrome.runtime.onMessage.addListener(
@@ -10,14 +34,18 @@ chrome.runtime.onMessage.addListener(
       document.execCommand("insertHTML", true, message.value);
     } else if (message.event == "addSelection") {
       var selection = document.getSelection().toString();
-      chrome.storage.sync.get("clipboard", function(items) {
-        if (!(items.clipboard instanceof Array)) {
-          items.clipboard = new Array()
-        }
-        items.clipboard.push({value: selection, desc: selection});
-        chrome.storage.sync.set({clipboard: items.clipboard}, function() {
-          chrome.runtime.sendMessage({event: "rebuildMenus"});
+      chrome.runtime.sendMessage({event:"getStorageName"}, function(response) {
+
+        getStorage().get("clipboard", function(items) {
+          if (!(items.clipboard instanceof Array)) {
+            items.clipboard = new Array()
+          }
+          items.clipboard.push({value: selection, desc: selection});
+          getStorage(response.name).set({clipboard: items.clipboard}, function() {
+            chrome.runtime.sendMessage({event: "rebuildMenus"});
+          });
         });
+
       });
     }
     sendResponse({});

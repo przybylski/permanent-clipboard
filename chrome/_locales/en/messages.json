@@ -42,5 +42,26 @@
 	"contentPlaceholder": {
 		"message": "Content",
 		"description": "Placeholder hint for content input box"
-	}
+	},
+  "localStorageUsed": {
+    "message": "Using local storage"
+  },
+  "syncedStorageUsed": {
+    "message": "Using synchronized storage"
+  },
+  "optionsText": {
+    "message": "Options"
+  },
+  "optionStorageTypeText": {
+    "message": "Storage type:"
+  },
+  "optionSyncText": {
+    "message": "Synchornized"
+  },
+  "optionLocalText": {
+    "message": "Local"
+  },
+  "optionSyncTip": {
+    "message": "Tip:<br/>Local storage is kept only on this chrome instance.<br/>Synchronized storage is shared across all your chrome instances (it might working a bit slower then local storage)."
+  }
 }
