@@ -1,40 +1,26 @@
 {
-  "manifest_version": 2,
-
-  "name": "__MSG_extensionName__",
-  "description": "__MSG_extensionDescription__",
-  "version": "1.3",
-
-  "icons": {
-    "16":  "img/icon-16.png",
-    "48":  "img/icon-48.png",
-    "128": "img/icon-128.png"
-  },
-
-  "permissions": [
-    "clipboardWrite",
-    "clipboardRead",
-    "storage",
-    "contextMenus"
-  ],
-  "content_scripts": [
-    {
-      "matches": ["http://*/*", "https://*/*"],
-      "js": ["contentscript.js"]
-    }
-  ],
-
-  "background": {
-    "persistent": false,
-    "scripts": ["background.js"]
-  },
-  
-  "browser_action": {
-    "default_icon": "img/icon-48.png",
-    "default_popup": "popup.html"
-  },
-
-  "options_page": "options.html",
-  "default_locale": "en"
+   "background": {
+      "persistent": false,
+      "scripts": [ "background.js" ]
+   },
+   "browser_action": {
+      "default_icon": "img/icon-48.png",
+      "default_popup": "popup.html"
+   },
+   "content_scripts": [ {
+      "js": [ "contentscript.js" ],
+      "matches": [ "http://*/*", "https://*/*" ]
+   } ],
+   "default_locale": "en",
+   "description": "__MSG_extensionDescription__",
+   "icons": {
+      "128": "img/icon-128.png",
+      "16": "img/icon-16.png",
+      "48": "img/icon-48.png"
+   },
+   "manifest_version": 2,
+   "name": "__MSG_extensionName__",
+   "options_page": "options.html",
+   "permissions": [ "clipboardWrite", "clipboardRead", "storage", "contextMenus" ],
+   "version": "1.3.1"
 }
-

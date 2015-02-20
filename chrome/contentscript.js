@@ -17,12 +17,12 @@ function onCopy(e) {
 
 function handleAddSelection(selection, storageName) {
   var selection = document.getSelection().toString();
-      getStorage().get("clipboard", function(items) {
+      getStorage(storageName).get("clipboard", function(items) {
         if (!(items.clipboard instanceof Array)) {
           items.clipboard = new Array()
         }
         items.clipboard.push({value: selection, desc: selection});
-        getStorage().set({clipboard: items.clipboard}, function() {
+        getStorage(storageName).set({clipboard: items.clipboard}, function() {
           chrome.runtime.sendMessage({event: "rebuildMenus"});
         });
       });
@@ -36,7 +36,7 @@ chrome.runtime.onMessage.addListener(
       var selection = document.getSelection().toString();
       chrome.runtime.sendMessage({event:"getStorageName"}, function(response) {
 
-        getStorage().get("clipboard", function(items) {
+        getStorage(response.name).get("clipboard", function(items) {
           if (!(items.clipboard instanceof Array)) {
             items.clipboard = new Array()
           }
