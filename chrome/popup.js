@@ -20,6 +20,11 @@ function escapeTags(str) {
 	return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
+function rebuildMenusAndReload() {
+  chrome.runtime.sendMessage({event:'rebuildMenus'});
+  location.reload();
+}
+
 function addToPermClipboardFromRecent() {
 	addToPermClipboard(document.getElementById('recent_name').value,
 	                   document.getElementById('recent_text').innerHTML);
@@ -31,8 +36,7 @@ function addToPermClipboardFromManually() {
 	// it will be replaced by text eventually
 	var text = document.getElementById('new_content').value;
 	if (text !== "")
-		addToPermClipboard(document.getElementById('new_name').value,
-		                   text);
+		addToPermClipboard(document.getElementById('new_name').value, text);
 	return false;
 }
 
@@ -40,31 +44,75 @@ function addToPermClipboard(name, text) {
   getStorage().get('clipboard', function(items) {
 		if (!(items.clipboard instanceof Array))
 			items.clipboard = new Array();
-		var element = {
-			desc:  name,
-			value: text
-		};
-		items.clipboard.push(element);
 
-    getStorage().set({'clipboard':items.clipboard, 'recent':0}, function() {
-			chrome.runtime.sendMessage({event:'rebuildMenus'});
-			location.reload();
-		});
+		items.clipboard.push({ desc: name, value: text });
+    getStorage().set({'clipboard':items.clipboard, 'recent':0}, rebuildMenusAndReload);
 	});
 }
 
 function removeElement(s) {
-  storage = getStorage();
+  var storage = getStorage();
   storage.get('clipboard', function(items) {
 		if (items.clipboard) {
 			var e = parseInt(s.srcElement.id);
 			arrayRemove(items.clipboard, e, e);
-      storage.set({'clipboard':items.clipboard}, function(){
-				chrome.runtime.sendMessage({event:'rebuildMenus'});
-				location.reload();
-			});
+      storage.set({'clipboard':items.clipboard}, rebuildMenusAndReload);
 		}
 	});
+}
+
+function editElement(s) {
+  var tableRow = s.srcElement.parentNode.parentNode;
+  getStorage().get('clipboard', function(items) {
+    if (items.clipboard) {
+      var id = parseInt(s.srcElement.id);
+      var el = items.clipboard[id];
+      var td = document.createElement('td');
+      td.appendChild(createEditForm(el.desc, el.value, id));
+      while (tableRow.firstChild)
+        tableRow.removeChild(tableRow.firstChild);
+      tableRow.appendChild(td);
+    }
+  });
+}
+
+function createEditForm(name, content, id) {
+  var wrapper = document.createElement('div');
+  wrapper.id = id;
+  var child = document.createElement('input');
+  child.className = 'entryName';
+  child.value = name;
+  wrapper.appendChild(child);
+  wrapper.appendChild(document.createElement('br'));
+
+  child = document.createElement('textarea');
+  child.className = 'entryContent';
+  wrapper.appendChild(child).appendChild(document.createTextNode(content));
+  wrapper.appendChild(document.createElement('br'));
+
+  wrapper.appendChild(createButton('Save', function(s) {
+    getStorage().get('clipboard', function(items) {
+      if (items.clipboard) {
+        var wrap = s.srcElement.parentNode;
+        var id = parseInt(wrap.id);
+        var name = wrap.getElementsByClassName('entryName')[0].value;
+        var content = wrap.getElementsByClassName('entryContent')[0].value;
+
+        items.clipboard[id] = { desc: name, value: content};
+
+        getStorage().set({'clipboard':items.clipboard}, rebuildMenusAndReload);
+      }
+    });
+  }));
+  wrapper.appendChild(createButton('Cancel', function() { location.reload(); }));
+  return wrapper;
+}
+
+function createButton(name, invokeFunction) {
+  var btn = document.createElement('button');
+  btn.appendChild(document.createTextNode(name));
+  btn.onclick = invokeFunction;
+  return btn;
 }
 
 function init_i18n() {
@@ -93,6 +141,35 @@ function copyToClipboard(s) {
 	document.body.removeChild(copyDiv);
 }
 
+function createTableRow(value, desc, id) {
+  return "<tr><td>" +
+           "<a title=\"" + escapeQuots(value) + "\">" + desc + "</a>" +
+         "</td><td class=\"actioncell\">" +
+           "<img src=\"img/edit-icon.png\" id=\""+id+"\" name=\"edit_btn\" id=\""+id+"\" class=\"actionbtn\"/>" +
+         "</td><td class=\"actioncell\">" +
+           "<img src=\"img/remove-icon.png\" id=\""+id+"\" name=\"rem_btn\" id=\""+id+"\" class=\"actionbtn\"/>" +
+         "</td></tr>";
+}
+
+function assignDeleteActions() {
+  var elem = document.getElementsByName('rem_btn');
+  for (var e in elem)
+      elem[e].onclick = removeElement;
+}
+
+function assignEditActions() {
+  var elem = document.getElementsByName('edit_btn');
+  for (var e in elem)
+    elem[e].onclick = editElement;
+} 
+
+function assignCopyToClipboardActions(root) {
+  var elem = root.getElementsByTagName('a');
+  for (var e in elem) {
+      elem[e].onclick = copyToClipboard;
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 	var btn = document.getElementById('recent_btn');
 	btn.onclick = addToPermClipboardFromRecent;
@@ -119,19 +196,14 @@ document.addEventListener('DOMContentLoaded', function() {
 				if (!desc || desc.length == 0)
 					desc = value;
 
-				k += "<tr><td><a title=\"" + escapeQuots(value) + "\">" + desc + "</a></td><td><img src=\"img/remove-icon.png\" id=\""+i+"\" name=\"rem_btn\" id=\""+i+"\" class=\"rembtn\"/></td></tr>";
+        k += createTableRow(value, desc, i);
 			}
 			k += "</table>";
 			elem.innerHTML = k;
-			table = elem;
 
-			elem = document.getElementsByName('rem_btn');
-			for (var e in elem)
-				elem[e].onclick = removeElement;
-
-			elem = table.getElementsByTagName('a');
-			for (var e in elem)
-				elem[e].onclick = copyToClipboard;
+      assignDeleteActions();
+      assignEditActions();
+      assignCopyToClipboardActions(elem);
 		} else {
 			document.getElementById("hint").innerHTML = chrome.i18n.getMessage("popupHintNoElements");
 		}
