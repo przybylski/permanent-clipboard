@@ -150,13 +150,19 @@ function createTableRow(value, desc, id) {
     e.className = 'actionbtn';
     return e;
   };
+  var createActionCell = function(child) {
+    var e = document.createElement('td');
+    e.className = 'actioncell';
+    e.appendChild(child);
+    return e;
+  };
   var a = document.createElement('a');
   a.title = value;
 
   a.appendChild(document.createTextNode(desc));
   tr.appendChild(document.createElement('td')).appendChild(a);
-  tr.appendChild(document.createElement('td')).appendChild(createIcon('img/edit-icon.png', 'edit_btn', id));
-  tr.appendChild(document.createElement('td')).appendChild(createIcon('img/remove-icon.png', 'rem_btn', id));
+  tr.appendChild(createActionCell(createIcon('img/edit-icon.png', 'edit_btn', id)));
+  tr.appendChild(createActionCell(createIcon('img/remove-icon.png', 'rem_btn', id)));
 
   return tr;
 }
