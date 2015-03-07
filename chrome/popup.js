@@ -54,7 +54,7 @@ function removeElement(s) {
   var storage = getStorage();
   storage.get('clipboard', function(items) {
     if (items.clipboard) {
-      var e = parseInt(s.srcElement.id);
+      var e = parseInt(s.srcElement.parentNode.parentNode.getAttribute('data-entryId'));
       arrayRemove(items.clipboard, e, e);
       storage.set({'clipboard':items.clipboard}, rebuildMenusAndReload);
     }
@@ -65,12 +65,12 @@ function editElement(s) {
   var tableRow = s.srcElement.parentNode.parentNode;
   getStorage().get('clipboard', function(items) {
     if (items.clipboard) {
-      var id = parseInt(s.srcElement.id);
+      var id = parseInt(s.srcElement.parentNode.parentNode.getAttribute('data-entryId'));
       var el = items.clipboard[id];
       var td = document.createElement('td');
       td.appendChild(createEditForm(el.desc, el.value, id));
-      while (tableRow.firstChild)
-        tableRow.removeChild(tableRow.firstChild);
+      while (tableRow.lastChild)
+        tableRow.removeChild(tableRow.lastChild);
       tableRow.appendChild(td);
     }
   });
@@ -78,7 +78,6 @@ function editElement(s) {
 
 function createEditForm(name, content, id) {
   var wrapper = document.createElement('div');
-  wrapper.id = id;
   var child = document.createElement('input');
   child.className = 'entryName';
   child.value = name;
@@ -94,7 +93,7 @@ function createEditForm(name, content, id) {
     getStorage().get('clipboard', function(items) {
       if (items.clipboard) {
         var wrap = s.srcElement.parentNode;
-        var id = parseInt(wrap.id);
+        var id = parseInt(wrap.parentNode.parentNode.getAttribute('data-entryId'));
         var name = wrap.getElementsByClassName('entryName')[0].value;
         var content = wrap.getElementsByClassName('entryContent')[0].value;
 
@@ -142,13 +141,24 @@ function copyToClipboard(s) {
 }
 
 function createTableRow(value, desc, id) {
-  return "<tr><td>" +
-           "<a title=\"" + escapeQuots(value) + "\">" + desc + "</a>" +
-         "</td><td class=\"actioncell\">" +
-           "<img src=\"img/edit-icon.png\" id=\""+id+"\" name=\"edit_btn\" id=\""+id+"\" class=\"actionbtn\"/>" +
-         "</td><td class=\"actioncell\">" +
-           "<img src=\"img/remove-icon.png\" id=\""+id+"\" name=\"rem_btn\" id=\""+id+"\" class=\"actionbtn\"/>" +
-         "</td></tr>";
+  var tr = document.createElement('tr');
+  tr.setAttribute("data-entryId", id);
+  var createIcon = function(path, name) {
+    var e = document.createElement('img');
+    e.src = path;
+    e.name = name;
+    e.className = 'actionbtn';
+    return e;
+  };
+  var a = document.createElement('a');
+  a.title = value;
+
+  a.appendChild(document.createTextNode(desc));
+  tr.appendChild(document.createElement('td')).appendChild(a);
+  tr.appendChild(document.createElement('td')).appendChild(createIcon('img/edit-icon.png', 'edit_btn', id));
+  tr.appendChild(document.createElement('td')).appendChild(createIcon('img/remove-icon.png', 'rem_btn', id));
+
+  return tr;
 }
 
 function assignDeleteActions() {
@@ -188,19 +198,15 @@ document.addEventListener('DOMContentLoaded', function() {
   var elem = document.getElementById('current_div');
   getStorage().get('clipboard', function(items) {
     if (items.clipboard && items.clipboard.length > 0) {
-      var k = "<hr><table>"; 
-      var i = 0;
-      for (var i = 0; i < items.clipboard.length; i++) {
-        var desc  = items.clipboard[i].desc;
-        var value = items.clipboard[i].value;
-        if (!desc || desc.length == 0)
-          desc = value;
+      elem.appendChild(document.createElement('hr'));
+      var table = elem.appendChild(document.createElement('table'));
+      for (var id in items.clipboard) {
+        var item = items.clipboard[id];
+        if (!item.desc || item.desc.length == 0)
+          item.desc = item.value;
 
-        k += createTableRow(value, desc, i);
+        table.appendChild(createTableRow(item.value, item.desc, id));
       }
-      k += "</table>";
-      elem.innerHTML = k;
-
       assignDeleteActions();
       assignEditActions();
       assignCopyToClipboardActions(elem);
