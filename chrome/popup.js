@@ -12,14 +12,6 @@ function getStorage() {
   return chrome.storage.sync;
 }
 
-function escapeQuots(str) {
-  return str.replace(/"/g, "&quot;");
-}
-
-function escapeTags(str) {
-  return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
-
 function rebuildMenusAndReload() {
   chrome.runtime.sendMessage({event:'rebuildMenus'});
   location.reload();
@@ -117,14 +109,14 @@ function createButton(name, invokeFunction) {
 function init_i18n() {
   document.getElementById("recent_btn").value = chrome.i18n.getMessage("addBtnText");
   document.getElementById("recent_name").placeholder = chrome.i18n.getMessage("descriptionPlaceholder");
-  document.getElementById("recent_title").innerHTML = chrome.i18n.getMessage("popupNewElement");
+  document.getElementById("recent_title").appendChild(document.createTextNode(chrome.i18n.getMessage("popupNewElement")));
   document.getElementById("hint").innerHTML = chrome.i18n.getMessage("popupHint");
   document.getElementById("new_btn").value = chrome.i18n.getMessage("addBtnText");
   document.getElementById("new_name").placeholder = chrome.i18n.getMessage("descriptionPlaceholder");
   document.getElementById("new_content").placeholder = chrome.i18n.getMessage("contentPlaceholder");
-  document.getElementById("new_item_content_trigger").innerHTML = chrome.i18n.getMessage("showAddFormText");
-  document.getElementById("storage_type_text").innerHTML = chrome.i18n.getMessage(localStorage["storage_type"] == "local" ? "localStorageUsed" : "syncedStorageUsed");
-  document.getElementById("options_text").innerHTML = chrome.i18n.getMessage("optionsText");
+  document.getElementById("new_item_content_trigger").appendChild(document.createTextNode(chrome.i18n.getMessage("showAddFormText")));
+  document.getElementById("storage_type_text").appendChild(document.createTextNode(chrome.i18n.getMessage(localStorage["storage_type"] == "local" ? "localStorageUsed" : "syncedStorageUsed")));
+  document.getElementById("options_text").appendChild(document.createTextNode(chrome.i18n.getMessage("optionsText")));
 }
 
 function copyToClipboard(s) {
@@ -132,7 +124,7 @@ function copyToClipboard(s) {
   var copyDiv = document.createElement('div');
   copyDiv.contentEditable = true;
   document.body.appendChild(copyDiv);
-  copyDiv.innerHTML = escapeTags(text);
+  copyDiv.appendChild(document.createTextNode(text));
   copyDiv.unselectable = "off";
   copyDiv.focus();
   document.execCommand('SelectAll');
@@ -230,8 +222,11 @@ document.addEventListener('DOMContentLoaded', function() {
   getStorage().get('recent', function(recent) {
     if (recent.recent) {
       var div = document.getElementById('recent_text');
-      if (div)
-        div.innerHTML = escapeTags(recent.recent);
+      if (div) {
+        while (div.lastChild)
+          div.removeChild(div.lastChild);
+        div.appendChild(document.createTextNode(recent.recent));
+      }
     } else {
       var div = document.getElementById('recent_div');
       if (div)
