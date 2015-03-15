@@ -22,5 +22,5 @@
    "name": "__MSG_extensionName__",
    "options_page": "options.html",
    "permissions": [ "clipboardWrite", "clipboardRead", "storage", "contextMenus" ],
-   "version": "1.4.0"
+   "version": "1.4.1"
 }
