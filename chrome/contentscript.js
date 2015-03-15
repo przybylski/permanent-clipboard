@@ -31,7 +31,7 @@ function handleAddSelection(selection, storageName) {
 chrome.runtime.onMessage.addListener(
   function(message, sender, sendResponse) {
     if (message.event == "insertText") {
-      document.execCommand("insertHTML", true, message.value);
+      document.execCommand("insertText", true, message.value);
     } else if (message.event == "addSelection") {
       var selection = document.getSelection().toString();
       chrome.runtime.sendMessage({event:"getStorageName"}, function(response) {

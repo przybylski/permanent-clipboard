@@ -120,11 +120,14 @@ function init_i18n() {
 }
 
 function copyToClipboard(s) {
-  var text = s.srcElement.title;
+  var textArr = s.srcElement.title.split('\n');
   var copyDiv = document.createElement('div');
   copyDiv.contentEditable = true;
   document.body.appendChild(copyDiv);
-  copyDiv.appendChild(document.createTextNode(text));
+  for (var te in textArr) {
+    copyDiv.appendChild(document.createTextNode(textArr[te]));
+    copyDiv.appendChild(document.createElement('br'));
+  }
   copyDiv.unselectable = "off";
   copyDiv.focus();
   document.execCommand('SelectAll');
