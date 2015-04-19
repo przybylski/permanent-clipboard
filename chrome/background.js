@@ -54,6 +54,13 @@ chrome.contextMenus.onClicked.addListener(onMenuClicked);
 
 chrome.runtime.onInstalled.addListener(function() {
   rebuildMenus();
+  chrome.tabs.query({}, function(tabs) {
+  for(var i in tabs) {
+    if (tabs[i].url.startsWith("http://") || tabs[i].url.startsWith("https://")) {
+      chrome.tabs.executeScript(tabs[i].id, {file: "contentscript.js"});
+    }
+  }
+  });
 });
 
 
