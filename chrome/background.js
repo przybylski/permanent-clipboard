@@ -50,7 +50,9 @@ chrome.runtime.onMessage.addListener(
     }
 });
 
-function rebuildMenusAndInjectScript() {
+chrome.contextMenus.onClicked.addListener(onMenuClicked);
+
+chrome.runtime.onInstalled.addListener(function() {
   rebuildMenus();
   chrome.tabs.query({}, function(tabs) {
   for(var i in tabs) {
@@ -59,16 +61,6 @@ function rebuildMenusAndInjectScript() {
     }
   }
   });
-}
-
-chrome.contextMenus.onClicked.addListener(onMenuClicked);
-
-chrome.runtime.onInstalled.addListener(function() {
-  rebuildMenusAndInjectScript()
 });
 
-chrome.management.onEnabled.addListener(function(eInfo) {
-  if (eInfo.id == chrome.runtime.id)
-    rebuildMenusAndInjectScript()
-});
 
