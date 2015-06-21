@@ -1,3 +1,16 @@
+var _AnalyticsCode = 'UA-64085295-1';
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', _AnalyticsCode]);
+
+(function() {
+  var ga = document.createElement('script');
+  ga.type = 'text/javascript';
+  ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(ga, s);
+})();
 
 function getStorage() {
   if (localStorage["storage_type"] == "local")
@@ -7,12 +20,15 @@ function getStorage() {
 
 function onMenuClicked(info, tab) {
   if (info.menuItemId == "selmenu") {
+    _gaq.push(['_trackEvent', 'Menu', 'Selection added']);
     chrome.tabs.sendMessage(tab.id, {event: 'addSelection'});
   } else if (info.menuItemId == "selWname") {
+    _gaq.push(['_trackEvent', 'Menu', 'Selection added']);
     chrome.tabs.sendMessage(tab.id,{event: 'addSelectionWithName'});
   } else {
     getStorage().get("clipboard", function(items) {
       var val = items.clipboard[parseInt(info.menuItemId)].value;
+      _gaq.push(['_trackEvent', 'Menu', 'Inserting text']);
       chrome.tabs.sendMessage(tab.id, {event:'insertText', value: val});
     });
   }

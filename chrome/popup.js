@@ -10,7 +10,6 @@ var _AnalyticsCode = 'UA-64085295-1';
 
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', _AnalyticsCode]);
-_gaq.push(['_trackPageview']);
 
 (function() {
   var ga = document.createElement('script');
@@ -35,7 +34,7 @@ function rebuildMenusAndReload() {
 function addToPermClipboardFromRecent() {
   addToPermClipboard(document.getElementById('recent_name').value,
                      document.getElementById('recent_text').innerHTML);
-  _gaq.push(['_trackEvent', 'Saved Element', 'recent']);
+  _gaq.push(['_trackEvent', 'Popup', 'Recent saved']);
   return false;
 }
 
@@ -45,7 +44,7 @@ function addToPermClipboardFromManually() {
   var text = document.getElementById('new_content').value;
   if (text !== "") {
     addToPermClipboard(document.getElementById('new_name').value, text);
-    _gaq.push(['_trackEvent', 'Saved Element', 'manually']);
+    _gaq.push(['_trackEvent', 'Popup', 'Manually add']);
   }
   return false;
 }
@@ -67,7 +66,7 @@ function removeElement(s) {
       var e = parseInt(s.srcElement.parentNode.parentNode.getAttribute('data-entryId'));
       arrayRemove(items.clipboard, e, e);
       storage.set({'clipboard':items.clipboard}, rebuildMenusAndReload);
-      _gaq.push(['_trackEvent', 'Saved Element', 'remove']);
+      _gaq.push(['_trackEvent', 'Popup', 'Remove element']);
     }
   });
 }
@@ -83,7 +82,7 @@ function editElement(s) {
       while (tableRow.lastChild)
         tableRow.removeChild(tableRow.lastChild);
       tableRow.appendChild(td);
-      _gaq.push(['_trackEvent', 'Saved Element', 'editing']);
+      _gaq.push(['_trackEvent', 'Popup', 'Edit started']);
     }
   });
 }
@@ -112,13 +111,13 @@ function createEditForm(name, content, id) {
         items.clipboard[id] = { desc: name, value: content};
 
         getStorage().set({'clipboard':items.clipboard}, rebuildMenusAndReload);
-        _gaq.push(['_trackEvent', 'Saved Element', 'edited']);
+        _gaq.push(['_trackEvent', 'Popup', 'Editing saved']);
       }
     });
   }));
   wrapper.appendChild(createButton('Cancel', function() {
       location.reload();
-      _gaq.push(['_trackEvent', 'Saved Element', 'canceling']);
+      _gaq.push(['_trackEvent', 'Popup', 'Editing canceled']);
   }));
   return wrapper;
 }
@@ -157,7 +156,7 @@ function copyToClipboard(s) {
   document.execCommand('SelectAll');
   document.execCommand("Copy", false, null);
   document.body.removeChild(copyDiv);
-  _gaq.push(['_trackEvent', 'Saved Element', 'clicked']);
+  _gaq.push(['_trackEvent', 'Popup', 'Element clicked']);
 }
 
 function createTableRow(value, desc, id) {
