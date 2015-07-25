@@ -1,14 +1,15 @@
 {
-  "syncedStorageUsed" : {
-    "message" : "Using synchronized storage",
-    "description" : "Text something"
+  "extensionName" : {
+    "message" : "Permanent clipboard",
+    "description" : "Extension name."
   },
   "descriptionPlaceholder" : {
     "message" : "Description",
     "description" : "Placeholder on input field in popup"
   },
   "optionsText" : {
-    "message" : "Options"
+    "message" : "Options",
+    "description" : "Text displayed on top of options page"
   },
   "popupHintNoElements" : {
     "message" : "No elements in clipboard",
@@ -42,6 +43,10 @@
   "optionLocalText" : {
     "message" : "Local"
   },
+  "syncedStorageUsed" : {
+    "message" : "Using synchronized storage",
+    "description" : ""
+  },
   "extensionDescription" : {
     "message" : "Allows you to store and access multiple elements in clipboard",
     "description" : "Extension description."
@@ -58,11 +63,8 @@
     "message" : "Add new entry",
     "description" : "Link text for new entry div trigger"
   },
-  "extensionName" : {
-    "message" : "Permanent clipboard",
-    "description" : "Extension name."
-  },
   "optionStorageTypeText" : {
-    "message" : "Storage type:"
+    "message" : "Storage type:",
+    "description" : "Field description before combo on options screen"
   }
 }

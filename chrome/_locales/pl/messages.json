@@ -1,35 +1,53 @@
 {
-   "addBtnText": {
-      "message": "Dodaj"
-   },
-   "addToExtensionDB": {
-      "message": "Dodaj do stałego schowka"
-   },
-   "contentPlaceholder": {
-      "message": "Zawartość"
-   },
-   "descriptionPlaceholder": {
-      "message": "Opis"
-   },
-   "extensionDescription": {
-      "message": "Pozwala na zachownie i dostęp do wielu elementów w schowku"
-   },
-   "extensionName": {
-      "message": "Stały schowek"
-   },
-   "insertFromExtension": {
-      "message": "Wstaw ze stałego schowka"
-   },
-   "popupHint": {
-      "message": "Kliknij w element żeby skopiować go do schowka"
-   },
-   "popupHintNoElements": {
-      "message": "Brak elementów w schowku"
-   },
-   "popupNewElement": {
-      "message": "Nowy wpis"
-   },
-   "showAddFormText": {
-      "message": "Dodaj nowy wpis"
-   }
+  "syncedStorageUsed" : {
+    "message" : "Używasz pamięci synchronizowanej"
+  },
+  "descriptionPlaceholder" : {
+    "message" : "Opis"
+  },
+  "optionsText" : {
+    "message" : "Opcje"
+  },
+  "popupHintNoElements" : {
+    "message" : "Brak elementów w schowku"
+  },
+  "addBtnText" : {
+    "message" : "Dodaj"
+  },
+  "localStorageUsed" : {
+    "message" : "Używasz pamięci lokalnej"
+  },
+  "optionSyncText" : {
+    "message" : "Synchronizowana"
+  },
+  "insertFromExtension" : {
+    "message" : "Wstaw ze stałego schowka"
+  },
+  "showAddFormText" : {
+    "message" : "Dodaj nowy wpis"
+  },
+  "addToExtensionDB" : {
+    "message" : "Dodaj do stałego schowka"
+  },
+  "popupHint" : {
+    "message" : "Kliknij w element żeby skopiować go do schowka"
+  },
+  "extensionDescription" : {
+    "message" : "Pozwala na zachownie i dostęp do wielu elementów w schowku"
+  },
+  "popupNewElement" : {
+    "message" : "Nowy wpis"
+  },
+  "contentPlaceholder" : {
+    "message" : "Zawartość"
+  },
+  "optionLocalText" : {
+    "message" : "Lokalna"
+  },
+  "extensionName" : {
+    "message" : "Stały schowek"
+  },
+  "optionStorageTypeText" : {
+    "message" : "Typ pamięci:"
+  }
 }
