@@ -1,7 +1,7 @@
 {
-  "extensionName" : {
-    "message" : "Permanent clipboard",
-    "description" : "Extension name."
+  "optionStorageTypeText" : {
+    "message" : "Storage type:",
+    "description" : "Field description before combo on options screen"
   },
   "descriptionPlaceholder" : {
     "message" : "Description",
@@ -27,6 +27,9 @@
   },
   "optionSyncText" : {
     "message" : "Synchornized"
+  },
+  "optionsSave" : {
+    "message" : "Save"
   },
   "addToExtensionDB" : {
     "message" : "Add to Permanent clipboard",
@@ -59,12 +62,12 @@
     "message" : "New entry",
     "description" : "New element title in popup"
   },
+  "extensionName" : {
+    "message" : "Permanent clipboard",
+    "description" : "Extension name."
+  },
   "showAddFormText" : {
     "message" : "Add new entry",
     "description" : "Link text for new entry div trigger"
-  },
-  "optionStorageTypeText" : {
-    "message" : "Storage type:",
-    "description" : "Field description before combo on options screen"
   }
 }

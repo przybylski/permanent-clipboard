@@ -1,9 +1,12 @@
 {
-  "syncedStorageUsed" : {
-    "message" : "Używasz pamięci synchronizowanej"
+  "extensionName" : {
+    "message" : "Stały schowek"
   },
   "descriptionPlaceholder" : {
     "message" : "Opis"
+  },
+  "optionsSave" : {
+    "message" : "Zapisz"
   },
   "optionsText" : {
     "message" : "Opcje"
@@ -32,6 +35,9 @@
   "popupHint" : {
     "message" : "Kliknij w element żeby skopiować go do schowka"
   },
+  "syncedStorageUsed" : {
+    "message" : "Używasz pamięci synchronizowanej"
+  },
   "extensionDescription" : {
     "message" : "Pozwala na zachownie i dostęp do wielu elementów w schowku"
   },
@@ -43,9 +49,6 @@
   },
   "optionLocalText" : {
     "message" : "Lokalna"
-  },
-  "extensionName" : {
-    "message" : "Stały schowek"
   },
   "optionStorageTypeText" : {
     "message" : "Typ pamięci:"
