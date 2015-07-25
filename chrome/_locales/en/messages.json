@@ -1,67 +1,68 @@
 {
-   "addBtnText": {
-      "description": "Text on add button in popup",
-      "message": "Add"
-   },
-   "addToExtensionDB": {
-      "description": "Context menu text on selected text.",
-      "message": "Add to Permanent clipboard"
-   },
-   "contentPlaceholder": {
-      "description": "Placeholder hint for content input box",
-      "message": "Content"
-   },
-   "descriptionPlaceholder": {
-      "description": "Placeholder on input field in popup",
-      "message": "Description"
-   },
-   "extensionDescription": {
-      "description": "Extension description.",
-      "message": "Allows you to store and access multiple elements in clipboard"
-   },
-   "extensionName": {
-      "description": "Extension name.",
-      "message": "Permanent clipboard"
-   },
-   "insertFromExtension": {
-      "description": "Context menu text on editable elements.",
-      "message": "Insert from Permanent clipboard"
-   },
-   "localStorageUsed": {
-      "message": "Using local storage"
-   },
-   "optionLocalText": {
-      "message": "Local"
-   },
-   "optionStorageTypeText": {
-      "message": "Storage type:"
-   },
-   "optionSyncText": {
-      "message": "Synchornized"
-   },
-   "optionSyncTip": {
-      "message": "Tip:\u003Cbr/>Local storage is kept only on this chrome instance.\u003Cbr/>Synchronized storage is shared across all your chrome instances (it might working a bit slower then local storage)."
-   },
-   "optionsText": {
-      "message": "Options"
-   },
-   "popupHint": {
-      "description": "Hint text showed in popup",
-      "message": "Click on element to add it to clipboard"
-   },
-   "popupHintNoElements": {
-      "description": "Hint visible when no elements are available",
-      "message": "No elements in clipboard"
-   },
-   "popupNewElement": {
-      "description": "New element title in popup",
-      "message": "New entry"
-   },
-   "showAddFormText": {
-      "description": "Link text for new entry div trigger",
-      "message": "Add new entry"
-   },
-   "syncedStorageUsed": {
-      "message": "Using synchronized storage"
-   }
+  "syncedStorageUsed" : {
+    "message" : "Using synchronized storage",
+    "description" : "Text something"
+  },
+  "descriptionPlaceholder" : {
+    "message" : "Description",
+    "description" : "Placeholder on input field in popup"
+  },
+  "optionsText" : {
+    "message" : "Options"
+  },
+  "popupHintNoElements" : {
+    "message" : "No elements in clipboard",
+    "description" : "Hint visible when no elements are available"
+  },
+  "addBtnText" : {
+    "message" : "Add",
+    "description" : "Text on add button in popup"
+  },
+  "localStorageUsed" : {
+    "message" : "Using local storage"
+  },
+  "optionSyncTip" : {
+    "message" : "Tip:\nLocal storage is kept only on this chrome instance.\nSynchronized storage is shared across all your chrome instances (it might working a bit slower then local storage)."
+  },
+  "optionSyncText" : {
+    "message" : "Synchornized"
+  },
+  "addToExtensionDB" : {
+    "message" : "Add to Permanent clipboard",
+    "description" : "Context menu text on selected text."
+  },
+  "insertFromExtension" : {
+    "message" : "Insert from Permanent clipboard",
+    "description" : "Context menu text on editable elements."
+  },
+  "contentPlaceholder" : {
+    "message" : "Content",
+    "description" : "Placeholder hint for content input box"
+  },
+  "optionLocalText" : {
+    "message" : "Local"
+  },
+  "extensionDescription" : {
+    "message" : "Allows you to store and access multiple elements in clipboard",
+    "description" : "Extension description."
+  },
+  "popupHint" : {
+    "message" : "Click on element to add it to clipboard",
+    "description" : "Hint text showed in popup"
+  },
+  "popupNewElement" : {
+    "message" : "New entry",
+    "description" : "New element title in popup"
+  },
+  "showAddFormText" : {
+    "message" : "Add new entry",
+    "description" : "Link text for new entry div trigger"
+  },
+  "extensionName" : {
+    "message" : "Permanent clipboard",
+    "description" : "Extension name."
+  },
+  "optionStorageTypeText" : {
+    "message" : "Storage type:"
+  }
 }

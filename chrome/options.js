@@ -30,7 +30,7 @@ function init_i18n() {
   document.getElementById("option_sync_type_text").innerHTML = chrome.i18n.getMessage("optionStorageTypeText");
   document.getElementById("option_sync_text").innerHTML = chrome.i18n.getMessage("optionSyncText");
   document.getElementById("option_local_text").innerHTML = chrome.i18n.getMessage("optionLocalText");
-  document.getElementById("option_sync_tip").innerHTML = chrome.i18n.getMessage("optionSyncTip");
+  document.getElementById("option_sync_tip").innerText = chrome.i18n.getMessage("optionSyncTip");
 }
 
 function dom_loaded() {
