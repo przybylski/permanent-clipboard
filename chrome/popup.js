@@ -269,10 +269,11 @@ document.addEventListener('DOMContentLoaded', function() {
           var nextId = parseInt(uiRaw.nextSibling.getAttribute("data-entryId"));
           target = nextId - (source < nextId ? 1 : 0);
         } else if (uiRaw.previousSibling) {
-          target = parseInt(uiRaw.previousSibling.getAttribute("data-entryId"));
+          var prevId = parseInt(uiRaw.previousSibling.getAttribute("data-entryId"));
+          target = prevId + (source > prevId ? 1 : 0);
         }
         
-        if (target != -1)
+        if (target != -1 && target != source)
           relocateElement();
       }
   });
