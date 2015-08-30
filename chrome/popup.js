@@ -20,6 +20,8 @@ _gaq.push(['_setAccount', _AnalyticsCode]);
   s.parentNode.insertBefore(ga, s);
 })();
 
+var defaultAnimationDuration = 100;
+
 function getStorage() {
   if (localStorage["storage_type"] == "local")
     return chrome.storage.local;
@@ -251,6 +253,9 @@ document.addEventListener('DOMContentLoaded', function() {
       placeholder: "list-placeholder",
       forcePlaceholderSize: true,
       cursor: "ns-resize",
+      axis: 'y',
+      opacity: 0.7,
+      revert: defaultAnimationDuration,
       start: function(event, ui) {
         $('.actioncell', ui.item).each(function() {
           $('.actioncell', ui.item).css({opacity:0});
@@ -258,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       stop: function(event, ui) { 
         $('.actioncell', ui.item).each(function() {
-          $('.actioncell', ui.item).css({opacity:1});
+          $('.actioncell', ui.item).animate({opacity:1}, defaultAnimationDuration);
         });
         var uiRaw = ui.item.get(0);
 
@@ -303,6 +308,13 @@ function relocateElement() {
     var elem = items.clipboard[source];
     arrayRemove(items.clipboard, source, source);
     items.clipboard.splice(target, 0, elem);
-    getStorage().set({'clipboard':items.clipboard}, rebuildMenusAndReload);
+    getStorage().set({'clipboard':items.clipboard}, setEntryIdToElements);
+  });
+}
+
+function setEntryIdToElements() {
+  $('#current_div > div').each(function(idx, e) {
+    e.setAttribute('data-entryId', idx);
+    chrome.runtime.sendMessage({event:'rebuildMenus'});
   });
 }
