@@ -144,6 +144,7 @@ function init_i18n() {
 
 function copyToClipboard(s) {
   var textArr = s.srcElement.title.split('\n');
+  $(s.srcElement).animate({opacity:0.5}, 100, function() { $(s.srcElement).animate({opacity:1}, 100); });
   var copyDiv = document.createElement('div');
   copyDiv.contentEditable = true;
   document.body.appendChild(copyDiv);
@@ -159,8 +160,9 @@ function copyToClipboard(s) {
   _gaq.push(['_trackEvent', 'Popup', 'Element clicked']);
 }
 
-function createTableRow(value, desc, id) {
-  var tr = document.createElement('tr');
+function createEntry(value, desc, id) {
+  var tr = document.createElement('div');
+  tr.className = 'dataEntry';
   tr.setAttribute("data-entryId", id);
   var createIcon = function(path, name) {
     var e = document.createElement('img');
@@ -170,7 +172,7 @@ function createTableRow(value, desc, id) {
     return e;
   };
   var createActionCell = function(child) {
-    var e = document.createElement('td');
+    var e = document.createElement('div');
     e.className = 'actioncell';
     e.appendChild(child);
     return e;
@@ -179,7 +181,7 @@ function createTableRow(value, desc, id) {
   a.title = value;
 
   a.appendChild(document.createTextNode(desc));
-  tr.appendChild(document.createElement('td')).appendChild(a);
+  tr.appendChild(document.createElement('span')).appendChild(a);
   tr.appendChild(createActionCell(createIcon('img/edit-icon.png', 'edit_btn', id)));
   tr.appendChild(createActionCell(createIcon('img/remove-icon.png', 'rem_btn', id)));
 
@@ -223,14 +225,13 @@ document.addEventListener('DOMContentLoaded', function() {
   var elem = document.getElementById('current_div');
   getStorage().get('clipboard', function(items) {
     if (items.clipboard && items.clipboard.length > 0) {
-      elem.appendChild(document.createElement('hr'));
-      var table = elem.appendChild(document.createElement('table'));
+      elem.parentNode.insertBefore(document.createElement('hr'), elem);
       for (var id in items.clipboard) {
         var item = items.clipboard[id];
         if (!item.desc || item.desc.length == 0)
           item.desc = item.value;
 
-        table.appendChild(createTableRow(item.value, item.desc, id));
+        elem.appendChild(createEntry(item.value, item.desc, id));
       }
       assignDeleteActions();
       assignEditActions();
@@ -244,6 +245,36 @@ document.addEventListener('DOMContentLoaded', function() {
       chrome.tabs.create({url:'options.html'});
     };
 
+  });
+
+  $("#current_div").sortable({
+      placeholder: "list-placeholder",
+      forcePlaceholderSize: true,
+      cursor: "ns-resize",
+      start: function(event, ui) {
+        $('.actioncell', ui.item).each(function() {
+          $('.actioncell', ui.item).css({opacity:0});
+        });
+      },
+      stop: function(event, ui) { 
+        $('.actioncell', ui.item).each(function() {
+          $('.actioncell', ui.item).css({opacity:1});
+        });
+        var uiRaw = ui.item.get(0);
+
+        source = parseInt(uiRaw.getAttribute("data-entryId"));
+        target = -1;
+
+        if (uiRaw.nextSibling) {
+          var nextId = parseInt(uiRaw.nextSibling.getAttribute("data-entryId"));
+          target = nextId - (source < nextId ? 1 : 0);
+        } else if (uiRaw.previousSibling) {
+          target = parseInt(uiRaw.previousSibling.getAttribute("data-entryId"));
+        }
+        
+        if (target != -1)
+          relocateElement();
+      }
   });
 
   getStorage().get('recent', function(recent) {
@@ -262,3 +293,15 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   init_i18n();
 });
+
+
+var source, target;
+
+function relocateElement() {
+  getStorage().get('clipboard', function(items) {
+    var elem = items.clipboard[source];
+    arrayRemove(items.clipboard, source, source);
+    items.clipboard.splice(target, 0, elem);
+    getStorage().set({'clipboard':items.clipboard}, rebuildMenusAndReload);
+  });
+}
