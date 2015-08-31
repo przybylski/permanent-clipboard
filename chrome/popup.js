@@ -309,6 +309,8 @@ function relocateElement() {
     arrayRemove(items.clipboard, source, source);
     items.clipboard.splice(target, 0, elem);
     getStorage().set({'clipboard':items.clipboard}, setEntryIdToElements);
+
+    _gaq.push(['_trackEvent', 'Rearrange', 'rearrange']);
   });
 }
 
