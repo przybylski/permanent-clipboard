@@ -163,8 +163,7 @@ function copyToClipboard(s) {
 }
 
 function createEntry(value, desc, id) {
-  var tr = document.createElement('div');
-  tr.className = 'dataEntry';
+  var tr = document.createElement('tr');
   tr.setAttribute("data-entryId", id);
   var createIcon = function(path, name) {
     var e = document.createElement('img');
@@ -174,7 +173,7 @@ function createEntry(value, desc, id) {
     return e;
   };
   var createActionCell = function(child) {
-    var e = document.createElement('div');
+    var e = document.createElement('td');
     e.className = 'actioncell';
     e.appendChild(child);
     return e;
@@ -183,7 +182,7 @@ function createEntry(value, desc, id) {
   a.title = value;
 
   a.appendChild(document.createTextNode(desc));
-  tr.appendChild(document.createElement('span')).appendChild(a);
+  tr.appendChild(document.createElement('td')).appendChild(a);
   tr.appendChild(createActionCell(createIcon('img/edit-icon.png', 'edit_btn', id)));
   tr.appendChild(createActionCell(createIcon('img/remove-icon.png', 'rem_btn', id)));
 
@@ -227,13 +226,14 @@ document.addEventListener('DOMContentLoaded', function() {
   var elem = document.getElementById('current_div');
   getStorage().get('clipboard', function(items) {
     if (items.clipboard && items.clipboard.length > 0) {
-      elem.parentNode.insertBefore(document.createElement('hr'), elem);
+      elem.appendChild(document.createElement('hr'));
+      var table = elem.appendChild(document.createElement('table'));
       for (var id in items.clipboard) {
         var item = items.clipboard[id];
         if (!item.desc || item.desc.length == 0)
           item.desc = item.value;
 
-        elem.appendChild(createEntry(item.value, item.desc, id));
+        table.appendChild(createEntry(item.value, item.desc, id));
       }
       assignDeleteActions();
       assignEditActions();
@@ -249,11 +249,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   });
 
+  var cos = $("#current_div > table");
+
   $("#current_div").sortable({
       placeholder: "list-placeholder",
       forcePlaceholderSize: true,
       cursor: "ns-resize",
       axis: 'y',
+      items: 'table > tr',
       opacity: 0.7,
       revert: defaultAnimationDuration,
       start: function(event, ui) {
@@ -315,7 +318,7 @@ function relocateElement() {
 }
 
 function setEntryIdToElements() {
-  $('#current_div > div').each(function(idx, e) {
+  $('#current_div table tr').each(function(idx, e) {
     e.setAttribute('data-entryId', idx);
     chrome.runtime.sendMessage({event:'rebuildMenus'});
   });
