@@ -13,13 +13,17 @@
         padding: 8px 0 8px 50px;
         height: 48px;
       }
+      .option_wrapper {
+        margin-bottom: 2em;
+        float:left;
+      }
       .option {
         font-size: 13px;
         width: 300px;
         float: left;
         margin-right: 2em;
       }
-      .option #option_sync_type_text {
+      .option .option_name_text {
         float: left;
       }
       .optionop {
@@ -41,9 +45,9 @@
   </head>
   <body>
     <h1 id="title"></h1>
-    <div>
+    <div class="option_wrapper">
       <div class="option">
-        <div id="option_sync_type_text"></div>
+        <div class="option_name_text" id="option_sync_type_text"></div>
         <div class="optionop"> 
           <select id="storage_type">
             <option value="sync" id="option_sync_text">Synchronized</option>
@@ -51,7 +55,16 @@
           </select>
         </div>
       </div>
-      <div class="tip" id="option_sync_tip">
+      <div class="tip" id="option_sync_tip"></div>
+    </div>
+
+
+    <div class="option_wrapper">
+      <div class="option">
+        <div class="option_name_text" id="option_swap_storages_text"></div>
+        <div class="optionop">
+          <button id="option_swap_storage_btn_text" value=""></button>
+        </div>
       </div>
     </div>
 

@@ -1,56 +1,62 @@
 {
-  "extensionName" : {
-    "message" : "Stały schowek"
-  },
-  "descriptionPlaceholder" : {
-    "message" : "Opis"
-  },
-  "optionsSave" : {
-    "message" : "Zapisz"
-  },
-  "optionsText" : {
-    "message" : "Opcje"
-  },
-  "popupHintNoElements" : {
-    "message" : "Brak elementów w schowku"
-  },
-  "addBtnText" : {
-    "message" : "Dodaj"
-  },
-  "localStorageUsed" : {
-    "message" : "Używasz pamięci lokalnej"
-  },
-  "optionSyncText" : {
-    "message" : "Synchronizowana"
-  },
-  "insertFromExtension" : {
-    "message" : "Wstaw ze stałego schowka"
-  },
-  "showAddFormText" : {
-    "message" : "Dodaj nowy wpis"
-  },
-  "addToExtensionDB" : {
-    "message" : "Dodaj do stałego schowka"
-  },
-  "popupHint" : {
-    "message" : "Kliknij w element żeby skopiować go do schowka"
+  "optionSwapText" : {
+    "message" : "Zamień"
   },
   "syncedStorageUsed" : {
     "message" : "Używasz pamięci synchronizowanej"
   },
-  "extensionDescription" : {
-    "message" : "Pozwala na zachownie i dostęp do wielu elementów w schowku"
-  },
   "popupNewElement" : {
     "message" : "Nowy wpis"
   },
-  "contentPlaceholder" : {
-    "message" : "Zawartość"
+  "addToExtensionDB" : {
+    "message" : "Dodaj do stałego schowka"
+  },
+  "descriptionPlaceholder" : {
+    "message" : "Opis"
   },
   "optionLocalText" : {
     "message" : "Lokalna"
   },
+  "popupHintNoElements" : {
+    "message" : "Brak elementów w schowku"
+  },
   "optionStorageTypeText" : {
     "message" : "Typ pamięci:"
+  },
+  "optionSyncText" : {
+    "message" : "Synchronizowana"
+  },
+  "extensionDescription" : {
+    "message" : "Pozwala na zachownie i dostęp do wielu elementów w schowku"
+  },
+  "addBtnText" : {
+    "message" : "Dodaj"
+  },
+  "extensionName" : {
+    "message" : "Stały schowek"
+  },
+  "optionsText" : {
+    "message" : "Opcje"
+  },
+  "optionSwapStorageText" : {
+    "message" : "Zamień pamięci"
+  },
+  "insertFromExtension" : {
+    "message" : "Wstaw ze stałego schowka"
+  },
+  "optionsSave" : {
+    "message" : "Zapisz"
+  },
+  "popupHint" : {
+    "message" : "Kliknij w element żeby skopiować go do schowka"
+  },
+  "localStorageUsed" : {
+    "message" : "Używasz pamięci lokalnej"
+  },
+  "showAddFormText" : {
+    "message" : "Dodaj nowy wpis"
+  },
+  "contentPlaceholder" : {
+    "message" : "Zawartość"
   }
 }

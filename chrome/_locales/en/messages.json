@@ -1,73 +1,80 @@
 {
-  "optionStorageTypeText" : {
-    "message" : "Storage type:",
-    "description" : "Field description before combo on options screen"
-  },
-  "descriptionPlaceholder" : {
-    "message" : "Description",
-    "description" : "Placeholder on input field in popup"
-  },
-  "optionsText" : {
-    "message" : "Options",
-    "description" : "Text displayed on top of options page"
-  },
-  "popupHintNoElements" : {
-    "message" : "No elements in clipboard",
-    "description" : "Hint visible when no elements are available"
-  },
-  "addBtnText" : {
-    "message" : "Add",
-    "description" : "Text on add button in popup"
-  },
-  "localStorageUsed" : {
-    "message" : "Using local storage"
-  },
-  "optionSyncTip" : {
-    "message" : "Tip:\nLocal storage is kept only on this chrome instance.\nSynchronized storage is shared across all your chrome instances (it might working a bit slower then local storage)."
-  },
-  "optionSyncText" : {
-    "message" : "Synchornized"
-  },
-  "optionsSave" : {
-    "message" : "Save"
-  },
-  "addToExtensionDB" : {
-    "message" : "Add to Permanent clipboard",
-    "description" : "Context menu text on selected text."
-  },
-  "insertFromExtension" : {
-    "message" : "Insert from Permanent clipboard",
-    "description" : "Context menu text on editable elements."
-  },
-  "contentPlaceholder" : {
-    "message" : "Content",
-    "description" : "Placeholder hint for content input box"
-  },
-  "optionLocalText" : {
-    "message" : "Local"
+  "optionSwapText" : {
+    "message" : "Swap"
   },
   "syncedStorageUsed" : {
     "message" : "Using synchronized storage",
     "description" : ""
   },
+  "popupNewElement" : {
+    "message" : "New entry",
+    "description" : "New element title in popup"
+  },
+  "addToExtensionDB" : {
+    "message" : "Add to Permanent clipboard",
+    "description" : "Context menu text on selected text."
+  },
+  "descriptionPlaceholder" : {
+    "message" : "Description",
+    "description" : "Placeholder on input field in popup"
+  },
+  "optionLocalText" : {
+    "message" : "Local"
+  },
+  "popupHintNoElements" : {
+    "message" : "No elements in clipboard",
+    "description" : "Hint visible when no elements are available"
+  },
+  "optionStorageTypeText" : {
+    "message" : "Storage type:",
+    "description" : "Field description before combo on options screen"
+  },
+  "optionSyncText" : {
+    "message" : "Synchornized"
+  },
   "extensionDescription" : {
     "message" : "Allows you to store and access multiple elements in clipboard",
     "description" : "Extension description."
   },
-  "popupHint" : {
-    "message" : "Click on element to add it to clipboard",
-    "description" : "Hint text showed in popup"
+  "addBtnText" : {
+    "message" : "Add",
+    "description" : "Text on add button in popup"
   },
-  "popupNewElement" : {
-    "message" : "New entry",
-    "description" : "New element title in popup"
+  "optionSyncTip" : {
+    "message" : "Tip:\nLocal storage is kept only on this chrome instance.\nSynchronized storage is shared across all your chrome instances (it might working a bit slower then local storage)."
   },
   "extensionName" : {
     "message" : "Permanent clipboard",
     "description" : "Extension name."
   },
+  "optionsText" : {
+    "message" : "Options",
+    "description" : "Text displayed on top of options page"
+  },
+  "insertFromExtension" : {
+    "message" : "Insert from Permanent clipboard",
+    "description" : "Context menu text on editable elements."
+  },
+  "optionSwapStorageText" : {
+    "message" : "Swap storages",
+    "description" : ""
+  },
+  "optionsSave" : {
+    "message" : "Save"
+  },
+  "popupHint" : {
+    "message" : "Click on element to add it to clipboard",
+    "description" : "Hint text showed in popup"
+  },
+  "localStorageUsed" : {
+    "message" : "Using local storage"
+  },
   "showAddFormText" : {
     "message" : "Add new entry",
     "description" : "Link text for new entry div trigger"
+  },
+  "contentPlaceholder" : {
+    "message" : "Content",
+    "description" : "Placeholder hint for content input box"
   }
 }
