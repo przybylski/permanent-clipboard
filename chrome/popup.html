@@ -25,6 +25,13 @@
 			div.cinvisible {
 				display: none;
 			}
+
+      div.wrapper {
+        width: 100%;
+        display: inline-block;
+        clear: both;
+      }
+
       div.footer #storage_type_text {
         float: left;
       }
@@ -33,6 +40,14 @@
       }
       .list-placeholder {
         background-color: #f5f5f5;
+      }
+
+      div.manage_link {
+        float:right;
+      }
+
+      div.new_item_manually {
+        float: left;
       }
 		</style>
     <script src="jquery-ui/external/jquery/jquery.js"></script>
@@ -43,16 +58,20 @@
 		<div class="hint" id="hint"></div>
 		<div id="current_div"></div>
 		<hr>
-		<div class="new_item_manually" id="new_item_manually">
-			<a id="new_item_content_trigger"></a>
-			<div id="new_item_content" class="cinvisible">
-				<form>
-					<input type="input" id="new_name"/><br/>
-					<textarea id="new_content"></textarea><br/>
-					<input type="submit" id="new_btn"/>
-				</form>
-			</div>
-		</div>
+      <div class="wrapper">
+  		  <div class="new_item_manually" id="new_item_manually">
+	  		  <a id="new_item_content_trigger"></a>
+  		  	<div id="new_item_content" class="cinvisible">
+	  			  <form>
+		  	  		<input type="input" id="new_name"/><br/>
+			  	  	<textarea id="new_content"></textarea><br/>
+				  	  <input type="submit" id="new_btn"/>
+  				  </form>
+	  		  </div>
+		    </div>
+        <div class="manage_link"><a target="_blank" id="manage_text"></a></div>
+      </div>
+
 		<div id="recent_div">
 			<hr>
 			<div class="hint" id="recent_title"></div>

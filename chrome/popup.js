@@ -142,6 +142,7 @@ function init_i18n() {
   document.getElementById("new_item_content_trigger").appendChild(document.createTextNode(chrome.i18n.getMessage("showAddFormText")));
   document.getElementById("storage_type_text").appendChild(document.createTextNode(chrome.i18n.getMessage(localStorage["storage_type"] == "local" ? "localStorageUsed" : "syncedStorageUsed")));
   document.getElementById("options_text").appendChild(document.createTextNode(chrome.i18n.getMessage("optionsText")));
+  document.getElementById("manage_text").appendChild(document.createTextNode(chrome.i18n.getMessage("manageText")));
 }
 
 function copyToClipboard(s) {
@@ -245,6 +246,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var options = document.getElementById("options_text");
     options.onclick = function() {
       chrome.tabs.create({url:'options.html'});
+    };
+
+    var manage = document.getElementById("manage_text");
+    manage.onclick = function() {
+      chrome.tabs.create({url:'manage.html'});
     };
 
   });

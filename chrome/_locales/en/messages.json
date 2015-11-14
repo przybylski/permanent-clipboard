@@ -25,6 +25,9 @@
     "message" : "No elements in clipboard",
     "description" : "Hint visible when no elements are available"
   },
+  "manageText" : {
+    "message" : "Manage"
+  },
   "optionStorageTypeText" : {
     "message" : "Storage type:",
     "description" : "Field description before combo on options screen"
