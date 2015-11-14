@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Permanent Clipboard entries manager</title>
+    <style>
+      div.browser_wrapper {
+        border: 1px solid gray;
+        overflow: scroll;
+        height: 300px;
+      }
+
+      div.browser_entry {
+        border: 1px solid #ccc;
+        width: 230px;
+        height: 30px;
+        overflow: hidden;
+        padding: 3px;
+        margin: 2px;
+      }
+
+      div.submenu {
+        vertical-align: middle;
+      }
+
+      div.entry_title {
+        color: black;
+        font-weight: bold;
+        font-size: 15px;
+      }
+
+      div.entry_value {
+        color: #888;
+        font-weight: normal;
+        font-size: 10px;
+      }
+    </style>
+    <script src="jquery-ui/external/jquery/jquery.js"></script>
+    <script src="jquery-ui/jquery-ui.min.js"></script>
+		<script src="manage.js"></script>
+  </head>
+  <body>
+
+    <div class="browser_wrapper">
+    </div>
+    
+    <div class="browser_entry">
+      <div class="entry_title">TITLE</div>
+      <div class="entry_value">VALUE</div>
+    </div>
+
+    <div class="browser_entry submenu">
+      <div class="entry_title">TITLE</div>
+    </div>
+
+  </body>
+</html>
