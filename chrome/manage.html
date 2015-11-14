@@ -7,6 +7,13 @@
         border: 1px solid gray;
         overflow: scroll;
         height: 300px;
+        padding: 3px;
+      }
+
+      div.browser_window {
+        display: inline-block;
+        border: 1px solid #888;
+        height: 100%;
       }
 
       div.browser_entry {
@@ -16,17 +23,21 @@
         overflow: hidden;
         padding: 3px;
         margin: 2px;
+        cursor: pointer;
+        background: white;
       }
 
-      div.submenu {
-        vertical-align: middle;
+      div.submenu span {
+        float: right;
       }
 
       div.entry_title {
         color: black;
         font-weight: bold;
         font-size: 15px;
+        display: inline-block;
       }
+      div.ui-selected { background: #17B2FF; color: white; }
 
       div.entry_value {
         color: #888;
@@ -34,22 +45,14 @@
         font-size: 10px;
       }
     </style>
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.css" />
     <script src="jquery-ui/external/jquery/jquery.js"></script>
     <script src="jquery-ui/jquery-ui.min.js"></script>
 		<script src="manage.js"></script>
   </head>
   <body>
 
-    <div class="browser_wrapper">
-    </div>
-    
-    <div class="browser_entry">
-      <div class="entry_title">TITLE</div>
-      <div class="entry_value">VALUE</div>
-    </div>
-
-    <div class="browser_entry submenu">
-      <div class="entry_title">TITLE</div>
+    <div id="browser_wrapper" class="browser_wrapper">
     </div>
 
   </body>
