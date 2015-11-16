@@ -51,14 +51,7 @@ function displayClipboardElements() {
       ee.attr('path', '_'+i);
     }
 
-    toplevel.sortable({
-        placeholder: "list-placeholder",
-        forcePlaceholderSize: true,
-        cursor: "ns-resize",
-        revert: 100,
-        connectWith: 'div'
-    });
-    
+    applySortable(toplevel);
   });
 }
 
@@ -120,15 +113,25 @@ function appendBrowserIfNeeded(incoming, pathLeft) {
         level.append(ee);
         ee.attr('path', currentlySelected.attr('path')+'_'+i);
       }
+      applySortable(level);
+    }
+
+  });
+}
+
+function applySortable(level) {
       level.sortable({
         placeholder: "list-placeholder",
         forcePlaceholderSize: true,
         revert: 100,
-        connectWith: 'div'
+        connectWith: 'div',
+        receive: function(event, ui) {
+          var targetPath = $(event.target).attr('path');
+          var itemPath = ui.item.attr('path');
+          if (ui.item.hasClass('submenu') && targetPath && targetPath.slice(0, itemPath.length) == itemPath)
+            ui.sender.sortable('cancel');
+        }
       });
-    }
-
-  });
 }
 
 var currentlySelected;
