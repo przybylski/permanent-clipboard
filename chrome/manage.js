@@ -55,8 +55,8 @@ function displayClipboardElements() {
         placeholder: "list-placeholder",
         forcePlaceholderSize: true,
         cursor: "ns-resize",
-        axis: 'y',
         revert: 100,
+        connectWith: 'div'
     });
     
   });
@@ -112,6 +112,7 @@ function appendBrowserIfNeeded(incoming, pathLeft) {
       }
 
       var level = createEntriesWindow();
+      level.attr('path', currentlySelected.attr('path'));
 
       $('#browser_wrapper').append(level);
       for (var i = 0; i < displayElems.length; ++i) {
@@ -122,9 +123,8 @@ function appendBrowserIfNeeded(incoming, pathLeft) {
       level.sortable({
         placeholder: "list-placeholder",
         forcePlaceholderSize: true,
-        cursor: "ns-resize",
-        axis: 'y',
         revert: 100,
+        connectWith: 'div'
       });
     }
 
