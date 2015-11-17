@@ -139,10 +139,6 @@ function applySortable(level) {
         },
         stop: function(event, ui) {
           if (!dragCancelled) {
-            var newIndex = ui.item.prevAll().length+1;
-            var currentPath = ui.item.attr('path');
-            var newPath = currentPath + "_" + newIndex;
-            ui.item.attr('path', newPath);
           }
           dragCancelled = false;
         }
