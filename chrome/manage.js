@@ -124,17 +124,33 @@ function applySortable(level) {
         placeholder: "list-placeholder",
         forcePlaceholderSize: true,
         revert: 100,
-        connectWith: 'div',
+        axis: 'y',
+        cursor: 'move',
         receive: function(event, ui) {
           var targetPath = $(event.target).attr('path');
           var itemPath = ui.item.attr('path');
-          if (ui.item.hasClass('submenu') && targetPath && targetPath.slice(0, itemPath.length) == itemPath)
+          if (ui.item.hasClass('submenu') && targetPath && targetPath.slice(0, itemPath.length) == itemPath) {
             ui.sender.sortable('cancel');
+            dragCancelled = true;
+          }
+        },
+        start: function(event, ui) {
+          dragCancelled = false;
+        },
+        stop: function(event, ui) {
+          if (!dragCancelled) {
+            var newIndex = ui.item.prevAll().length+1;
+            var currentPath = ui.item.attr('path');
+            var newPath = currentPath + "_" + newIndex;
+            ui.item.attr('path', newPath);
+          }
+          dragCancelled = false;
         }
       });
 }
 
 var currentlySelected;
+var dragCancelled;
 
 $().ready(function() {
   displayClipboardElements();
