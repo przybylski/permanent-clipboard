@@ -16,6 +16,8 @@
       .option_wrapper {
         margin-bottom: 2em;
         float:left;
+        width: 100%;
+        position: relative;
       }
       .option {
         font-size: 13px;
@@ -29,6 +31,25 @@
       .optionop {
         float: right;
       }
+      .option_storage_fill_bar {
+        border: 1px solid #aaa;
+        width: 300px;
+        height: 25px;
+        line-height: 25px;
+        padding: 5px;
+        position: relative;
+      }
+      .option_storage_fill_bar_name {
+        color: #555;
+        display: inline;
+      }
+      .fill_bar_background {
+        position: absolute;
+        z-index: -5;
+        left: 0;
+        top: 0;
+      }
+
       .tip {
         float: left;
         font-size: 12px;
@@ -48,7 +69,7 @@
     <div class="option_wrapper">
       <div class="option">
         <div class="option_name_text" id="option_sync_type_text"></div>
-        <div class="optionop"> 
+        <div class="optionop">
           <select id="storage_type">
             <option value="sync" id="option_sync_text">Synchronized</option>
             <option value="local" id="option_local_text">Local</option>
@@ -65,6 +86,20 @@
         <div class="optionop">
           <button id="option_swap_storage_btn_text" value=""></button>
         </div>
+      </div>
+      <div class="tip"></div>
+    </div>
+
+    <div class="option_wrapper">
+      <div class="option">
+        <div class="option_name_text" id="option_storage_usage"></div>
+
+        <br>
+        <div class="option_storage_fill_bar" id="option_storage_fill_synchronized">
+          <div class="option_storage_fill_bar_name" id="option_storage_name_synchronized"></div>
+          <div class="option_storage_fill_bar_name" id="options_storage_percentage_fill"></div>
+        </div>
+
       </div>
     </div>
 

@@ -62,6 +62,9 @@
     "message" : "Swap storages",
     "description" : ""
   },
+  "optionStorageUsage" : {
+    "message": "Storage usage"
+  },
   "optionsSave" : {
     "message" : "Save"
   },

@@ -200,7 +200,7 @@ function assignEditActions() {
   var elem = document.getElementsByName('edit_btn');
   for (var e in elem)
     elem[e].onclick = editElement;
-} 
+}
 
 function assignCopyToClipboardActions(root) {
   var elem = root.getElementsByTagName('a');
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
       e.classList.add("cinvisible");
     return false;
   }
-  
+
   var elem = document.getElementById('current_div');
   getStorage().get('clipboard', function(items) {
     if (items.clipboard && items.clipboard.length > 0) {
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
           $('.actioncell', ui.item).css({opacity:0});
         });
       },
-      stop: function(event, ui) { 
+      stop: function(event, ui) {
         $('.actioncell', ui.item).each(function() {
           $('.actioncell', ui.item).animate({opacity:1}, defaultAnimationDuration);
         });
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
           var prevId = parseInt(uiRaw.previousSibling.getAttribute("data-entryId"));
           target = prevId + (source > prevId ? 1 : 0);
         }
-        
+
         if (target != -1 && target != source)
           relocateElement();
       }
