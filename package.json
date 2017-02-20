@@ -1,0 +1,14 @@
+{
+	"scripts": {
+		"test": "mocha -r mock-local-storage tests/*.js"
+	},
+
+	"devDependencies": {
+		"mocha": "*",
+		"chai": "*",
+		"sinon": "^1.15.4",
+		"sinon-chrome": "*",
+		"mock-local-storage": "*",
+		"node-localstorage": "*"
+	}
+}

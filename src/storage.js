@@ -13,22 +13,24 @@ Storage.prototype = {
 			return chrome.storage.local;
 		return chrome.storage.sync;
 	},
-	retrieveData: function(data, callback, userObject) {
-		getDefaultStorage().get(data, function(items) {
-			if (chrome.runtime.lastError) {
-				callback(false, chrome.runtime.lastError, userObject);
+	retrieveData: function(context, data, callback) {
+		this.getDefaultStorage().get(data, function(items) {
+			if (chrome.runtime.lastError != null) {
+				callback(context, false, chrome.runtime.lastError);
 			} else {
-				callback(true, items, userObject);
+				callback(context, true, items);
 			}
 		});
 	},
-	saveData: function(data, callback, userObject) {
-		getDefaultStorage().get(data, function(items) {
-			if (chrome.runtime.lastError) {
-				callback(false, chrome.runtime.lastError, userObject);
+	saveData: function(context, data, callback) {
+		this.getDefaultStorage().set(data, function() {
+			if (chrome.runtime.lastError != null) {
+				callback(context, chrome.runtime.lastError);
 			} else {
-				callback(true, items, userObject);
+				callback(context);
 			}
 		});
 	}
 }
+
+module.exports = Storage;
