@@ -10,9 +10,6 @@ describe("Storage", function() {
 	var storage;
 
 	beforeEach(function() {
-		var LocalStorage = require('node-localstorage').LocalStorage,
-		localStorage = new LocalStorage('./tests/localStorage');
-
 		storage = new Storage();
 	});
 
@@ -86,5 +83,19 @@ describe("Storage", function() {
 			expect(error).to.be.undefined;
 		});
 	});
+
+	it("failed saving to storage", function() {
+		localStorage['storage_type'] = 'local';
+
+		var dataToSave = {a:1, b:'string'};
+		var errorStr = 'failed to set';
+		chrome.runtime.lastError = errorStr;
+		chrome.storage.local.set.onFirstCall().callsArg(1);
+
+		storage.saveData(storage, dataToSave, function(context, error) {
+			expect(context).to.deep.equal(storage);
+			expect(error).to.equal(errorStr);
+		});
+	})
 
 });

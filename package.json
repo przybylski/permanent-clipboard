@@ -8,7 +8,6 @@
 		"chai": "*",
 		"sinon": "^1.15.4",
 		"sinon-chrome": "*",
-		"mock-local-storage": "*",
-		"node-localstorage": "*"
+		"mock-local-storage": "*"
 	}
 }
