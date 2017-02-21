@@ -13,16 +13,16 @@ Storage.prototype = {
 			return chrome.storage.local;
 		return chrome.storage.sync;
 	},
-	retrieveData: function(context, data, callback) {
+	getData: function(context, data, callback) {
 		this.getDefaultStorage().get(data, function(items) {
 			if (chrome.runtime.lastError != null) {
-				callback(context, false, chrome.runtime.lastError);
+				callback(context, items, chrome.runtime.lastError);
 			} else {
-				callback(context, true, items);
+				callback(context, items, null);
 			}
 		});
 	},
-	saveData: function(context, data, callback) {
+	setData: function(context, data, callback) {
 		this.getDefaultStorage().set(data, function() {
 			if (chrome.runtime.lastError != null) {
 				callback(context, chrome.runtime.lastError);
@@ -33,4 +33,5 @@ Storage.prototype = {
 	}
 }
 
-module.exports = Storage;
+if (typeof module !== 'undefined')
+  module.exports = Storage;

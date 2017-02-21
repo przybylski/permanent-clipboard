@@ -50,10 +50,10 @@ describe("Storage", function() {
 		var requestedDataWithDefaults = {a: 1, b: "string"};
 		chrome.storage.local.get.onFirstCall().callsArgWith(1, requestedDataWithDefaults);
 
-		storage.retrieveData(storage, {}, function(context, success, data) {
+		storage.getData(storage, {}, function(context, data, error) {
 				expect(context).to.deep.equal(storage);
-				expect(success).to.be.true;
 				expect(data).to.deep.equal(requestedDataWithDefaults);
+				expect(error).to.be.null;
 			});
 	});
 
@@ -61,14 +61,14 @@ describe("Storage", function() {
 		localStorage['storage_type'] = 'local';
 
 		var requestedDataWithDefaults = {a: 1, b: 'string'};
-		var error = 'failed to get';
-		chrome.runtime.lastError = error;
+		var errorStr = 'failed to get';
+		chrome.runtime.lastError = errorStr;
 		chrome.storage.local.get.onFirstCall().callsArgWith(1, null);
 
-		storage.retrieveData(storage, {}, function(context, success, data) {
+		storage.getData(storage, {}, function(context, data, error) {
 				expect(context).to.deep.equal(storage);
-				expect(success).to.be.false;
-				expect(data).to.equal(error);			
+				expect(data).to.be.null;
+				expect(error).to.equal(errorStr);
 			});
 	});
 
