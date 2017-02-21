@@ -4,6 +4,8 @@ function getStorage() {
   return chrome.storage.sync;
 }
 
+var storage = new Storage();
+
 function onMenuClicked(info, tab) {
   if (info.menuItemId == "selmenu") {
     analytics.trackEvent('Menu', 'Selection added');
@@ -49,6 +51,23 @@ chrome.runtime.onMessage.addListener(
       rebuildMenus();
     } else if (message.event == "getStorageName") {
       sendStorageName(sendResponse);
+    } else if (message.event == 'saveRecentItem') {
+      storage.setData(null, {'recent': message.value}, function() {});
+    } else if (message.event == 'addNewEntry') {
+      storage.getData(null, 'clipboard', function(context, data, error) {
+        if (error != null) {
+          console.error(error);
+          sendResponse({});
+          return;
+        }
+        var clipboard = data.clipboard || [];
+        clipboard.push({value: message.value, desc: message.value});
+        storage.setData(null, {clipboard: clipboard}, function(context, error) {
+          if (error != null)
+            console.error(error);
+          sendResponse({});
+        });
+      });
     }
 });
 
