@@ -49,6 +49,7 @@ chrome.runtime.onMessage.addListener(
       rebuildMenus();
     } else if (message.event == 'saveRecentItem') {
       storage.setData(null, {'recent': message.value}, function() {});
+      sendResponse({});
     } else if (message.event == 'addNewEntry') {
       storage.getData(null, 'clipboard', function(context, data, error) {
         if (error != null) {

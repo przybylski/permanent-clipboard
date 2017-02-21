@@ -1,9 +1,3 @@
-function getStorage(storageName) {
-  if (storageName == "local")
-    return chrome.storage.local;
-  return chrome.storage.sync;
-}
-
 function onCopy(e) {
   var selection = document.getSelection();
   if (selection.toString().length > 0)
