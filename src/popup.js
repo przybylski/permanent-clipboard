@@ -6,21 +6,9 @@ function arrayRemove(a, from, to) {
   return a.push.apply(a, rest);
 }
 
-var _AnalyticsCode = 'UA-64085295-1';
-
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', _AnalyticsCode]);
-
-(function() {
-  var ga = document.createElement('script');
-  ga.type = 'text/javascript';
-  ga.async = true;
-  ga.src = 'https://ssl.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0];
-  s.parentNode.insertBefore(ga, s);
-})();
-
 var defaultAnimationDuration = 100;
+
+var storage = new Storage();
 
 function getStorage() {
   if (localStorage["storage_type"] == "local")
@@ -36,7 +24,7 @@ function rebuildMenusAndReload() {
 function addToPermClipboardFromRecent() {
   addToPermClipboard(document.getElementById('recent_name').value,
                      document.getElementById('recent_text').innerHTML);
-  _gaq.push(['_trackEvent', 'Popup', 'Recent saved']);
+  analytics.trackEvent('Popup', 'Recent saved');
   return false;
 }
 
@@ -46,18 +34,22 @@ function addToPermClipboardFromManually() {
   var text = document.getElementById('new_content').value;
   if (text !== "") {
     addToPermClipboard(document.getElementById('new_name').value, text);
-    _gaq.push(['_trackEvent', 'Popup', 'Manually add']);
+    analytics.trackEvent('Popup', 'Manually add');
   }
   return false;
 }
 
 function addToPermClipboard(name, text) {
-  getStorage().get('clipboard', function(items) {
+  storage.getData(null, 'clipboard', function(context, items, error) {
+    if (error != null) {
+      alert('Failed to add entry: ' + error);
+      return;
+    }
     if (!(items.clipboard instanceof Array))
       items.clipboard = new Array();
 
     items.clipboard.push({ desc: name, value: text });
-    getStorage().set({'clipboard':items.clipboard, 'recent':0}, rebuildMenusAndReload);
+    storage.setData(null, {'clipboard':items.clipboard, 'recent':0}, rebuildMenusAndReload);
   });
 }
 
@@ -68,7 +60,7 @@ function removeElement(s) {
       var e = parseInt(s.srcElement.parentNode.parentNode.getAttribute('data-entryId'));
       arrayRemove(items.clipboard, e, e);
       storage.set({'clipboard':items.clipboard}, rebuildMenusAndReload);
-      _gaq.push(['_trackEvent', 'Popup', 'Remove element']);
+      analytics.trackEvent('Popup', 'Remove element');
     }
   });
 }
@@ -84,7 +76,7 @@ function editElement(s) {
       while (tableRow.lastChild)
         tableRow.removeChild(tableRow.lastChild);
       tableRow.appendChild(td);
-      _gaq.push(['_trackEvent', 'Popup', 'Edit started']);
+      analytics.trackEvent('Popup', 'Edit started');
     }
   });
 }
@@ -113,13 +105,13 @@ function createEditForm(name, content, id) {
         items.clipboard[id] = { desc: name, value: content};
 
         getStorage().set({'clipboard':items.clipboard}, rebuildMenusAndReload);
-        _gaq.push(['_trackEvent', 'Popup', 'Editing saved']);
+        analytics.trackEvent('Popup', 'Editing saved');
       }
     });
   }));
   wrapper.appendChild(createButton('Cancel', function() {
       location.reload();
-      _gaq.push(['_trackEvent', 'Popup', 'Editing canceled']);
+      analytics.trackEvent('Popup', 'Editing canceled');
   }));
   return wrapper;
 }
@@ -160,7 +152,7 @@ function copyToClipboard(s) {
   document.execCommand('SelectAll');
   document.execCommand("Copy", false, null);
   document.body.removeChild(copyDiv);
-  _gaq.push(['_trackEvent', 'Popup', 'Element clicked']);
+  analytics.trackEvent('Popup', 'Element clicked');
 }
 
 function createEntry(value, desc, id) {
@@ -319,7 +311,7 @@ function relocateElement() {
     items.clipboard.splice(target, 0, elem);
     getStorage().set({'clipboard':items.clipboard}, setEntryIdToElements);
 
-    _gaq.push(['_trackEvent', 'Rearrange', 'rearrange']);
+    analytics.trackEvent('Rearrange', 'rearrange');
   });
 }
 
