@@ -3,7 +3,7 @@ function Analytics() {}
 Analytics.prototype = {
 	userCode: function() { return 'UA-64085295-1'},
 	initialize: function() {
-		_gaq.push(['_setAccount', this.userCode]);
+		_gaq.push(['_setAccount', this.userCode()]);
 	},
 	appendToDocument: function() {
 		var ga = document.createElement('script');
