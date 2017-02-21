@@ -1,9 +1,3 @@
-function getStorage() {
-  if (localStorage["storage_type"] == "local")
-    return chrome.storage.local;
-  return chrome.storage.sync;
-}
-
 var storage = new Storage();
 
 function onMenuClicked(info, tab) {
@@ -14,8 +8,12 @@ function onMenuClicked(info, tab) {
     analytics.trackEvent('Menu', 'Selection added');
     chrome.tabs.sendMessage(tab.id,{event: 'addSelectionWithName'});
   } else {
-    getStorage().get("clipboard", function(items) {
-      var val = items.clipboard[parseInt(info.menuItemId)].value;
+    storage.getData(null, 'clipboard', function(context, data, error) {
+      if (error != null) {
+        console.error(error);
+        return;
+      }
+      var val = data.clipboard[parseInt(info.menuItemId)].value;
       analytics.trackEvent('Menu', 'Inserting text');
       chrome.tabs.sendMessage(tab.id, {event:'insertText', value: val});
     });
@@ -26,7 +24,11 @@ function rebuildMenus() {
   chrome.contextMenus.removeAll(function() {
     var title = chrome.i18n.getMessage("insertFromExtension");
     chrome.contextMenus.create({"title": title, "contexts":["editable"], "id": "parent"});
-    getStorage().get("clipboard", function(items) {
+    storage.getData(null, "clipboard", function(context, items, error) {
+      if (error != null) {
+        console.error(error);
+        return;
+      }
       for (i in items.clipboard) {
         var desc = items.clipboard[i].desc;
         if (!desc)
@@ -41,16 +43,10 @@ function rebuildMenus() {
   });
 }
 
-function sendStorageName(sendResponse) {
-  sendResponse({event: "storageName", name: localStorage["storage_type"]});
-}
-
 chrome.runtime.onMessage.addListener(
   function(message, sender, sendResponse) {
     if (message.event == "rebuildMenus") {
       rebuildMenus();
-    } else if (message.event == "getStorageName") {
-      sendStorageName(sendResponse);
     } else if (message.event == 'saveRecentItem') {
       storage.setData(null, {'recent': message.value}, function() {});
     } else if (message.event == 'addNewEntry') {
