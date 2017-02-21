@@ -4,7 +4,8 @@ function save_options() {
   var select = document.getElementById("storage_type");
   var storage_type = select.children[select.selectedIndex].value;
   localStorage["storage_type"] = storage_type;
-
+  chrome.runtime.sendMessage({event:'rebuildMenus'});
+  
   var status = document.getElementById("status");
   status.innerHTML = "Options saved.";
   setTimeout(function() {
