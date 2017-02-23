@@ -20,8 +20,14 @@
   "popupHintNoElements" : {
     "message" : "Brak elementów w schowku"
   },
+  "manageText" : {
+    "message" : ""
+  },
   "optionStorageTypeText" : {
     "message" : "Typ pamięci:"
+  },
+  "optionStorageUsage" : {
+    "message" : ""
   },
   "optionSyncText" : {
     "message" : "Synchronizowana"
@@ -46,6 +52,9 @@
   },
   "insertFromExtension" : {
     "message" : "Wstaw ze stałego schowka"
+  },
+  "optionSyncTip" : {
+    "message" : "Wskazówka:"
   },
   "optionsSave" : {
     "message" : "Zapisz"
