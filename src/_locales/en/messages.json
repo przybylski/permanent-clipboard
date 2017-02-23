@@ -32,6 +32,9 @@
     "message" : "Storage type:",
     "description" : "Field description before combo on options screen"
   },
+  "optionStorageUsage" : {
+    "message" : "Storage usage"
+  },
   "optionSyncText" : {
     "message" : "Synchornized"
   },
@@ -62,8 +65,8 @@
     "message" : "Swap storages",
     "description" : ""
   },
-  "optionStorageUsage" : {
-    "message": "Storage usage"
+  "errorFailedToSaveEntry" : {
+    "message" : "Failed to save selection: "
   },
   "optionsSave" : {
     "message" : "Save"

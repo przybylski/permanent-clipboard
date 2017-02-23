@@ -35,6 +35,9 @@
   "extensionName" : {
     "message" : "Stały schowek"
   },
+  "errorFailedToSaveEntry" : {
+    "message" : "Nie udało się dodać wpisu: "
+  },
   "optionsText" : {
     "message" : "Opcje"
   },
