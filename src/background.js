@@ -1,44 +1,75 @@
 var storage = new Storage();
 
+function IndexPath(string) {
+  var separated = string.split('_');
+  this._elements = [];
+  for (var e in separated) {
+    this._elements.push(parseInt(separated[e]));
+  }
+}
+
+IndexPath.prototype = {
+  constructor: IndexPath,
+  length: function() { return this._elements.length; },
+  get: function(part) { return this._elements[part]; },
+  getLast: function() { return this._elements[this.length()-1]; }
+}
+
+function traverseWithIndexPath(indexPath, data) {
+  var e = data;
+  for (var i = 0; i < indexPath.length()-1; ++i)
+    e = e[indexPath.get(i)].elements;
+  return e[indexPath.getLast()].value;
+}
+
 function onMenuClicked(info, tab) {
 	if (info.menuItemId == "selmenu") {
 		analytics.trackEvent('Menu', 'Selection added');
 		chrome.tabs.sendMessage(tab.id, {event: 'addSelection'});
-	} else if (info.menuItemId == "selWname") {
-		analytics.trackEvent('Menu', 'Selection added');
-		chrome.tabs.sendMessage(tab.id,{event: 'addSelectionWithName'});
 	} else {
 		storage.getData(null, 'clipboard', function(context, data, error) {
 			if (error != null) {
 				console.error(error);
 				return;
 			}
-			var val = data.clipboard[parseInt(info.menuItemId)].value;
+      var indexPath = new IndexPath(info.menuItemId);
+      var val = traverseWithIndexPath(indexPath, data.clipboard);
+
 			analytics.trackEvent('Menu', 'Inserting text');
 			chrome.tabs.sendMessage(tab.id, {event:'insertText', value: val});
 		});
 	}
 }
 
+function buildMenuLevel(menu, parentId) {
+  var cnt = 0;
+  for (var e in menu) {
+    var elem = menu[e];
+    if (elem.elements != null) {
+      var newId = parentId + cnt + '_';
+      chrome.contextMenus.create({"title": elem.desc, "parentId": parentId, "contexts": ["editable"], "id": newId});
+      buildMenuLevel(elem.elements, newId);
+    } else {
+      var newId = parentId + cnt;
+      chrome.contextMenus.create({"title": elem.desc, "parentId": parentId, "contexts": ["editable"], "id": newId});
+    }
+    cnt++;
+  }
+}
+
 function rebuildMenus() {
 	chrome.contextMenus.removeAll(function() {
-		var title = chrome.i18n.getMessage("insertFromExtension");
-		chrome.contextMenus.create({"title": title, "contexts":["editable"], "id": "parent"});
-		storage.getData(null, "clipboard", function(context, items, error) {
-			if (error != null) {
-				console.error(error);
-				return;
-			}
-			for (i in items.clipboard) {
-				var desc = items.clipboard[i].desc;
-				if (!desc)
-					desc = items.clipboard[i].value;
-				chrome.contextMenus.create(
-						{"title": desc, "parentId": "parent", "id":i, "contexts":["editable"]});
-			}
-		});
-
-		title = chrome.i18n.getMessage("addToExtensionDB");
+    storage.getData(null, 'clipboard', function(context, items, error) {
+      if (error != null) {
+        console.error("Failed to get data for menu filling: " + error.message);
+        return;
+      }
+      var title = chrome.i18n.getMessage("insertFromExtension");
+      chrome.contextMenus.create({"title":title, "contexts":["editable"], "id": ""});
+      buildMenuLevel(items.clipboard, "");
+    });
+    
+		var title = chrome.i18n.getMessage("addToExtensionDB");
 		chrome.contextMenus.create({"title": title, "contexts":["selection"], "id": "selmenu"});
 	});
 }
