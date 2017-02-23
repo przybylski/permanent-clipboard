@@ -93,6 +93,7 @@ chrome.runtime.onMessage.addListener(
 				clipboard.push({value: message.value, desc: message.value});
 				storage.setData(null, {'clipboard': clipboard}, function(context, error) {
 					sendResponse({'error': error});
+          rebuildMenus();
 				});
 			});
 		}
