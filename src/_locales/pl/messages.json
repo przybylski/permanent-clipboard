@@ -54,7 +54,7 @@
     "message" : "Wstaw ze stałego schowka"
   },
   "optionSyncTip" : {
-    "message" : "Wskazówka:"
+    "message" : "Wskazówka:\nPamięć lokalna jest widoczna tylko na tym komputerze.\nPamięć synchronizowana jest widoczna na wszystkich przeglądarkach Google Chrome, na których jesteś zalgowany (może działać wolniej niż pamięć lokalna)."
   },
   "optionsSave" : {
     "message" : "Zapisz"
