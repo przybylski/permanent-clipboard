@@ -47,25 +47,25 @@ chrome.runtime.onMessage.addListener(
 	function(message, sender, sendResponse) {
 		if (message.event == "rebuildMenus") {
 			rebuildMenus();
+      return;
 		} else if (message.event == 'saveRecentItem') {
-			storage.setData(null, {'recent': message.value}, function() {});
-			sendResponse({});
+			storage.setData(null, {'recent': message.value}, function(context, error) {
+        sendResponse({'error': error})
+      });
 		} else if (message.event == 'addNewEntry') {
 			storage.getData(null, 'clipboard', function(context, data, error) {
 				if (error != null) {
-					console.error(error);
-					sendResponse({});
+					sendResponse({'error': error});
 					return;
 				}
 				var clipboard = data.clipboard || [];
 				clipboard.push({value: message.value, desc: message.value});
-				storage.setData(null, {clipboard: clipboard}, function(context, error) {
-					if (error != null)
-						console.error(error);
-					sendResponse({});
+				storage.setData(null, {'clipboard': clipboard}, function(context, error) {
+					sendResponse({'error': error});
 				});
 			});
 		}
+  return true;
 });
 
 function installContentScriptInTabs() {
