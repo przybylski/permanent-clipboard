@@ -134,7 +134,7 @@ function init_i18n() {
   document.getElementById("new_item_content_trigger").appendChild(document.createTextNode(chrome.i18n.getMessage("showAddFormText")));
   document.getElementById("storage_type_text").appendChild(document.createTextNode(chrome.i18n.getMessage(localStorage["storage_type"] == "local" ? "localStorageUsed" : "syncedStorageUsed")));
   document.getElementById("options_text").appendChild(document.createTextNode(chrome.i18n.getMessage("optionsText")));
-  document.getElementById("manage_text").appendChild(document.createTextNode(chrome.i18n.getMessage("manageText")));
+  //document.getElementById("manage_text").appendChild(document.createTextNode(chrome.i18n.getMessage("manageText")));
 }
 
 function copyToClipboard(s) {
@@ -158,11 +158,12 @@ function copyToClipboard(s) {
 function createEntry(value, desc, id) {
   var tr = document.createElement('tr');
   tr.setAttribute("data-entryId", id);
-  var createIcon = function(path, name) {
+  var createIcon = function(path, name, fun) {
     var e = document.createElement('img');
     e.src = path;
     e.name = name;
     e.className = 'actionbtn';
+    e.onclick = fun;
     return e;
   };
   var createActionCell = function(child) {
@@ -172,33 +173,15 @@ function createEntry(value, desc, id) {
     return e;
   };
   var a = document.createElement('a');
+  a.onclick = copyToClipboard;
   a.title = value;
 
   a.appendChild(document.createTextNode(desc));
   tr.appendChild(document.createElement('td')).appendChild(a);
-  tr.appendChild(createActionCell(createIcon('img/edit-icon.png', 'edit_btn', id)));
-  tr.appendChild(createActionCell(createIcon('img/remove-icon.png', 'rem_btn', id)));
+  tr.appendChild(createActionCell(createIcon('img/edit-icon.png', 'edit_btn', editElement)));
+  tr.appendChild(createActionCell(createIcon('img/remove-icon.png', 'rem_btn', removeElement)));
 
   return tr;
-}
-
-function assignDeleteActions() {
-  var elem = document.getElementsByName('rem_btn');
-  for (var e in elem)
-      elem[e].onclick = removeElement;
-}
-
-function assignEditActions() {
-  var elem = document.getElementsByName('edit_btn');
-  for (var e in elem)
-    elem[e].onclick = editElement;
-}
-
-function assignCopyToClipboardActions(root) {
-  var elem = root.getElementsByTagName('a');
-  for (var e in elem) {
-      elem[e].onclick = copyToClipboard;
-  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -228,9 +211,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         table.appendChild(createEntry(item.value, item.desc, id));
       }
-      assignDeleteActions();
-      assignEditActions();
-      assignCopyToClipboardActions(elem);
     } else {
       document.getElementById("hint").innerHTML = chrome.i18n.getMessage("popupHintNoElements");
     }
@@ -238,11 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var options = document.getElementById("options_text");
     options.onclick = function() {
       chrome.tabs.create({url:'options.html'});
-    };
-
-    var manage = document.getElementById("manage_text");
-    manage.onclick = function() {
-      chrome.tabs.create({url:'manage.html'});
     };
 
   });
