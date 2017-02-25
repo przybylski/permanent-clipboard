@@ -45,9 +45,7 @@ function addToPermClipboard(name, text) {
       alert('Failed to add entry: ' + error);
       return;
     }
-    if (!(items.clipboard instanceof Array))
-      items.clipboard = new Array();
-
+    items.clipboard = items.clipboard || [];
     items.clipboard.push({ desc: name, value: text });
     storage.setData(null, {'clipboard':items.clipboard, 'recent':0}, rebuildMenusAndReload);
   });
