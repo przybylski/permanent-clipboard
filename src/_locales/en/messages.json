@@ -6,6 +6,9 @@
   "optionSwapText" : {
     "message" : "Swap storage contents"
   },
+  "optionsSwapStoragesHelp" : {
+    "message" : "Swapping storages will replace the content of synchronized storage with the content of local storage and the other way around. This operation will fail if not enough space is available in synchronized storage."
+  },
   "syncedStorageUsed" : {
     "message" : "Using synchronized storage",
     "description" : ""
@@ -80,6 +83,9 @@
   },
   "storageSwappingFailedMessage" : {
     "message" : "Swapping storage failed, aborting: "
+  },
+  "optionsStorageSizeHelp" : {
+    "message" : "Currently synchronized storage size is limited by Google and cannot be increased. If you fill your space you should consider switching to local storage, which is unlimited. Don't forget to swap your storages."
   },
   "optionsSave" : {
     "message" : "Save"

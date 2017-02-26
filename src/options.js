@@ -87,7 +87,11 @@ function init_i18n() {
   $("#option_swap_storages_text").append(chrome.i18n.getMessage("optionSwapStorageText"));
   $("#option_swap_storage_btn_text").text(chrome.i18n.getMessage("optionSwapText"));
   $("#option_local_text").html(chrome.i18n.getMessage("optionLocalText"));
+  
   $("#option_sync_tip").append(chrome.i18n.getMessage("optionSyncTip"));
+  $("#option_used_storage_tip").append(chrome.i18n.getMessage("optionsStorageSizeHelp"));
+  $("#option_swap_tip").append(chrome.i18n.getMessage("optionsSwapStorageHelp"));
+
 
   document.getElementById("save").innerText = chrome.i18n.getMessage("optionsSave");
 }
