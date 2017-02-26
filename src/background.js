@@ -18,7 +18,7 @@ IndexPath.prototype = {
 function traverseWithIndexPath(indexPath, data) {
   var e = data;
   for (var i = 0; i < indexPath.length()-1; ++i)
-    e = e[indexPath.get(i)].elements;
+    e = e[indexPath.get(i)].e;
   return e[indexPath.getLast()].value;
 }
 
@@ -40,15 +40,33 @@ function onMenuClicked(info, tab) {
 		});
 	}
 }
+/*
+var test = [
+  {desc: 'Opis', value: 'val'},
+  {desc: 'Opis1', value: 'val'},
+  {desc: 'Dir', e: [
+    {desc: 'Sub1', value: 'val'},
+    {desc: 'Dir2', e:[
+      {desc: 'Opis1', value: 'val'},
+      {desc: 'Opis2', value: 'val'},
+      {desc: 'Opis3', value: 'val'}
+    ]},
+    {desc: 'Opis1', value: 'val'}
+  ]},
+  {desc: 'Opis2', value: 'val'},
+  {desc: 'Opis3', value: 'val'},
+];
 
+storage.setData(null, {clipboard:test}, function(){});
+*/
 function buildMenuLevel(menu, parentId) {
   var cnt = 0;
   for (var e in menu) {
     var elem = menu[e];
-    if (elem.elements != null) {
+    if (elem.e != null) {
       var newId = parentId + cnt + '_';
       chrome.contextMenus.create({"title": elem.desc, "parentId": parentId, "contexts": ["editable"], "id": newId});
-      buildMenuLevel(elem.elements, newId);
+      buildMenuLevel(elem.e, newId);
     } else {
       var newId = parentId + cnt;
       chrome.contextMenus.create({"title": elem.desc, "parentId": parentId, "contexts": ["editable"], "id": newId});

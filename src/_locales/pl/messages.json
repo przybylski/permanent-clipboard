@@ -1,4 +1,7 @@
 {
+  "editEntryIconTitle" : {
+    "message" : "Edytuj"
+  },
   "optionSwapText" : {
     "message" : "Zamień"
   },
@@ -55,6 +58,9 @@
   },
   "optionSyncTip" : {
     "message" : "Wskazówka:\nPamięć lokalna jest widoczna tylko na tym komputerze.\nPamięć synchronizowana jest widoczna na wszystkich przeglądarkach Google Chrome, na których jesteś zalgowany (może działać wolniej niż pamięć lokalna)."
+  },
+  "deleteEntryIconTitle" : {
+    "message" : "Usuń"
   },
   "optionsSave" : {
     "message" : "Zapisz"

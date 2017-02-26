@@ -153,13 +153,18 @@ function copyToClipboard(s) {
   analytics.trackEvent('Popup', 'Element clicked');
 }
 
-function createEntry(value, desc, id) {
+function createEntry(item, id) {
   var tr = document.createElement('tr');
   tr.setAttribute("data-entryId", id);
-  var createIcon = function(path, name, fun) {
+
+  var createSrcSet = function(base, type) {
+    return base + "_1x." + type + ", " + base + "_2x." + type + " 2x";
+  }
+
+  var createIcon = function(path, title, fun) {
     var e = document.createElement('img');
-    e.src = path;
-    e.name = name;
+    e.srcset = path;
+    e.title = title;
     e.className = 'actionbtn';
     e.onclick = fun;
     return e;
@@ -171,14 +176,16 @@ function createEntry(value, desc, id) {
     return e;
   };
   var a = document.createElement('a');
-  a.onclick = copyToClipboard;
-  a.title = value;
+  
 
-  a.appendChild(document.createTextNode(desc));
+  a.appendChild(document.createTextNode(item.desc));
   tr.appendChild(document.createElement('td')).appendChild(a);
-  tr.appendChild(createActionCell(createIcon('img/edit-icon.png', 'edit_btn', editElement)));
-  tr.appendChild(createActionCell(createIcon('img/remove-icon.png', 'rem_btn', removeElement)));
-
+  if (item.value != null) {
+    a.onclick = copyToClipboard;
+    a.title = item.value;
+    tr.appendChild(createActionCell(createIcon(createSrcSet('img/icons/ic_edit','png'), chrome.i18n.getMessage('editEntryIconTitle'), editElement)));
+    tr.appendChild(createActionCell(createIcon(createSrcSet('img/icons/ic_delete','png'), chrome.i18n.getMessage('deleteEntryIconTitle'), removeElement)));
+  }
   return tr;
 }
 
@@ -207,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!item.desc || item.desc.length == 0)
           item.desc = item.value;
 
-        table.appendChild(createEntry(item.value, item.desc, id));
+        table.appendChild(createEntry(item, id));
       }
     } else {
       document.getElementById("hint").innerHTML = chrome.i18n.getMessage("popupHintNoElements");

@@ -1,4 +1,8 @@
 {
+  "editEntryIconTitle" : {
+    "message" : "Edit",
+    "description" : "Hover text on edit icon"
+  },
   "optionSwapText" : {
     "message" : "Swap"
   },
@@ -67,6 +71,9 @@
   },
   "errorFailedToSaveEntry" : {
     "message" : "Failed to save selection: "
+  },
+  "deleteEntryIconTitle" : {
+    "message" : "Delete"
   },
   "optionsSave" : {
     "message" : "Save"
