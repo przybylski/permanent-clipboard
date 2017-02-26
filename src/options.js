@@ -90,7 +90,7 @@ function init_i18n() {
   
   $("#option_sync_tip").append(chrome.i18n.getMessage("optionSyncTip"));
   $("#option_used_storage_tip").append(chrome.i18n.getMessage("optionsStorageSizeHelp"));
-  $("#option_swap_tip").append(chrome.i18n.getMessage("optionsSwapStorageHelp"));
+  $("#option_swap_tip").append(chrome.i18n.getMessage("optionsSwapStoragesHelp"));
 
 
   document.getElementById("save").innerText = chrome.i18n.getMessage("optionsSave");
