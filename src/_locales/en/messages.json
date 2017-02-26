@@ -4,7 +4,7 @@
     "description" : "Hover text on edit icon"
   },
   "optionSwapText" : {
-    "message" : "Swap"
+    "message" : "Swap storage contents"
   },
   "syncedStorageUsed" : {
     "message" : "Using synchronized storage",
@@ -37,7 +37,10 @@
     "description" : "Field description before combo on options screen"
   },
   "optionStorageUsage" : {
-    "message" : "Storage usage"
+    "message" : "Synchronized storage usage: "
+  },
+  "optionsSavedToastText" : {
+    "message" : "Options saved"
   },
   "optionSyncText" : {
     "message" : "Synchornized"
@@ -51,7 +54,7 @@
     "description" : "Text on add button in popup"
   },
   "optionSyncTip" : {
-    "message" : "Tip:\nLocal storage is kept only on this chrome instance.\nSynchronized storage is shared across all your chrome instances (it might working a bit slower then local storage)."
+    "message" : "Local storage is kept only on this chrome instance.\nSynchronized storage is shared across all your chrome instances (it might working a bit slower then local storage)."
   },
   "extensionName" : {
     "message" : "Permanent clipboard",
@@ -74,6 +77,9 @@
   },
   "deleteEntryIconTitle" : {
     "message" : "Delete"
+  },
+  "storageSwappingFailedMessage" : {
+    "message" : "Swapping storage failed, aborting: "
   },
   "optionsSave" : {
     "message" : "Save"

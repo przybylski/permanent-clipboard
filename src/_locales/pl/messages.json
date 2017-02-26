@@ -3,7 +3,7 @@
     "message" : "Edytuj"
   },
   "optionSwapText" : {
-    "message" : "Zamień"
+    "message" : "Zamień miejscami"
   },
   "syncedStorageUsed" : {
     "message" : "Używasz pamięci synchronizowanej"
@@ -30,7 +30,10 @@
     "message" : "Typ pamięci:"
   },
   "optionStorageUsage" : {
-    "message" : ""
+    "message" : "Zużycie pamięci synchronizowanej: "
+  },
+  "optionsSavedToastText" : {
+    "message" : "Zapisano ustawienia"
   },
   "optionSyncText" : {
     "message" : "Synchronizowana"
@@ -57,10 +60,13 @@
     "message" : "Wstaw ze stałego schowka"
   },
   "optionSyncTip" : {
-    "message" : "Wskazówka:\nPamięć lokalna jest widoczna tylko na tym komputerze.\nPamięć synchronizowana jest widoczna na wszystkich przeglądarkach Google Chrome, na których jesteś zalgowany (może działać wolniej niż pamięć lokalna)."
+    "message" : "Pamięć lokalna jest widoczna tylko na tym komputerze.\nPamięć synchronizowana jest widoczna na wszystkich przeglądarkach Google Chrome, na których jesteś zalgowany (może działać wolniej niż pamięć lokalna)."
   },
   "deleteEntryIconTitle" : {
     "message" : "Usuń"
+  },
+  "storageSwappingFailedMessage" : {
+    "message" : "Nie udało się podmienić zawartości: "
   },
   "optionsSave" : {
     "message" : "Zapisz"

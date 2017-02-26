@@ -2,8 +2,14 @@
   <head>
     <style>
       body {
-        font-family: 'Lucida Grande', sans-serif;
+      display: flex;
+    min-height: 100vh;
+    flex-direction: column;
       }
+      main {
+    flex: 1 0 auto;
+    margin-left: 20pt;
+  }
       #title{
         font-size: 32px;
         font-weight: normal;
@@ -63,51 +69,108 @@
         clear: both;
       }
     </style>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <script type="text/javascript" src="jquery-ui/external/jquery/jquery.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    
+    <script src="options.js"></script>
+
   </head>
-  <body>
+  <body class='grey lighten-4'>
     <h1 id="title"></h1>
-    <div class="option_wrapper">
-      <div class="option">
-        <div class="option_name_text" id="option_sync_type_text"></div>
-        <div class="optionop">
-          <select id="storage_type">
-            <option value="sync" id="option_sync_text">Synchronized</option>
-            <option value="local" id="option_local_text">Local</option>
-          </select>
+    <main>
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-title" id="option_sync_type_text">
+                <a id="modal-trigger" href="#modal_storage_type">
+                  <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x.png 2x" class="right" />
+                </a>
+              </div>
+              <select id="storage_type">
+                <option value="sync" id="option_sync_text">Synchronized</option>
+                <option value="local" id="option_local_text">Local</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="tip" id="option_sync_tip"></div>
-    </div>
-
-
-    <div class="option_wrapper">
-      <div class="option">
-        <div class="option_name_text" id="option_swap_storages_text"></div>
-        <div class="optionop">
-          <button id="option_swap_storage_btn_text" value=""></button>
+    
+    
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-title" id="option_swap_storages_text">
+                <a id="modal-trigger" href="#modal_swap_storage">
+                  <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x.png 2x" class="right" />
+                </a>
+              </div>
+                <a class="waves-effect waves-light btn" id="option_swap_storage_btn_text"></a>
+              </div>
+            <div class="tip"></div>
+          </div>
         </div>
       </div>
-      <div class="tip"></div>
-    </div>
 
-    <div class="option_wrapper">
-      <div class="option">
-        <div class="option_name_text" id="option_storage_usage"></div>
 
-        <br>
-        <div class="option_storage_fill_bar" id="option_storage_fill_synchronized">
-          <div class="option_storage_fill_bar_name" id="option_storage_name_synchronized"></div>
-          <div class="option_storage_fill_bar_name" id="options_storage_percentage_fill"></div>
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-title">
+                <div id="option_storage_usage" class="left"></div>
+                <a id="modal-trigger" href="#modal_used_storage">
+                  <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x.png 2x" class="right" />
+                </a>
+              </div>
+              <div class="progress">
+                <div class="determinate" id="progress_progress" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
 
+    </main>
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <a class="waves-effect waves-light btn right" id="save">Save</a>
+        </div>
+      </div>
+    </footer>
+
+    <div id="modal_storage_type" class="modal">
+      <div class="modal-content">
+        <p id="option_sync_tip" class="flow-text"></p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">OK</a>
       </div>
     </div>
 
-    <div class="footer">
-      <button id="save">Save</button>
-      <div id="status"></div>
+    <div id="modal_swap_storage" class="modal">
+      <div class="modal-content">
+        <p id="option_swap_tip" clas="flow-text"></p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">OK</a>
+      </div>
+    </div>
+
+    <div id="modal_used_storage" class="modal">
+      <div class="modal-content">
+        <p id="option_used_storage_tip" clas="flow-text"></p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">OK</a>
+      </div>
     </div>
 
   </body>
-  <script src="options.js"></script>
+  
 </html>
