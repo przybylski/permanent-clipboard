@@ -1,6 +1,6 @@
 var SYNC_QUOTA = chrome.storage.sync.QUOTA_BYTES_PER_ITEM;
 
-function save_options() {
+function saveOptions() {
   var select = document.getElementById("storage_type");
   var storage_type = select.children[select.selectedIndex].value;
   localStorage["storage_type"] = storage_type;
@@ -9,7 +9,7 @@ function save_options() {
   Materialize.toast(chrome.i18n.getMessage('optionsSavedToastText'), 2000);
 }
 
-function restore_options() {
+function restoreOptions() {
   var storage_type = localStorage["storage_type"];
   if (!storage_type)
     return;
@@ -24,7 +24,7 @@ function restore_options() {
   }
 }
 
-function swap_storage() {
+function swapStorage() {
   chrome.storage.local.get('clipboard', function(localItems) {
     localItems.clipboard = localItems.clipboard || [];
 
@@ -40,7 +40,7 @@ function swap_storage() {
         chrome.runtime.sendMessage({event:'rebuildMenus'});
         
         Materialize.toast("Success", 4000);
-        calculate_and_set_fill_bar();
+        calculateAndSetFillBar();
 
       });
     });
@@ -60,7 +60,7 @@ function getStorageColorClass(percent) {
   return "red";
 }
 
-function calculate_and_set_fill_bar() {
+function calculateAndSetFillBar() {
   chrome.storage.sync.get('clipboard', function(syncItems) {
     if (!(syncItems.clipboard instanceof Array))
       return;
@@ -98,12 +98,12 @@ function init_i18n() {
 
 $(document).ready(function() {
   init_i18n();
-  restore_options();
+  restoreOptions();
   $('select').material_select();
   $('.modal').modal();
-  calculate_and_set_fill_bar();
-  $("#save").click(save_options);
-  $('#option_swap_storage_btn_text').click(swap_storage);
+  calculateAndSetFillBar();
+  $("#save").click(saveOptions);
+  $('#option_swap_storage_btn_text').click(swapStorage);
 });
 
 
