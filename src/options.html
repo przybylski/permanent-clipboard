@@ -1,76 +1,9 @@
 <html>
   <head>
-    <style>
-      body {
-      display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-      }
-      main {
-    flex: 1 0 auto;
-    margin-left: 20pt;
-  }
-      #title{
-        font-size: 32px;
-        font-weight: normal;
-        border: 0;
-        background-image: url('img/icon-48.png');
-        background-repeat: no-repeat;
-        padding: 8px 0 8px 50px;
-        height: 48px;
-      }
-      .option_wrapper {
-        margin-bottom: 2em;
-        float:left;
-        width: 100%;
-        position: relative;
-      }
-      .option {
-        font-size: 13px;
-        width: 300px;
-        float: left;
-        margin-right: 2em;
-      }
-      .option .option_name_text {
-        float: left;
-      }
-      .optionop {
-        float: right;
-      }
-      .option_storage_fill_bar {
-        border: 1px solid #aaa;
-        width: 300px;
-        height: 25px;
-        line-height: 25px;
-        padding: 5px;
-        position: relative;
-      }
-      .option_storage_fill_bar_name {
-        color: #555;
-        display: inline;
-      }
-      .fill_bar_background {
-        position: absolute;
-        z-index: -5;
-        left: 0;
-        top: 0;
-      }
-
-      .tip {
-        float: left;
-        font-size: 12px;
-        color: gray;
-        border: 0;
-        border-left: solid 1px grey;
-        padding-left: 1em;
-      }
-      .footer {
-        float: left;
-        clear: both;
-      }
-    </style>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    
+    <link type="text/css" rel="stylesheet" href="css/options.css" />
 
     <script type="text/javascript" src="jquery-ui/external/jquery/jquery.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -79,8 +12,8 @@
 
   </head>
   <body class='grey lighten-4'>
-    <h1 id="title"></h1>
     <main>
+      <h3 id="title"></h3>
       <div class="row">
         <div class="col s12 m6">
           <div class="card">

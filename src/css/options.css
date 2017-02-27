@@ -1,0 +1,15 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  margin-left: 20pt;
+}
+
+#title {
+  background-image: url('../img/icon-48.png');
+  background-repeat: no-repeat;
+  padding: 8px 0 8px 50px;
+}

@@ -70,7 +70,7 @@ function calculate_and_set_fill_bar() {
 
     var size = computeObjectSize(syncItems.clipboard);
     var percentage = size/SYNC_QUOTA;
-    document.getElementById('progress_progress').style.width = Math.floor(percentage*100)+"%";
+    $('#progress_progress').width(Math.floor(percentage*100)+'%');
     $('#progress_progress').addClass(getStorageColorClass(percentage));
     $('#option_storage_usage').append(Math.floor(percentage*100)+"%");
   });
@@ -81,6 +81,7 @@ function computeObjectSize(object) {
 }
 
 function init_i18n() {
+  document.title = chrome.i18n.getMessage("optionsText");
   $("#title").append(chrome.i18n.getMessage("optionsText"));
   $("#option_sync_type_text").append(chrome.i18n.getMessage("optionStorageTypeText"));
   $("#option_sync_text").html(chrome.i18n.getMessage("optionSyncText"));
@@ -92,8 +93,7 @@ function init_i18n() {
   $("#option_used_storage_tip").append(chrome.i18n.getMessage("optionsStorageSizeHelp"));
   $("#option_swap_tip").append(chrome.i18n.getMessage("optionsSwapStoragesHelp"));
 
-
-  document.getElementById("save").innerText = chrome.i18n.getMessage("optionsSave");
+  $("#save").text(chrome.i18n.getMessage("optionsSave"));
 }
 
 $(document).ready(function() {
@@ -102,8 +102,8 @@ $(document).ready(function() {
   $('select').material_select();
   $('.modal').modal();
   calculate_and_set_fill_bar();
-  document.getElementById("save").onclick = save_options;
-  document.querySelector('#option_swap_storage_btn_text').addEventListener('click', swap_storage);
+  $("#save").click(save_options);
+  $('#option_swap_storage_btn_text').click(swap_storage);
 });
 
 
