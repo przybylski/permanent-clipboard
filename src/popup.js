@@ -7,8 +7,8 @@ function arrayRemove(a, from, to) {
 }
 
 var defaultAnimationDuration = 100;
-
 var storage = new Storage();
+var traverseArray = [];
 
 function getStorage() {
   if (localStorage["storage_type"] == "local")
@@ -16,9 +16,14 @@ function getStorage() {
   return chrome.storage.sync;
 }
 
+function rebuildTable() {
+  $('#current_div').empty();
+  $('#current_div').append(createTable(traverseArray[traverseArray.length-1]));
+}
+
 function rebuildMenusAndReload() {
   chrome.runtime.sendMessage({event:'rebuildMenus'});
-  location.reload();
+  rebuildTable();
 }
 
 function addToPermClipboardFromRecent() {
@@ -39,28 +44,17 @@ function addToPermClipboardFromManually() {
   return false;
 }
 
-function addToPermClipboard(name, text) {
-  storage.getData(null, 'clipboard', function(context, items, error) {
-    if (error != null) {
-      alert('Failed to add entry: ' + error);
-      return;
-    }
-    items.clipboard = items.clipboard || [];
-    items.clipboard.push({ desc: name, value: text });
-    storage.setData(null, {'clipboard':items.clipboard, 'recent':0}, rebuildMenusAndReload);
-  });
+function addToPermClipboard(name, text) {  
+  traverseArray[traverseArray.length-1].push({ desc: name, value: text });
+  storage.setData(null, {'clipboard':traverseArray[0], 'recent':0}, rebuildMenusAndReload);
 }
 
 function removeElement(s) {
-  var storage = getStorage();
-  storage.get('clipboard', function(items) {
-    if (items.clipboard) {
-      var e = parseInt(s.srcElement.parentNode.parentNode.getAttribute('data-entryId'));
-      arrayRemove(items.clipboard, e, e);
-      storage.set({'clipboard':items.clipboard}, rebuildMenusAndReload);
-      analytics.trackEvent('Popup', 'Remove element');
-    }
-  });
+  var e = parseInt(s.srcElement.parentNode.parentNode.parentNode.getAttribute('data-entryId'));
+  arrayRemove(traverseArray[traverseArray.length-1], e, e);
+  storage.setData(null, {'clipboard':traverseArray[0]}, rebuildMenusAndReload);
+  rebuildTable();
+  analytics.trackEvent('Popup', 'Remove element');
 }
 
 function editElement(s) {
@@ -122,17 +116,21 @@ function createButton(name, invokeFunction) {
 }
 
 function init_i18n() {
-  document.getElementById("recent_btn").value = chrome.i18n.getMessage("addBtnText");
-  document.getElementById("recent_name").placeholder = chrome.i18n.getMessage("descriptionPlaceholder");
-  document.getElementById("recent_title").appendChild(document.createTextNode(chrome.i18n.getMessage("popupNewElement")));
-  document.getElementById("hint").innerHTML = chrome.i18n.getMessage("popupHint");
-  document.getElementById("new_btn").value = chrome.i18n.getMessage("addBtnText");
-  document.getElementById("new_name").placeholder = chrome.i18n.getMessage("descriptionPlaceholder");
-  document.getElementById("new_content").placeholder = chrome.i18n.getMessage("contentPlaceholder");
-  document.getElementById("new_item_content_trigger").appendChild(document.createTextNode(chrome.i18n.getMessage("showAddFormText")));
-  document.getElementById("storage_type_text").appendChild(document.createTextNode(chrome.i18n.getMessage(localStorage["storage_type"] == "local" ? "localStorageUsed" : "syncedStorageUsed")));
-  document.getElementById("options_text").appendChild(document.createTextNode(chrome.i18n.getMessage("optionsText")));
-  //document.getElementById("manage_text").appendChild(document.createTextNode(chrome.i18n.getMessage("manageText")));
+  $("#recent_btn").text(chrome.i18n.getMessage("addBtnText"));
+  $("#recent_name_label").text(chrome.i18n.getMessage("descriptionPlaceholder"));
+  $("#recent_title").text(chrome.i18n.getMessage("popupNewElement"));
+
+  $("#hint").append(chrome.i18n.getMessage("popupHint"));
+  
+  $("#new_btn").text(chrome.i18n.getMessage("addBtnText"));
+  $("#new_name_label").text(chrome.i18n.getMessage("descriptionPlaceholder"));
+  $("#new_content_label").text(chrome.i18n.getMessage("contentPlaceholder"));
+  
+  $("#new_item_content_trigger").text(chrome.i18n.getMessage("showAddFormText"));
+  $("#storage_type_text").text(chrome.i18n.getMessage(localStorage["storage_type"] == "local" ? "localStorageUsed" : "syncedStorageUsed"));
+
+  $("#delete_label").text(chrome.i18n.getMessage("deleteEntryIconTitle"));
+  $("#cancel_label").text(chrome.i18n.getMessage("commonCancel"));
 }
 
 function copyToClipboard(s) {
@@ -154,87 +152,146 @@ function copyToClipboard(s) {
 }
 
 function createEntry(item, id) {
-  var tr = document.createElement('tr');
-  tr.setAttribute("data-entryId", id);
 
   var createSrcSet = function(base, type) {
     return base + "_1x." + type + ", " + base + "_2x." + type + " 2x";
   }
 
-  var createIcon = function(path, title, fun) {
-    var e = document.createElement('img');
-    e.srcset = path;
-    e.title = title;
-    e.className = 'actionbtn';
-    e.onclick = fun;
-    return e;
-  };
-  var createActionCell = function(child) {
-    var e = document.createElement('td');
-    e.className = 'actioncell';
-    e.appendChild(child);
-    return e;
-  };
-  var a = document.createElement('a');
-  
+  var top = document.createElement('div');
+  top.classList.add('row');
+  top.classList.add('rowrow');
+  top.classList.add('valign-wrapper');
+  top.setAttribute('data-entryId', id);
 
-  a.appendChild(document.createTextNode(item.desc));
-  tr.appendChild(document.createElement('td')).appendChild(a);
-  if (item.value != null) {
-    a.onclick = copyToClipboard;
-    a.title = item.value;
-    tr.appendChild(createActionCell(createIcon(createSrcSet('img/icons/ic_edit','png'), chrome.i18n.getMessage('editEntryIconTitle'), editElement)));
-    tr.appendChild(createActionCell(createIcon(createSrcSet('img/icons/ic_delete','png'), chrome.i18n.getMessage('deleteEntryIconTitle'), removeElement)));
+  var left = document.createElement('div');
+  left.classList.add('col');
+  left.classList.add('s1');
+
+  if (item.e != null) {
+    var i = document.createElement('img');
+    i.srcset = createSrcSet('img/icons/ic_folder', 'png');
+    left.appendChild(i);
   }
-  return tr;
+
+  top.appendChild(left);
+
+  var main = document.createElement('div');
+  main.classList.add('col');
+  main.classList.add('s8');
+
+  {
+    var a = document.createElement('a');
+    a.appendChild(document.createTextNode(item.desc));
+    if (item.value != null) {
+      a.onclick = copyToClipboard;
+      a.title = item.value;
+    } else {
+      a.onclick = function(e) {
+        $('#current_div').empty();
+        $('#current_div').append(createTable(item.e));
+        $('#back_button').removeClass('scale-out');
+        traverseArray.push(item.e);
+      };
+    }
+    main.appendChild(a);
+  }
+
+  top.appendChild(main);
+
+  var edit = document.createElement('div');
+  edit.classList.add('col');
+  edit.classList.add('c1');
+
+  {
+    var d = document.createElement('div');
+    var i = document.createElement('img');
+
+    i.srcset = createSrcSet('img/icons/ic_edit', 'png');
+
+    d.appendChild(i);
+    edit.appendChild(d);
+  }
+
+  top.appendChild(edit);
+
+  var remove = document.createElement('div');
+  remove.classList.add('col');
+  remove.classList.add('c1');
+  {
+    var d = document.createElement('div');
+    var i = document.createElement('img');
+    i.srcset = createSrcSet('img/icons/ic_delete', 'png');
+    i.classList.add('actionbtn');
+    i.onclick = removeElement;
+
+    d.appendChild(i);
+    remove.appendChild(d);
+  }
+  top.appendChild(remove);
+
+  return top;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  var btn = document.getElementById('recent_btn');
-  btn.onclick = addToPermClipboardFromRecent;
-  btn = document.getElementById('new_btn');
-  btn.onclick = addToPermClipboardFromManually;
-  btn = document.getElementById('new_item_content_trigger');
-  btn.onclick = function() {
-    var e = document.getElementById('new_item_content');
-    if (e.classList.contains("cinvisible"))
-      e.classList.remove("cinvisible");
-    else
-      e.classList.add("cinvisible");
-    return false;
-  }
+function createTable(items) {
+  var table = document.createElement('table');
+  for (var id in items) {
+    var item = items[id];
+    if (!item.desc || item.desc.length == 0)
+      item.desc = item.value;
 
+    table.appendChild(createEntry(item, id));
+  }
+  return table;
+}
+
+function createNewDirectory(s) {
+  traverseArray[traverseArray.length-1].push({desc:'dir', e:[]});
+  storage.setData(null, {clipboard: traverseArray[0]}, rebuildMenusAndReload);
+  analytics.trackEvent('Popup', 'Directory created')
+}
+
+$(document).ready(function() {
+
+  $('.collapsible').collapsible();
+
+  $('#recent_btn').click(addToPermClipboardFromRecent);
+  $('#new_btn').click(addToPermClipboardFromManually);
+  $('#new_dir_button').click(createNewDirectory);
+  
   var elem = document.getElementById('current_div');
   getStorage().get('clipboard', function(items) {
+    traverseArray.push(items.clipboard);
     if (items.clipboard && items.clipboard.length > 0) {
-      elem.appendChild(document.createElement('hr'));
-      var table = elem.appendChild(document.createElement('table'));
-      for (var id in items.clipboard) {
-        var item = items.clipboard[id];
-        if (!item.desc || item.desc.length == 0)
-          item.desc = item.value;
-
-        table.appendChild(createEntry(item, id));
-      }
+      elem.appendChild(createTable(items.clipboard));
     } else {
-      document.getElementById("hint").innerHTML = chrome.i18n.getMessage("popupHintNoElements");
+      $("#hint").html(chrome.i18n.getMessage("popupHintNoElements"));
     }
 
-    var options = document.getElementById("options_text");
-    options.onclick = function() {
+    $("#options_text").click(function() {
       chrome.tabs.create({url:'options.html'});
-    };
+    });
+
+    $('.dropdown-button').dropdown({
+      constrainWidth: false,
+      stopPropagation: true
+    });
 
   });
 
-  var cos = $("#current_div > table");
+  $('#back_button').click(function(e) {
+    traverseArray.pop();
+    rebuildTable();
+    if (traverseArray.length == 1)
+      $('#back_button').addClass('scale-out');
+  });
+
 
   $("#current_div").sortable({
       placeholder: "list-placeholder",
       forcePlaceholderSize: true,
       cursor: "ns-resize",
       axis: 'y',
-      items: 'table > tr',
+      items: 'table > div.row',
       opacity: 0.7,
       revert: defaultAnimationDuration,
       start: function(event, ui) {
@@ -248,8 +305,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         var uiRaw = ui.item.get(0);
 
-        source = parseInt(uiRaw.getAttribute("data-entryId"));
-        target = -1;
+        var source = parseInt(uiRaw.getAttribute("data-entryId"));
+        var target = -1;
 
         if (uiRaw.nextSibling) {
           var nextId = parseInt(uiRaw.nextSibling.getAttribute("data-entryId"));
@@ -260,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (target != -1 && target != source)
-          relocateElement();
+          relocateElement(source, target);
       }
   });
 
@@ -273,31 +330,18 @@ document.addEventListener('DOMContentLoaded', function() {
         div.appendChild(document.createTextNode(recent.recent));
       }
     } else {
-      var div = document.getElementById('recent_div');
-      if (div)
-        div.style.display = 'none';
+      $('#recent_add_element').addClass('hide');
     }
   });
+
   init_i18n();
 });
 
+function relocateElement(from, to) {
+  var elem = traverseArray[traverseArray.length-1][from];
+  arrayRemove(traverseArray[traverseArray.length-1], from, from);
+  traverseArray[traverseArray.length-1].splice(to, 0, elem);
+  storage.setData(null, {'clipboard':traverseArray[0]}, rebuildMenusAndReload);
 
-var source, target;
-
-function relocateElement() {
-  getStorage().get('clipboard', function(items) {
-    var elem = items.clipboard[source];
-    arrayRemove(items.clipboard, source, source);
-    items.clipboard.splice(target, 0, elem);
-    getStorage().set({'clipboard':items.clipboard}, setEntryIdToElements);
-
-    analytics.trackEvent('Rearrange', 'rearrange');
-  });
-}
-
-function setEntryIdToElements() {
-  $('#current_div table tr').each(function(idx, e) {
-    e.setAttribute('data-entryId', idx);
-    chrome.runtime.sendMessage({event:'rebuildMenus'});
-  });
+  analytics.trackEvent('Popup', 'Rearrange');
 }

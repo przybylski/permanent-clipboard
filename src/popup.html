@@ -1,92 +1,83 @@
 <!doctype html>
 <html>
-	<head>
-		<title>Pernament Clipboard Popup</title>
-		<style>
-			body {
-				min-width: 357px;
-				overflow-x: hidden;
-				min-height: 357px;
-				font-family: Verdana, Geneva, sans-serif;
-				font-size: 10pt;
-				color: black;
-				background-color: white;
-        border: 0;
-			}
-			div.hint { color: gray; }
-			a { cursor: pointer; }
-			img.actionbtn {
-				cursor: pointer;
-				float: right;
-			}
-			table { width: 100%; }
-      td.actioncell { width: 18pt; }
-      td { background-color: white; }
-			div.cinvisible {
-				display: none;
-			}
+  <head>
+    <title>Pernament Clipboard Popup</title>
 
-      div.wrapper {
-        width: 100%;
-        display: inline-block;
-        clear: both;
-      }
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-      div.footer #storage_type_text {
-        float: left;
-      }
-      div.footer a {
-        float:right;
-      }
-      .list-placeholder {
-        background-color: #f5f5f5;
-      }
+    <link type="text/css" rel="stylesheet" href="css/popup.css" />
 
-      div.manage_link {
-        float:right;
-      }
+    <script src="jquery-ui/external/jquery/jquery.js"></script>
+    <script src="jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/materialize.min.js"></script>
 
-      div.new_item_manually {
-        float: left;
-      }
-		</style>
-    	<script src="jquery-ui/external/jquery/jquery.js"></script>
-    	<script src="jquery-ui/jquery-ui.min.js"></script>
-    	<script src="storage.js"></script>
-    	<script src="analytics.js"></script>
-		<script src="popup.js"></script>
-	</head>
-	<body>
-		<div class="hint" id="hint"></div>
-		<div id="current_div"></div>
-		<hr>
-      <div class="wrapper">
-  		  <div class="new_item_manually" id="new_item_manually">
-	  		  <a id="new_item_content_trigger"></a>
-  		  	<div id="new_item_content" class="cinvisible">
-	  			  <form>
-		  	  		<input type="input" id="new_name"/><br/>
-			  	  	<textarea id="new_content"></textarea><br/>
-				  	  <input type="submit" id="new_btn"/>
-  				  </form>
-	  		  </div>
-		    </div>
-        <!--<div class="manage_link"><a target="_blank" id="manage_text"></a></div>-->
+    <script src="storage.js"></script>
+    <script src="analytics.js"></script>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <main>
+      <div class="section grey lighten-2">
+        <div class="container center">
+          <label class="black-text" id="hint"></label>
+        </div>
       </div>
 
-		<div id="recent_div">
-			<hr>
-			<div class="hint" id="recent_title"></div>
-			<div id="recent_text"></div>
-			<form>
-				<input type="input" id="recent_name"/>
-				<input type="submit" id="recent_btn"/>
-			</form>
-		</div>
-		<hr>
-    <div class="footer">
-      <div id="storage_type_text"></div>
-      <a target="_blank" id="options_text"></a>
-    </div>
-	</body>
+      
+      <div id="back_button" class="left topbar-button waves-effect waves-light btn-floating scale-transition scale-out tooltipped" data-position="right" data-delay="50" data-tooltip="Back">
+        <i class="material-icons">&#xE5CB;</i>
+      </div>
+
+      <div id="new_dir_button" class="right topbar-button waves-effect waves-light btn-floating scale-transition tooltipped" data-position="left" data-delay="50" data-tooltip="New directory">
+        <i class="material-icons">add</i>
+      </div>
+
+      <div id="current_div"></div>
+      <div class="divider"></div>
+      <ul class="collapsible popout" data-collapisble="accordion">
+        <li>
+          <div class="collapsible-header grey lighten-5" id="new_item_content_trigger"></div>
+          <div class="collapsible-body">
+            <div class="input-field">
+              <input type="text" id="new_name"/>
+              <label for="new_name" id="new_name_label"></label>
+            </div>
+            <div class="input-field">
+              <textarea id="new_content" class="materialize-textarea"></textarea>
+              <label for="new_content" id="new_content_label"></label>
+            </div>
+            <div class="waves-effect waves-light btn-flat" id="new_btn"></div>  
+          </div>
+        </li>
+        <li id="recent_add_element">
+          <div class="collapsible-header grey lighten-5" id="recent_title"></div>
+          <div class="collapsible-body">
+            <div class="input-field">
+              <input type="text" id="recent_name">
+              <label for="recent_name" id="recent_name_label"></label>
+            </div>
+            <blockquote id="recent_text"></blockquote>
+            <div class="waves-effect waves-light btn-flat" id="recent_btn"></div>
+          </div>
+        </li>
+      </ul>
+
+      <ul id="delete_dropdown" class="dropdown-content">
+        <li><a id="delete_label" class="red-text"></a></li>
+        <li><a id="cancel_label" class="black-text"></a></li>
+      </ul>
+
+    </main>
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row center-align">
+          <label class="black-text left" id="storage_type_text"></label>
+          <a class="black-text right" target="_blank" id="options_text">
+            <i class="material-icons tiny">settings</i>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

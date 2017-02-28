@@ -14,7 +14,7 @@
     "description" : ""
   },
   "popupNewElement" : {
-    "message" : "New entry",
+    "message" : "Add from system clipboard",
     "description" : "New element title in popup"
   },
   "addToExtensionDB" : {
@@ -104,5 +104,8 @@
   "contentPlaceholder" : {
     "message" : "Content",
     "description" : "Placeholder hint for content input box"
+  },
+  "commonCancel" : {
+    "message" : "Cancel"
   }
 }

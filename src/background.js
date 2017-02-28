@@ -42,19 +42,19 @@ function onMenuClicked(info, tab) {
 }
 /*
 var test = [
-  {desc: 'Opis', value: 'val'},
-  {desc: 'Opis1', value: 'val'},
+  {desc: 'Opis', value: 'Opis'},
+  {desc: 'Opis1', value: 'Opis1'},
   {desc: 'Dir', e: [
-    {desc: 'Sub1', value: 'val'},
+    {desc: 'Sub1', value: 'Sub1'},
     {desc: 'Dir2', e:[
-      {desc: 'Opis1', value: 'val'},
-      {desc: 'Opis2', value: 'val'},
-      {desc: 'Opis3', value: 'val'}
+      {desc: 'Opis1', value: 'Sub1Opis1'},
+      {desc: 'Opis2', value: 'Sub1Opis2'},
+      {desc: 'Opis3', value: 'Sub1Opis3'}
     ]},
-    {desc: 'Opis1', value: 'val'}
+    {desc: 'Opis1', value: 'DirOpis1'}
   ]},
-  {desc: 'Opis2', value: 'val'},
-  {desc: 'Opis3', value: 'val'},
+  {desc: 'Opis2', value: 'Opis2'},
+  {desc: 'Opis3', value: 'Opis3'},
 ];
 
 storage.setData(null, {clipboard:test}, function(){});
