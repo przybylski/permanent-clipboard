@@ -59,53 +59,40 @@ function removeElement(s) {
 
 function editElement(s) {
   var tableRow = s.srcElement.parentNode.parentNode;
-  getStorage().get('clipboard', function(items) {
-    if (items.clipboard) {
-      var id = parseInt(s.srcElement.parentNode.parentNode.getAttribute('data-entryId'));
-      var el = items.clipboard[id];
-      var td = document.createElement('td');
-      td.appendChild(createEditForm(el.desc, el.value, id));
-      while (tableRow.lastChild)
-        tableRow.removeChild(tableRow.lastChild);
-      tableRow.appendChild(td);
-      analytics.trackEvent('Popup', 'Edit started');
-    }
-  });
+  var id = parseInt(s.srcElement.parentNode.parentNode.parentNode.getAttribute('data-entryId'));
+  var el = traverseArray[traverseArray.length-1][id];
+  var td = document.createElement('td');
+  td.appendChild(createEditForm(el.desc, el.value, id));
+  while (tableRow.lastChild)
+    tableRow.removeChild(tableRow.lastChild);
+  tableRow.appendChild(td);
+  analytics.trackEvent('Popup', 'Edit started');
+  Materialize.updateTextFields();
 }
 
 function createEditForm(name, content, id) {
-  var wrapper = document.createElement('div');
-  var child = document.createElement('input');
-  child.className = 'entryName';
-  child.value = name;
-  wrapper.appendChild(child);
-  wrapper.appendChild(document.createElement('br'));
 
-  child = document.createElement('textarea');
-  child.className = 'entryContent';
-  wrapper.appendChild(child).appendChild(document.createTextNode(content));
-  wrapper.appendChild(document.createElement('br'));
+  var e = $(
+    '<div class="container">' +
+      '<div class="row">' +
+        '<div class="input-field">' +
+          '<input type="text" id="editName_' + id + '" value="'+name+'">' +
+          //'<label for="editName_' + id + '">' + chrome.i18n.getMessage("descriptionPlaceholder") + '</label>' +
+        '</div>' +
+      '</div>' +
+      '<div class="row">' +
+        '<div class="input-field">' +
+          '<textarea class="materialize-textarea" id="editContent_' + id + '">' + content + '</textarea>' +
+          //'<label for="editContent_' + id + '">' + chrome.i18n.getMessage("contentPlaceholder") + '</label>' +
+        '</div>' +
+      '</div>' +
+      '<div class="row">' +
+        '<div class="btn-flat waves-effect waves-light right">' + chrome.i18n.getMessage('commonCancel') + '</div>' +
+        '<div class="btn-flat waves-effect waves-light right">' + chrome.i18n.getMessage('optionsSave') + '</div>' +
+      '</div>' +
+    '</div>');
 
-  wrapper.appendChild(createButton('Save', function(s) {
-    getStorage().get('clipboard', function(items) {
-      if (items.clipboard) {
-        var wrap = s.srcElement.parentNode;
-        var id = parseInt(wrap.parentNode.parentNode.getAttribute('data-entryId'));
-        var name = wrap.getElementsByClassName('entryName')[0].value;
-        var content = wrap.getElementsByClassName('entryContent')[0].value;
-
-        items.clipboard[id] = { desc: name, value: content};
-
-        getStorage().set({'clipboard':items.clipboard}, rebuildMenusAndReload);
-        analytics.trackEvent('Popup', 'Editing saved');
-      }
-    });
-  }));
-  wrapper.appendChild(createButton('Cancel', function() {
-      location.reload();
-      analytics.trackEvent('Popup', 'Editing canceled');
-  }));
-  return wrapper;
+  return e;
 }
 
 function createButton(name, invokeFunction) {
@@ -157,7 +144,9 @@ function createEntry(item, id) {
     return base + "_1x." + type + ", " + base + "_2x." + type + " 2x";
   }
 
+  var top1 = document.createElement('div');
   var top = document.createElement('div');
+  top1.appendChild(top);
   top.classList.add('row');
   top.classList.add('rowrow');
   top.classList.add('valign-wrapper');
@@ -207,6 +196,18 @@ function createEntry(item, id) {
     var i = document.createElement('img');
 
     i.srcset = createSrcSet('img/icons/ic_edit', 'png');
+    i.onclick = function(s) {
+      var d = $(document.createElement('div'))
+        .addClass('container')
+        .append(createEditForm(item.desc, item.value, id));
+      
+      var srcElement = $(s.srcElement);
+      var vv = srcElement.parent().parent().parent().parent();
+      var h = vv.outerHeight();
+      vv.append(d);
+     ///vv.animate({'height': h+$(d).outerHeight(true)+'px'});
+    }
+    //i.onclick = editElement;
 
     d.appendChild(i);
     edit.appendChild(d);
@@ -229,11 +230,12 @@ function createEntry(item, id) {
   }
   top.appendChild(remove);
 
-  return top;
+  return top1;
 }
 
 function createTable(items) {
-  var table = document.createElement('table');
+  var table = document.createElement('div');
+  table.classList.add('top-padded');
   for (var id in items) {
     var item = items[id];
     if (!item.desc || item.desc.length == 0)
