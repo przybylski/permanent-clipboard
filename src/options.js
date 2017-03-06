@@ -71,7 +71,7 @@ function calculateAndSetFillBar() {
     var size = computeObjectSize(syncItems.clipboard);
     var percentage = size/SYNC_QUOTA;
     $('#progress_progress').width(Math.floor(percentage*100)+'%');
-    $('#progress_progress').addClass(getStorageColorClass(percentage));
+    $('#progress_progress').removeClass('black blue light-green orange red').addClass(getStorageColorClass(percentage));
     $('#option_storage_usage').append(Math.floor(percentage*100)+"%");
   });
 }
