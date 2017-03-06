@@ -36,39 +36,34 @@
       <div id="current_div" class="container"></div>
       <div class="divider"></div>
       <div class="container">
-      <ul class="collapsible popout" data-collapisble="accordion">
-        <li>
-          <div class="collapsible-header grey lighten-5" id="new_item_content_trigger"></div>
-          <div class="collapsible-body">
-            <div class="input-field">
-              <input type="text" id="new_name"/>
-              <label for="new_name" id="new_name_label"></label>
+        <ul id="add_elements_collapsible" class="collapsible popout" data-collapisble="accordion">
+          <li>
+            <div class="collapsible-header grey lighten-5" id="new_item_content_trigger"></div>
+            <div class="collapsible-body">
+              <div class="input-field">
+                <input type="text" id="new_name"/>
+                <label for="new_name" id="new_name_label"></label>
+              </div>
+              <div class="input-field">
+                <textarea id="new_content" class="materialize-textarea"></textarea>
+                <label for="new_content" id="new_content_label"></label>
+              </div>
+              <div class="waves-effect waves-light btn-flat" id="new_btn"></div>  
             </div>
-            <div class="input-field">
-              <textarea id="new_content" class="materialize-textarea"></textarea>
-              <label for="new_content" id="new_content_label"></label>
+          </li>
+          <li id="recent_add_element" class="hide">
+            <div class="collapsible-header grey lighten-5" id="recent_title"></div>
+            <div class="collapsible-body">
+              <div class="input-field">
+                <input type="text" id="recent_name">
+                <label for="recent_name" id="recent_name_label"></label>
+              </div>
+              <blockquote id="recent_text"></blockquote>
+              <div class="waves-effect waves-light btn-flat" id="recent_btn"></div>
             </div>
-            <div class="waves-effect waves-light btn-flat" id="new_btn"></div>  
-          </div>
-        </li>
-        <li id="recent_add_element">
-          <div class="collapsible-header grey lighten-5" id="recent_title"></div>
-          <div class="collapsible-body">
-            <div class="input-field">
-              <input type="text" id="recent_name">
-              <label for="recent_name" id="recent_name_label"></label>
-            </div>
-            <blockquote id="recent_text"></blockquote>
-            <div class="waves-effect waves-light btn-flat" id="recent_btn"></div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
       </div>
-
-      <ul id="delete_dropdown" class="dropdown-content">
-        <li><a id="delete_label" class="red-text"></a></li>
-        <li><a id="cancel_label" class="black-text"></a></li>
-      </ul>
 
     </main>
     <footer class="page-footer">

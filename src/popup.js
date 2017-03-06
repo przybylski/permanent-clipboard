@@ -10,12 +10,6 @@ var defaultAnimationDuration = 100;
 var storage = new Storage();
 var traverseArray = [];
 
-function getStorage() {
-  if (localStorage["storage_type"] == "local")
-    return chrome.storage.local;
-  return chrome.storage.sync;
-}
-
 function rebuildTable() {
   $('#current_div').empty();
   $('#current_div').append(createTable(traverseArray[traverseArray.length-1]));
@@ -28,8 +22,16 @@ function rebuildMenusAndReload() {
 
 function addToPermClipboardFromRecent() {
   addToPermClipboard(document.getElementById('recent_name').value,
-                     document.getElementById('recent_text').innerHTML);
+                     document.getElementById('recent_text').innerText);
   analytics.trackEvent('Popup', 'Recent saved');
+  $('#add_elements_collapsible').collapsible({onClose: function() {
+    $('#recent_add_element').fadeOut(1000,function() {
+      $('#recent_add_element').addClass('hide');
+    });
+    $('#add_elements_collapsible').collapsible({onClose: null});
+  }})
+  $('#add_elements_collapsible').collapsible('close', 1);
+  
   return false;
 }
 
@@ -39,6 +41,12 @@ function addToPermClipboardFromManually() {
   var text = document.getElementById('new_content').value;
   if (text !== "") {
     addToPermClipboard(document.getElementById('new_name').value, text);
+    
+    $('#new_name').val('');
+    $('#new_content').val('');
+    $('#new_content').trigger('autoresize');
+    $('#add_elements_collapsible').collapsible('close', 0);
+
     analytics.trackEvent('Popup', 'Manually add');
   }
   return false;
@@ -55,19 +63,6 @@ function removeElement(s) {
   storage.setData(null, {'clipboard':traverseArray[0]}, rebuildMenusAndReload);
   rebuildTable();
   analytics.trackEvent('Popup', 'Remove element');
-}
-
-function editElement(s) {
-  var tableRow = s.srcElement.parentNode.parentNode;
-  var id = parseInt(s.srcElement.parentNode.parentNode.parentNode.getAttribute('data-entryId'));
-  var el = traverseArray[traverseArray.length-1][id];
-  var td = document.createElement('td');
-  td.appendChild(createEditForm(el.desc, el.value, id));
-  while (tableRow.lastChild)
-    tableRow.removeChild(tableRow.lastChild);
-  tableRow.appendChild(td);
-  analytics.trackEvent('Popup', 'Edit started');
-  Materialize.updateTextFields();
 }
 
 function createEditForm(name, content, id) {
@@ -93,13 +88,6 @@ function createEditForm(name, content, id) {
     '</div>');
 
   return e;
-}
-
-function createButton(name, invokeFunction) {
-  var btn = document.createElement('button');
-  btn.appendChild(document.createTextNode(name));
-  btn.onclick = invokeFunction;
-  return btn;
 }
 
 function init_i18n() {
@@ -147,6 +135,7 @@ function createEntry(item, id) {
   var top1 = document.createElement('div');
   var top = document.createElement('div');
   top1.appendChild(top);
+  top1.setAttribute('data-entryId', id);
   top.classList.add('row');
   top.classList.add('rowrow');
   top.classList.add('valign-wrapper');
@@ -203,11 +192,8 @@ function createEntry(item, id) {
       
       var srcElement = $(s.srcElement);
       var vv = srcElement.parent().parent().parent().parent();
-      var h = vv.outerHeight();
       vv.append(d);
-     ///vv.animate({'height': h+$(d).outerHeight(true)+'px'});
     }
-    //i.onclick = editElement;
 
     d.appendChild(i);
     edit.appendChild(d);
@@ -261,7 +247,7 @@ $(document).ready(function() {
   $('#new_dir_button').click(createNewDirectory);
   
   var elem = document.getElementById('current_div');
-  getStorage().get('clipboard', function(items) {
+  storage.getData(null, 'clipboard', function(context, items, error) {
     traverseArray.push(items.clipboard);
     if (items.clipboard && items.clipboard.length > 0) {
       elem.appendChild(createTable(items.clipboard));
@@ -271,11 +257,6 @@ $(document).ready(function() {
 
     $("#options_text").click(function() {
       chrome.tabs.create({url:'options.html'});
-    });
-
-    $('.dropdown-button').dropdown({
-      constrainWidth: false,
-      stopPropagation: true
     });
 
   });
@@ -293,7 +274,7 @@ $(document).ready(function() {
       forcePlaceholderSize: true,
       cursor: "ns-resize",
       axis: 'y',
-      items: 'table > div.row',
+      items: 'div.top-padded > div',
       opacity: 0.7,
       revert: defaultAnimationDuration,
       start: function(event, ui) {
@@ -323,16 +304,14 @@ $(document).ready(function() {
       }
   });
 
-  getStorage().get('recent', function(recent) {
+  storage.getData(null, 'recent', function(context, recent, error) {
+    if (error != null) {
+      console.error(error.message);
+      return;
+    }
     if (recent.recent) {
-      var div = document.getElementById('recent_text');
-      if (div) {
-        while (div.lastChild)
-          div.removeChild(div.lastChild);
-        div.appendChild(document.createTextNode(recent.recent));
-      }
-    } else {
-      $('#recent_add_element').addClass('hide');
+      $('#recent_text').empty().text(recent.recent);
+      $('#recent_add_element').removeClass('hide');
     }
   });
 
