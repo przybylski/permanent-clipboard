@@ -58,11 +58,14 @@ function addToPermClipboard(name, text) {
 }
 
 function removeElement(s) {
-  var e = parseInt(s.srcElement.parentNode.parentNode.parentNode.getAttribute('data-entryId'));
-  arrayRemove(traverseArray[traverseArray.length-1], e, e);
-  storage.setData(null, {'clipboard':traverseArray[0]}, rebuildMenusAndReload);
-  rebuildTable();
-  analytics.trackEvent('Popup', 'Remove element');
+  var elem = $(s.srcElement.parentNode.parentNode.parentNode);
+  var e = parseInt(elem.attr('data-entryId'));
+  elem.parent().slideUp('fast', function() {;
+    arrayRemove(traverseArray[traverseArray.length-1], e, e);
+    storage.setData(null, {'clipboard':traverseArray[0]}, rebuildMenusAndReload);
+    rebuildTable();
+    analytics.trackEvent('Popup', 'Remove element');
+  });
 }
 
 function createEditForm(name, content, id) {
@@ -187,12 +190,14 @@ function createEntry(item, id) {
     i.srcset = createSrcSet('img/icons/ic_edit', 'png');
     i.onclick = function(s) {
       var d = $(document.createElement('div'))
-        .addClass('container')
-        .append(createEditForm(item.desc, item.value, id));
+        .addClass('container edit-form')
+        .append(createEditForm(item.desc, item.value, id))
+        .hide();
       
       var srcElement = $(s.srcElement);
       var vv = srcElement.parent().parent().parent().parent();
-      vv.append(d);
+      vv.append(d)
+      d.slideDown('fast');
     }
 
     d.appendChild(i);
