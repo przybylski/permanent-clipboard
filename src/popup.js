@@ -220,6 +220,7 @@ function createEntry(item, id) {
         d.slideUp('fast', function() {
           d.remove();
         });
+        vv.find('.edit_icon').animate({opacity:1});
       });
 
       d.find('.save-button').click(function() {
@@ -235,6 +236,7 @@ function createEntry(item, id) {
       
       vv.append(d)
       d.slideDown('fast');
+      vv.find('.edit_icon').animate({opacity:0});
     }
 
     d.appendChild(i);
