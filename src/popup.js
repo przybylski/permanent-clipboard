@@ -1,8 +1,8 @@
 // Array Remove - By John Resig (MIT Licensed)
 // adjusted by Bartosz Przybylski to avoid members extension of array proto
-function arrayRemove(a, from, to) {
-  var rest = a.slice((to || from) + 1 || a.length);
-  a.length = from < 0 ? a.length + from : from;
+function arrayRemove(a, idx) {
+  var rest = a.slice(idx + 1 || a.length);
+  a.length = idx < 0 ? a.length + idx : idx;
   return a.push.apply(a, rest);
 }
 
@@ -25,7 +25,7 @@ function addToPermClipboardFromRecent() {
                      document.getElementById('recent_text').innerText);
   analytics.trackEvent('Popup', 'Recent saved');
   $('#add_elements_collapsible').collapsible({onClose: function() {
-    $('#recent_add_element').fadeOut(1000,function() {
+    $('#recent_add_element').fadeOut('fast', function() {
       $('#recent_add_element').addClass('hide');
     });
     $('#add_elements_collapsible').collapsible({onClose: null});
@@ -58,10 +58,10 @@ function addToPermClipboard(name, text) {
 }
 
 function removeElement(s) {
-  var elem = $(s.srcElement.parentNode.parentNode.parentNode);
+  var elem = $(this.parentNode.parentNode);
   var e = parseInt(elem.attr('data-entryId'));
   elem.parent().slideUp('fast', function() {;
-    arrayRemove(traverseArray[traverseArray.length-1], e, e);
+    arrayRemove(traverseArray[traverseArray.length-1], e);
     storage.setData(null, {'clipboard':traverseArray[0]}, rebuildMenusAndReload);
     rebuildTable();
     analytics.trackEvent('Popup', 'Remove element');
@@ -203,24 +203,27 @@ function createEntry(item, id) {
 
   {
     var d = document.createElement('div');
-    var i = document.createElement('img');
+    d.classList.add('btn-action');
+    d.classList.add('btn-flat');
+    var i = document.createElement('i');
+    i.classList.add('material-icons');
     i.classList.add('edit_icon');
+    i.appendChild(document.createTextNode('mode_edit'));
 
-    i.srcset = createSrcSet('img/icons/ic_edit', 'png');
-    i.onclick = function(s) {
+    
+    d.onclick = function(s) {
       var d = $(document.createElement('div'))
         .addClass('container edit-form')
         .append(item.value != null ? createEntryEditForm(item.desc, item.value, id) : createDirectoryEditForm(item.desc, id))
         .hide();
 
-      var srcElement = $(s.srcElement);
-      var vv = srcElement.parent().parent().parent().parent();
+      var vv = $(this).parent().parent().parent();
 
       d.find('.cancel-button').click(function() {
         d.slideUp('fast', function() {
           d.remove();
         });
-        vv.find('.edit_icon').animate({opacity:1});
+        vv.find('.edit_icon').fadeIn('fast').parent().removeClass('disabled');
       });
 
       d.find('.save-button').click(function() {
@@ -236,8 +239,9 @@ function createEntry(item, id) {
       
       vv.append(d)
       d.slideDown('fast');
-      vv.find('.edit_icon').animate({opacity:0});
-    }
+      vv.find('.edit_icon').parent().addClass('disabled');
+      vv.find('.edit_icon').fadeOut('fast');
+    };
 
     d.appendChild(i);
     edit.appendChild(d);
@@ -250,10 +254,12 @@ function createEntry(item, id) {
   remove.classList.add('c1');
   {
     var d = document.createElement('div');
-    var i = document.createElement('img');
-    i.srcset = createSrcSet('img/icons/ic_delete', 'png');
-    i.classList.add('actionbtn');
-    i.onclick = removeElement;
+    d.classList.add('btn-action');
+    d.classList.add('btn-flat');
+    d.onclick = removeElement;
+    var i = document.createElement('i');
+    i.classList.add('material-icons');
+    i.appendChild(document.createTextNode('delete'));
 
     d.appendChild(i);
     remove.appendChild(d);
@@ -277,9 +283,9 @@ function createTable(items) {
 }
 
 function createNewDirectory(s) {
-  traverseArray[traverseArray.length-1].push({desc:'dir', e:[]});
+  traverseArray[traverseArray.length-1].push({desc:chrome.i18n.getMessage('newDirectoryName'), e:[]});
   storage.setData(null, {clipboard: traverseArray[0]}, rebuildMenusAndReload);
-  analytics.trackEvent('Popup', 'Directory created')
+  analytics.trackEvent('Popup', 'Directory created');
 }
 
 $(document).ready(function() {
@@ -364,7 +370,7 @@ $(document).ready(function() {
 
 function relocateElement(from, to) {
   var elem = traverseArray[traverseArray.length-1][from];
-  arrayRemove(traverseArray[traverseArray.length-1], from, from);
+  arrayRemove(traverseArray[traverseArray.length-1], from);
   traverseArray[traverseArray.length-1].splice(to, 0, elem);
   storage.setData(null, {'clipboard':traverseArray[0]}, rebuildMenusAndReload);
 

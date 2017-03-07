@@ -52,3 +52,7 @@ div.top-padded {
   margin-right: 5pt;
 }
 
+.btn-action {
+  padding: 0 .5em 0 .5em;
+}
+
