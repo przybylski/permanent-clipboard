@@ -1,66 +1,48 @@
 {
-  "editEntryIconTitle" : {
-    "message" : "Edytuj"
+  "optionsSave" : {
+    "message" : "Zapisz"
   },
   "optionSwapText" : {
     "message" : "Zamień miejscami"
   },
-  "syncedStorageUsed" : {
-    "message" : "Używasz pamięci synchronizowanej"
-  },
-  "popupNewElement" : {
-    "message" : "Dodaj ze schowka systemowego"
-  },
-  "addToExtensionDB" : {
-    "message" : "Dodaj do stałego schowka"
-  },
-  "descriptionPlaceholder" : {
-    "message" : "Opis"
-  },
-  "optionLocalText" : {
-    "message" : "Lokalna"
-  },
-  "popupHintNoElements" : {
-    "message" : "Brak elementów w schowku"
-  },
-  "manageText" : {
-    "message" : ""
-  },
-  "optionStorageTypeText" : {
-    "message" : "Typ pamięci:"
-  },
-  "optionStorageUsage" : {
-    "message" : "Zużycie pamięci synchronizowanej: "
-  },
   "optionsSavedToastText" : {
     "message" : "Zapisano ustawienia"
-  },
-  "optionSyncText" : {
-    "message" : "Synchronizowana"
-  },
-  "extensionDescription" : {
-    "message" : "Pozwala na zachownie i dostęp do wielu elementów w schowku"
-  },
-  "addBtnText" : {
-    "message" : "Dodaj"
-  },
-  "extensionName" : {
-    "message" : "Stały schowek"
-  },
-  "errorFailedToSaveEntry" : {
-    "message" : "Nie udało się dodać wpisu: "
   },
   "optionsText" : {
     "message" : "Opcje"
   },
-  "optionSwapStorageText" : {
-    "message" : "Przenieś zawartość"
-  },
   "insertFromExtension" : {
     "message" : "Wstaw ze stałego schowka"
   },
-  "optionSyncTip" : {
-    "message" : "Pamięć lokalna jest widoczna tylko na tym komputerze.\nPamięć synchronizowana jest widoczna na wszystkich przeglądarkach Google Chrome, na których jesteś zalgowany (może działać wolniej niż pamięć lokalna)."
+  "optionsStorageSizeHelp" : {
+    "message" : "Pojemność schowka synchronizowanego jest ograniczona przez Google i nie można jej zwiększyć. Jeśli zapełnisz tą przestrzeń, rozważ użycie schowka synchronizowanego. Tylko pamiętaj, żeby przenieść zawartość."
+  },
+  "showAddFormText" : {
+    "message" : "Dodaj nowy wpis"
+  },
+  "addBtnText" : {
+    "message" : "Dodaj"
+  },
+  "extensionDescription" : {
+    "message" : "Pozwala na zachownie i dostęp do wielu elementów w schowku"
+  },
+  "popupBack" : {
+    "message" : "Wstecz"
+  },
+  "optionsSwapStoragesHelp" : {
+    "message" : "Zamiana miejscami sprawia, że zawartość synchronizowanego schowka, znajdzie się na miejscu schowka lokalnego, i odwrotnie.\nZamiana nie powiedzie się jeśli nie ma wystarczająco dużo miejsca w schowku synchronizowanym."
+  },
+  "commonCancel" : {
+    "message" : "Anuluj"
+  },
+  "localStorageUsed" : {
+    "message" : "Używasz pamięci lokalnej"
+  },
+  "popupNewElement" : {
+    "message" : "Dodaj ze schowka systemowego"
+  },
+  "manageText" : {
+    "message" : ""
   },
   "deleteEntryIconTitle" : {
     "message" : "Usuń"
@@ -68,25 +50,58 @@
   "storageSwappingFailedMessage" : {
     "message" : "Nie udało się podmienić zawartości: "
   },
+  "donateWithPaypal" : {
+    "message" : "Dotuj przez PayPal"
+  },
+  "addToExtensionDB" : {
+    "message" : "Dodaj do stałego schowka"
+  },
+  "optionsSuccess" : {
+    "message" : "Zamieniono"
+  },
+  "optionStorageUsage" : {
+    "message" : "Zużycie pamięci synchronizowanej: "
+  },
+  "optionSwapStorageText" : {
+    "message" : "Przenieś zawartość"
+  },
+  "editEntryIconTitle" : {
+    "message" : "Edytuj"
+  },
+  "optionSyncTip" : {
+    "message" : "Pamięć lokalna jest widoczna tylko na tym komputerze.\nPamięć synchronizowana jest widoczna na wszystkich przeglądarkach Google Chrome, na których jesteś zalgowany (może działać wolniej niż pamięć lokalna)."
+  },
+  "optionLocalText" : {
+    "message" : "Lokalna"
+  },
+  "descriptionPlaceholder" : {
+    "message" : "Opis"
+  },
+  "popupHintNoElements" : {
+    "message" : "Brak elementów w schowku"
+  },
+  "extensionName" : {
+    "message" : "Stały schowek"
+  },
   "newDirectoryName" : {
     "message" : "Nowy katalog"
   },
-  "optionsSave" : {
-    "message" : "Zapisz"
+  "contentPlaceholder" : {
+    "message" : "Zawartość"
+  },
+  "optionSyncText" : {
+    "message" : "Synchronizowana"
+  },
+  "optionStorageTypeText" : {
+    "message" : "Typ pamięci:"
   },
   "popupHint" : {
     "message" : "Kliknij we wpis żeby zapisać go do schowka systemowego"
   },
-  "localStorageUsed" : {
-    "message" : "Używasz pamięci lokalnej"
+  "syncedStorageUsed" : {
+    "message" : "Używasz pamięci synchronizowanej"
   },
-  "commonCancel" : {
-    "message" : "Anuluj"
-  },
-  "showAddFormText" : {
-    "message" : "Dodaj nowy wpis"
-  },
-  "contentPlaceholder" : {
-    "message" : "Zawartość"
+  "errorFailedToSaveEntry" : {
+    "message" : "Nie udało się dodać wpisu: "
   }
 }

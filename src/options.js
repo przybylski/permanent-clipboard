@@ -39,7 +39,7 @@ function swapStorage() {
         chrome.storage.local.set({'clipboard': syncItems.clipboard});
         chrome.runtime.sendMessage({event:'rebuildMenus'});
         
-        Materialize.toast("Success", 4000);
+        Materialize.toast(chrome.i18n.getMessage('optionsSuccess'), 4000);
         calculateAndSetFillBar();
 
       });
@@ -94,6 +94,7 @@ function init_i18n() {
   $("#option_swap_tip").append(chrome.i18n.getMessage("optionsSwapStoragesHelp"));
 
   $("#save").text(chrome.i18n.getMessage("optionsSave"));
+  $('#donate_button').val(chrome.i18n.getMessage('donateWithPaypal'));
 }
 
 $(document).ready(function() {

@@ -40,6 +40,7 @@ div.cinvisible {
 }
 div.top-padded {
   padding-top: 20px;
+  padding-bottom: 1em;
 }
 
 .list-placeholder {
@@ -53,6 +54,7 @@ div.top-padded {
 }
 
 .btn-action {
-  padding: 0 .5em 0 .5em;
+  padding: 0 .5em;
 }
+
 

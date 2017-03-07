@@ -127,6 +127,9 @@ function init_i18n() {
 
   $("#delete_label").text(chrome.i18n.getMessage("deleteEntryIconTitle"));
   $("#cancel_label").text(chrome.i18n.getMessage("commonCancel"));
+
+  $('#back_button').attr('data-tooltip', chrome.i18n.getMessage('popupBack'));
+  $('#new_dir_button').attr('data-tooltip', chrome.i18n.getMessage('newDirectoryName'));
 }
 
 function copyToClipboard(s) {
@@ -176,7 +179,7 @@ function createEntry(item, id) {
 
   var main = document.createElement('div');
   main.classList.add('col');
-  main.classList.add('s8');
+  main.classList.add('s9');
 
   {
     var a = document.createElement('a');
@@ -198,8 +201,10 @@ function createEntry(item, id) {
   top.appendChild(main);
 
   var edit = document.createElement('div');
+  
   edit.classList.add('col');
   edit.classList.add('c1');
+  edit.classList.add('btn-action-wrapper');
 
   {
     var d = document.createElement('div');
@@ -290,11 +295,14 @@ function createNewDirectory(s) {
 
 $(document).ready(function() {
 
+  init_i18n();
+
   $('.collapsible').collapsible();
 
   $('#recent_btn').click(addToPermClipboardFromRecent);
   $('#new_btn').click(addToPermClipboardFromManually);
   $('#new_dir_button').click(createNewDirectory);
+  $('.tooltipped').tooltip();
   
   var elem = document.getElementById('current_div');
   storage.getData(null, 'clipboard', function(context, items, error) {
@@ -365,7 +373,7 @@ $(document).ready(function() {
     }
   });
 
-  init_i18n();
+  
 });
 
 function relocateElement(from, to) {
