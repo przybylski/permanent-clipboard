@@ -68,7 +68,7 @@ function removeElement(s) {
   });
 }
 
-function createEditForm(name, content, id) {
+function createEntryEditForm(name, content, id) {
 
   var e = $(
     '<div class="container">' +
@@ -85,11 +85,29 @@ function createEditForm(name, content, id) {
         '</div>' +
       '</div>' +
       '<div class="row">' +
-        '<div class="btn-flat waves-effect waves-light right">' + chrome.i18n.getMessage('commonCancel') + '</div>' +
-        '<div class="btn-flat waves-effect waves-light right">' + chrome.i18n.getMessage('optionsSave') + '</div>' +
+        '<div class="btn-flat waves-effect waves-light right cancel-button">' + chrome.i18n.getMessage('commonCancel') + '</div>' +
+        '<div class="btn-flat waves-effect waves-light right save-button">' + chrome.i18n.getMessage('optionsSave') + '</div>' +
       '</div>' +
     '</div>');
 
+  return e;
+}
+
+function createDirectoryEditForm(name, id) {
+  var e = $(
+    '<div class="container">' +
+      '<div class="row">' +
+        '<div class="input-field">' +
+          '<input type="text" id="editName_' + id + '" value="'+name+'">' +
+          //'<label for="editName_' + id + '">' + chrome.i18n.getMessage("descriptionPlaceholder") + '</label>' +
+        '</div>' +
+      '</div>' +
+      '<div class="row">' +
+        '<div class="btn-flat waves-effect waves-light right cancel-button">' + chrome.i18n.getMessage('commonCancel') + '</div>' +
+        '<div class="btn-flat waves-effect waves-light right save-button">' + chrome.i18n.getMessage('optionsSave') + '</div>' +
+      '</div>' +
+    '</div>'
+    );
   return e;
 }
 
@@ -186,16 +204,35 @@ function createEntry(item, id) {
   {
     var d = document.createElement('div');
     var i = document.createElement('img');
+    i.classList.add('edit_icon');
 
     i.srcset = createSrcSet('img/icons/ic_edit', 'png');
     i.onclick = function(s) {
       var d = $(document.createElement('div'))
         .addClass('container edit-form')
-        .append(createEditForm(item.desc, item.value, id))
+        .append(item.value != null ? createEntryEditForm(item.desc, item.value, id) : createDirectoryEditForm(item.desc, id))
         .hide();
-      
+
       var srcElement = $(s.srcElement);
       var vv = srcElement.parent().parent().parent().parent();
+
+      d.find('.cancel-button').click(function() {
+        d.slideUp('fast', function() {
+          d.remove();
+        });
+      });
+
+      d.find('.save-button').click(function() {
+        d.slideUp('fast', function() {
+          traverseArray[traverseArray.length-1][id].desc = $('#editName_'+id).val();
+          if (item.value != null)
+            traverseArray[traverseArray.length-1][id].value = $('#editContent_'+id).val();
+          storage.setData(null, {'clipboard':traverseArray[0]}, function(context, error) {
+          });
+          rebuildMenusAndReload();
+        });
+      });
+      
       vv.append(d)
       d.slideDown('fast');
     }
