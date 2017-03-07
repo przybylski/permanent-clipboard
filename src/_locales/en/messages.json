@@ -4,18 +4,18 @@
     "description" : "Hover text on edit icon"
   },
   "optionSwapText" : {
-    "message" : "Swap storage contents"
+    "message" : "Swap"
   },
   "optionsSwapStoragesHelp" : {
     "message" : "Swapping storages will replace the content of synchronized storage with the content of local storage and the other way around. This operation will fail if not enough space is available in synchronized storage."
   },
-  "syncedStorageUsed" : {
-    "message" : "Using synchronized storage",
-    "description" : ""
-  },
   "popupNewElement" : {
     "message" : "Add from system clipboard",
     "description" : "New element title in popup"
+  },
+  "syncedStorageUsed" : {
+    "message" : "Using synchronized storage",
+    "description" : ""
   },
   "addToExtensionDB" : {
     "message" : "Add to Permanent clipboard",
@@ -28,40 +28,38 @@
   "optionLocalText" : {
     "message" : "Local"
   },
-  "popupHintNoElements" : {
-    "message" : "No elements in clipboard",
-    "description" : "Hint visible when no elements are available"
+  "optionStorageUsage" : {
+    "message" : "Synchronized storage usage: "
   },
   "manageText" : {
     "message" : "Manage"
   },
-  "optionStorageTypeText" : {
-    "message" : "Storage type:",
-    "description" : "Field description before combo on options screen"
-  },
-  "optionStorageUsage" : {
-    "message" : "Synchronized storage usage: "
-  },
   "optionsSavedToastText" : {
     "message" : "Options saved"
+  },
+  "popupHintNoElements" : {
+    "message" : "No elements in clipboard",
+    "description" : "Hint visible when no elements are available"
+  },
+  "newDirectoryName" : {
+    "message" : "New directory"
   },
   "optionSyncText" : {
     "message" : "Synchornized"
   },
-  "extensionDescription" : {
-    "message" : "Allows you to store and access multiple elements in clipboard",
-    "description" : "Extension description."
+  "optionsStorageSizeHelp" : {
+    "message" : "Currently synchronized storage size is limited by Google and cannot be increased. If you fill your space you should consider switching to local storage, which is unlimited. Don't forget to swap your storages."
   },
   "addBtnText" : {
     "message" : "Add",
     "description" : "Text on add button in popup"
   },
-  "optionSyncTip" : {
-    "message" : "Local storage is kept only on this chrome instance.\nSynchronized storage is shared across all your chrome instances (it might working a bit slower then local storage)."
+  "extensionDescription" : {
+    "message" : "Allows you to store and access multiple elements in clipboard",
+    "description" : "Extension description."
   },
-  "extensionName" : {
-    "message" : "Permanent clipboard",
-    "description" : "Extension name."
+  "deleteEntryIconTitle" : {
+    "message" : "Delete"
   },
   "optionsText" : {
     "message" : "Options",
@@ -71,31 +69,39 @@
     "message" : "Insert from Permanent clipboard",
     "description" : "Context menu text on editable elements."
   },
-  "optionSwapStorageText" : {
-    "message" : "Swap storages",
-    "description" : ""
-  },
-  "errorFailedToSaveEntry" : {
-    "message" : "Failed to save selection: "
-  },
-  "deleteEntryIconTitle" : {
-    "message" : "Delete"
-  },
   "storageSwappingFailedMessage" : {
     "message" : "Swapping storage failed, aborting: "
   },
-  "optionsStorageSizeHelp" : {
-    "message" : "Currently synchronized storage size is limited by Google and cannot be increased. If you fill your space you should consider switching to local storage, which is unlimited. Don't forget to swap your storages."
+  "optionSyncTip" : {
+    "message" : "Local storage is kept only on this chrome instance.\nSynchronized storage is shared across all your chrome instances (it might working a bit slower then local storage)."
+  },
+  "optionSwapStorageText" : {
+    "message" : "Swap storages contents",
+    "description" : ""
+  },
+  "extensionName" : {
+    "message" : "Permanent clipboard",
+    "description" : "Extension name."
+  },
+  "optionStorageTypeText" : {
+    "message" : "Storage type:",
+    "description" : "Field description before combo on options screen"
   },
   "optionsSave" : {
     "message" : "Save"
   },
   "popupHint" : {
-    "message" : "Click on element to add it to clipboard",
+    "message" : "Click on the element to store it in system clipboard",
     "description" : "Hint text showed in popup"
+  },
+  "errorFailedToSaveEntry" : {
+    "message" : "Failed to save selection: "
   },
   "localStorageUsed" : {
     "message" : "Using local storage"
+  },
+  "commonCancel" : {
+    "message" : "Cancel"
   },
   "showAddFormText" : {
     "message" : "Add new entry",
@@ -104,8 +110,5 @@
   "contentPlaceholder" : {
     "message" : "Content",
     "description" : "Placeholder hint for content input box"
-  },
-  "commonCancel" : {
-    "message" : "Cancel"
   }
 }

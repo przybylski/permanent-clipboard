@@ -54,7 +54,7 @@
     "message" : "Opcje"
   },
   "optionSwapStorageText" : {
-    "message" : "Zamień pamięci"
+    "message" : "Przenieś zawartość"
   },
   "insertFromExtension" : {
     "message" : "Wstaw ze stałego schowka"
@@ -68,14 +68,20 @@
   "storageSwappingFailedMessage" : {
     "message" : "Nie udało się podmienić zawartości: "
   },
+  "newDirectoryName" : {
+    "message" : "Nowy katalog"
+  },
   "optionsSave" : {
     "message" : "Zapisz"
   },
   "popupHint" : {
-    "message" : "Kliknij w element żeby skopiować go do schowka"
+    "message" : "Kliknij we wpis żeby zapisać go do schowka systemowego"
   },
   "localStorageUsed" : {
     "message" : "Używasz pamięci lokalnej"
+  },
+  "commonCancel" : {
+    "message" : "Anuluj"
   },
   "showAddFormText" : {
     "message" : "Dodaj nowy wpis"
