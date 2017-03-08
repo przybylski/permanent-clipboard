@@ -11,8 +11,7 @@ var storage = new Storage();
 var traverseArray = [];
 
 function rebuildTable() {
-  $('#current_div').empty();
-  $('#current_div').append(createTable(traverseArray[traverseArray.length-1]));
+  $('#current_div').empty().append(createTable(traverseArray[traverseArray.length-1]));
 }
 
 function rebuildMenusAndReload() {
@@ -134,7 +133,7 @@ function init_i18n() {
 
 function copyToClipboard(s) {
   var textArr = s.srcElement.title.split('\n');
-  $(s.srcElement).animate({opacity:0.5}, 100, function() { $(s.srcElement).animate({opacity:1}, 100); });
+  $(s.srcElement).animate({opacity:0.5}, defaultAnimationDuration).delay().animate({opacity:1}, defaultAnimationDuration);
   var copyDiv = document.createElement('div');
   copyDiv.contentEditable = true;
   document.body.appendChild(copyDiv);
@@ -321,9 +320,9 @@ $(document).ready(function() {
 
   $('#back_button').click(function(e) {
     traverseArray.pop();
-    rebuildTable();
     if (traverseArray.length == 1)
       $('#back_button').addClass('scale-out');
+    rebuildTable();
   });
 
 
@@ -336,14 +335,10 @@ $(document).ready(function() {
       opacity: 0.7,
       revert: defaultAnimationDuration,
       start: function(event, ui) {
-        $('.actioncell', ui.item).each(function() {
-          $('.actioncell', ui.item).css({opacity:0});
-        });
+        $('.btn-action', ui.item).animate( { opacity: 0 }, defaultAnimationDuration);
       },
       stop: function(event, ui) {
-        $('.actioncell', ui.item).each(function() {
-          $('.actioncell', ui.item).animate({opacity:1}, defaultAnimationDuration);
-        });
+        $('.btn-action', ui.item).animate( { opacity: 1 }, defaultAnimationDuration);
         var uiRaw = ui.item.get(0);
 
         var source = parseInt(uiRaw.getAttribute("data-entryId"));
@@ -372,7 +367,6 @@ $(document).ready(function() {
       $('#recent_add_element').removeClass('hide');
     }
   });
-
   
 });
 
