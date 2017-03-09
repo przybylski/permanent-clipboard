@@ -14,9 +14,11 @@
    "default_locale": "en",
    "description": "__MSG_extensionDescription__",
    "icons": {
+      "512": "img/icon-512.png",
       "128": "img/icon-128.png",
-      "16": "img/icon-16.png",
-      "48": "img/icon-48.png"
+      "48": "img/icon-48.png",
+      "32": "img/icon-32.png",
+      "16": "img/icon-16.png"
    },
    "manifest_version": 2,
    "name": "__MSG_extensionName__",
