@@ -11,7 +11,9 @@ var storage = new Storage();
 var traverseArray = [];
 
 function rebuildTable() {
-  $('#current_div').empty().append(createTable(traverseArray[traverseArray.length-1]));
+  var tail = traverseArray[traverseArray.length-1];
+  $('#current_div').empty().append(createTable(tail));
+  $('#hint').empty().append(chrome.i18n.getMessage(tail.length == 0 ? "popupHintNoElements" : "popupHint"));
 }
 
 function rebuildMenusAndReload() {
@@ -114,8 +116,6 @@ function init_i18n() {
   $("#recent_btn").text(chrome.i18n.getMessage("addBtnText"));
   $("#recent_name_label").text(chrome.i18n.getMessage("descriptionPlaceholder"));
   $("#recent_title").text(chrome.i18n.getMessage("popupNewElement"));
-
-  $("#hint").append(chrome.i18n.getMessage("popupHint"));
   
   $("#new_btn").text(chrome.i18n.getMessage("addBtnText"));
   $("#new_name_label").text(chrome.i18n.getMessage("descriptionPlaceholder"));
@@ -188,10 +188,9 @@ function createEntry(item, id) {
       a.title = item.value;
     } else {
       a.onclick = function(e) {
-        $('#current_div').empty();
-        $('#current_div').append(createTable(item.e));
-        $('#back_button').removeClass('scale-out');
         traverseArray.push(item.e);
+        rebuildTable();
+        $('#back_button').removeClass('scale-out');
       };
     }
     main.appendChild(a);
@@ -307,11 +306,7 @@ $(document).ready(function() {
   var elem = document.getElementById('current_div');
   storage.getData(null, 'clipboard', function(context, items, error) {
     traverseArray.push(items.clipboard);
-    if (items.clipboard && items.clipboard.length > 0) {
-      elem.appendChild(createTable(items.clipboard));
-    } else {
-      $("#hint").html(chrome.i18n.getMessage("popupHintNoElements"));
-    }
+    rebuildTable();
 
     $("#options_text").click(function() {
       chrome.tabs.create({url:'options.html'});

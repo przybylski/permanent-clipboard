@@ -88,7 +88,7 @@
     "description" : "Placeholder on input field in popup"
   },
   "popupHintNoElements" : {
-    "message" : "No elements in clipboard",
+    "message" : "No entries yet",
     "description" : "Hint visible when no elements are available"
   },
   "extensionName" : {
