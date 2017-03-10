@@ -26,9 +26,7 @@ function addToPermClipboardFromRecent() {
                      document.getElementById('recent_text').innerText);
   analytics.trackEvent('Popup', 'Recent saved');
   $('#add_elements_collapsible').collapsible({onClose: function() {
-    $('#recent_add_element').fadeOut('fast', function() {
-      $('#recent_add_element').addClass('hide');
-    });
+    $('#recent_add_element').fadeOut('fast').delay().addClass('hide');
     $('#add_elements_collapsible').collapsible({onClose: null});
   }})
   $('#add_elements_collapsible').collapsible('close', 1);
