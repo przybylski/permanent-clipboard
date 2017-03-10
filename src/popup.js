@@ -334,6 +334,7 @@ $(document).ready(function() {
       items: 'div.top-padded > div',
       opacity: 0.7,
       revert: defaultAnimationDuration,
+      helper : 'clone',
       start: function(event, ui) {
         $('.btn-action', ui.item).animate( { opacity: 0 }, defaultAnimationDuration);
       },
