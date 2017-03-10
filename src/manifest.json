@@ -15,6 +15,7 @@
    "description": "__MSG_extensionDescription__",
    "icons": {
       "512": "img/icon-512.png",
+      "256": "img/icon-256.png",
       "128": "img/icon-128.png",
       "48": "img/icon-48.png",
       "32": "img/icon-32.png",
