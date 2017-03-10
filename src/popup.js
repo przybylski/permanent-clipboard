@@ -245,6 +245,7 @@ function createEntry(item, id) {
       d.slideDown('fast');
       vv.find('.edit_icon').parent().addClass('disabled');
       vv.find('.edit_icon').fadeOut('fast');
+      vv.find('#editName_' + id).focus();
     };
 
     d.appendChild(i);
