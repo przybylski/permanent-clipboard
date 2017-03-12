@@ -302,7 +302,7 @@ $(document).ready(function() {
   $('.tooltipped').tooltip();
   
   var elem = document.getElementById('current_div');
-  storage.getData(null, 'clipboard', function(context, items, error) {
+  storage.getData(null, {'clipboard':[]}, function(context, items, error) {
     traverseArray.push(items.clipboard);
     rebuildTable();
 
