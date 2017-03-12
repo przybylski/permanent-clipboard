@@ -77,11 +77,12 @@ function buildMenuLevel(menu, parentId) {
 
 function rebuildMenus() {
 	chrome.contextMenus.removeAll(function() {
-    storage.getData(null, 'clipboard', function(context, items, error) {
+    storage.getData(null, {'clipboard':[]}, function(context, items, error) {
       if (error != null) {
         console.error("Failed to get data for menu filling: " + error.message);
         return;
       }
+      if (items.clipboard.length == 0) return;
       var title = chrome.i18n.getMessage("insertFromExtension");
       chrome.contextMenus.create({"title":title, "contexts":["editable"], "id": ""});
       buildMenuLevel(items.clipboard, "");
