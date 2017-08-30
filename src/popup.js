@@ -30,7 +30,7 @@ function addToPermClipboardFromRecent() {
     $('#add_elements_collapsible').collapsible({onClose: null});
   }})
   $('#add_elements_collapsible').collapsible('close', 1);
-  
+
   return false;
 }
 
@@ -40,7 +40,7 @@ function addToPermClipboardFromManually() {
   var text = document.getElementById('new_content').value;
   if (text !== "") {
     addToPermClipboard(document.getElementById('new_name').value, text);
-    
+
     $('#new_name').val('');
     $('#new_content').val('');
     $('#new_content').trigger('autoresize');
@@ -51,7 +51,7 @@ function addToPermClipboardFromManually() {
   return false;
 }
 
-function addToPermClipboard(name, text) {  
+function addToPermClipboard(name, text) {
   traverseArray[traverseArray.length-1].push({ desc: name, value: text });
   storage.setData(null, {'clipboard':traverseArray[0], 'recent':0}, rebuildMenusAndReload);
 }
@@ -114,11 +114,11 @@ function init_i18n() {
   $("#recent_btn").text(chrome.i18n.getMessage("addBtnText"));
   $("#recent_name_label").text(chrome.i18n.getMessage("descriptionPlaceholder"));
   $("#recent_title").text(chrome.i18n.getMessage("popupNewElement"));
-  
+
   $("#new_btn").text(chrome.i18n.getMessage("addBtnText"));
   $("#new_name_label").text(chrome.i18n.getMessage("descriptionPlaceholder"));
   $("#new_content_label").text(chrome.i18n.getMessage("contentPlaceholder"));
-  
+
   $("#new_item_content_trigger").text(chrome.i18n.getMessage("showAddFormText"));
   $("#storage_type_text").text(chrome.i18n.getMessage(localStorage["storage_type"] == "local" ? "localStorageUsed" : "syncedStorageUsed"));
 
@@ -127,6 +127,9 @@ function init_i18n() {
 
   $('#back_button').attr('data-tooltip', chrome.i18n.getMessage('popupBack'));
   $('#new_dir_button').attr('data-tooltip', chrome.i18n.getMessage('newDirectoryName'));
+
+  $('#did_you_know_text_header').text(chrome.i18n.getMessage('popupHintTitle'));
+  $('#did_you_know_text_content').text(chrome.i18n.getMessage('popupHintText_1'));
 }
 
 function copyToClipboard(s) {
@@ -197,7 +200,7 @@ function createEntry(item, id) {
   top.appendChild(main);
 
   var edit = document.createElement('div');
-  
+
   edit.classList.add('col');
   edit.classList.add('c1');
   edit.classList.add('btn-action-wrapper');
@@ -211,7 +214,7 @@ function createEntry(item, id) {
     i.classList.add('edit_icon');
     i.appendChild(document.createTextNode('mode_edit'));
 
-    
+
     d.onclick = function(s) {
       var d = $(document.createElement('div'))
         .addClass('container edit-form')
@@ -237,7 +240,7 @@ function createEntry(item, id) {
           rebuildMenusAndReload();
         });
       });
-      
+
       vv.append(d)
       d.slideDown('fast');
       vv.find('.edit_icon').parent().addClass('disabled');
@@ -300,7 +303,11 @@ $(document).ready(function() {
   $('#new_btn').click(addToPermClipboardFromManually);
   $('#new_dir_button').click(createNewDirectory);
   $('.tooltipped').tooltip();
-  
+
+  if (Math.floor(Math.random() * 8) + 1 != 1) {
+    $('#did_you_know_container').hide();
+  }
+
   var elem = document.getElementById('current_div');
   storage.getData(null, {'clipboard':[]}, function(context, items, error) {
     traverseArray.push(items.clipboard);
@@ -362,7 +369,7 @@ $(document).ready(function() {
       $('#recent_add_element').removeClass('hide');
     }
   });
-  
+
 });
 
 function relocateElement(from, to) {
