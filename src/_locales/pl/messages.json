@@ -77,6 +77,9 @@
   "descriptionPlaceholder" : {
     "message" : "Opis"
   },
+  "popupHintText_1" : {
+    "message" : "Mo\u0010\u0010\u0010żesz wesprzeć Stały schowek dotacj\u0010ą, klikająć link w opcjach."
+  },
   "popupHintNoElements" : {
     "message" : "Brak wpisów"
   },
@@ -94,6 +97,9 @@
   },
   "optionStorageTypeText" : {
     "message" : "Typ pamięci:"
+  },
+  "popupHintTitle" : {
+    "message" : "Czy wiesz, \u0010\u0010\u0010że?"
   },
   "popupHint" : {
     "message" : "Kliknij we wpis żeby zapisać go do schowka systemowego"

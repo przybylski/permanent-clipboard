@@ -87,6 +87,9 @@
     "message" : "Description",
     "description" : "Placeholder on input field in popup"
   },
+  "popupHintText_1" : {
+    "message" : "You can support Permanent Clipboard with donation using link on options screen."
+  },
   "popupHintNoElements" : {
     "message" : "No entries yet",
     "description" : "Hint visible when no elements are available"
@@ -108,6 +111,9 @@
   "optionStorageTypeText" : {
     "message" : "Storage type:",
     "description" : "Field description before combo on options screen"
+  },
+  "popupHintTitle" : {
+    "message" : "Did you know?"
   },
   "popupHint" : {
     "message" : "Click on the element to store it in system clipboard",
