@@ -304,8 +304,10 @@ $(document).ready(function() {
   $('#new_dir_button').click(createNewDirectory);
   $('.tooltipped').tooltip();
 
-  if (Math.floor(Math.random() * 8) + 1 != 1) {
+  if (Math.floor(Math.random() * 6) != 0) {
     $('#did_you_know_container').hide();
+  } else {
+    analytics.trackEvent('Popup', 'Did you know hit');
   }
 
   var elem = document.getElementById('current_div');
