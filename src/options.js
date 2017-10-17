@@ -29,19 +29,21 @@ function swapStorage() {
     localItems.clipboard = localItems.clipboard || [];
 
     chrome.storage.sync.get('clipboard', function(syncItems) {
-      syncItems.clipboard = syncItems.clipboard || []; 
+      syncItems.clipboard = syncItems.clipboard || [];
 
       chrome.storage.sync.set({'clipboard': localItems.clipboard}, function() {
         if (chrome.runtime.lastError) {
           Materialize.toast(chrome.i18n.getMessage('storageSwappingFailedMessage') + chrome.runtime.lastError.message, 4000);
+          analytics.trackEvent('Options', 'Swap Failed');
           return;
         }
         chrome.storage.local.set({'clipboard': syncItems.clipboard});
         chrome.runtime.sendMessage({event:'rebuildMenus'});
-        
+
         Materialize.toast(chrome.i18n.getMessage('optionsSuccess'), 4000);
         calculateAndSetFillBar();
 
+        analytics.trackEvent('Options', 'Swap Success');
       });
     });
 
@@ -88,7 +90,7 @@ function init_i18n() {
   $("#option_swap_storages_text").append(chrome.i18n.getMessage("optionSwapStorageText"));
   $("#option_swap_storage_btn_text").text(chrome.i18n.getMessage("optionSwapText"));
   $("#option_local_text").html(chrome.i18n.getMessage("optionLocalText"));
-  
+
   $("#option_sync_tip").append(chrome.i18n.getMessage("optionSyncTip"));
   $("#option_used_storage_tip").append(chrome.i18n.getMessage("optionsStorageSizeHelp"));
   $("#option_swap_tip").append(chrome.i18n.getMessage("optionsSwapStoragesHelp"));
@@ -105,6 +107,5 @@ $(document).ready(function() {
   calculateAndSetFillBar();
   $("#save").click(saveOptions);
   $('#option_swap_storage_btn_text').click(swapStorage);
+  analytics.trackEvent('Options', 'Opened');
 });
-
-
