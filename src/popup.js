@@ -127,9 +127,6 @@ function init_i18n() {
 
   $('#back_button').attr('data-tooltip', chrome.i18n.getMessage('popupBack'));
   $('#new_dir_button').attr('data-tooltip', chrome.i18n.getMessage('newDirectoryName'));
-
-  $('#did_you_know_text_header').text(chrome.i18n.getMessage('popupHintTitle'));
-  $('#did_you_know_text_content').text(chrome.i18n.getMessage('popupHintText_1'));
 }
 
 function copyToClipboard(s) {
@@ -293,32 +290,31 @@ function createNewDirectory(s) {
   analytics.trackEvent('Popup', 'Directory created');
 }
 
-$(document).ready(function() {
+function setupDidYouKnowContainer() {
+  var MAX_DID_YOU_KNOW = parseInt(chrome.i18n.getMessage('popupHintsCount'));
+  var didYouKnowIDToShow = Math.floor(Math.random() * (MAX_DID_YOU_KNOW)) + 1;
 
+  $('#did_you_know_text').html(chrome.i18n.getMessage('popupHintText_' + didYouKnowIDToShow));
+}
+
+window.onload = function() {
+  initialize();
+  document.body.onpageshow = loadStorageItems;
+}
+
+function initialize() {
   init_i18n();
-
-  $('.collapsible').collapsible();
 
   $('#recent_btn').click(addToPermClipboardFromRecent);
   $('#new_btn').click(addToPermClipboardFromManually);
   $('#new_dir_button').click(createNewDirectory);
   $('.tooltipped').tooltip();
-
-  if (Math.floor(Math.random() * 6) != 0) {
-    $('#did_you_know_container').hide();
-  } else {
-    analytics.trackEvent('Popup', 'Did you know hit');
-  }
+  setupDidYouKnowContainer();
 
   var elem = document.getElementById('current_div');
-  storage.getData(null, {'clipboard':[]}, function(context, items, error) {
-    traverseArray.push(items.clipboard);
-    rebuildTable();
 
-    $("#options_text").click(function() {
-      chrome.tabs.create({url:'options.html'});
-    });
-
+  $("#options_text").click(function() {
+    chrome.tabs.create({url:'options.html'});
   });
 
   $('#back_button').click(function(e) {
@@ -327,7 +323,6 @@ $(document).ready(function() {
       $('#back_button').addClass('scale-out');
     rebuildTable();
   });
-
 
   $("#current_div").sortable({
       placeholder: "list-placeholder",
@@ -361,18 +356,23 @@ $(document).ready(function() {
       }
   });
 
-  storage.getData(null, 'recent', function(context, recent, error) {
+};
+
+function loadStorageItems() {
+  storage.getData(null, {'clipboard':[], 'recent':null}, function(context, items, error) {
     if (error != null) {
-      console.error(error.message);
+      console.log(error.message);
       return;
     }
-    if (recent.recent) {
-      $('#recent_text').empty().text(recent.recent);
+    if (items.recent) {
+      $('#recent_text').empty().text(items.recent);
       $('#recent_add_element').removeClass('hide');
     }
+    traverseArray.push(items.clipboard);
+    rebuildTable();
   });
+}
 
-});
 
 function relocateElement(from, to) {
   var elem = traverseArray[traverseArray.length-1][from];

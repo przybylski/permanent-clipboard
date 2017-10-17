@@ -27,6 +27,9 @@
     "message" : "Add",
     "description" : "Text on add button in popup"
   },
+  "popupHintText_2" : {
+    "message" : "Enjoying PermanentClipboard? <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/permanent-clipboard\/hilkjcfodmbdgpadbpehimibheopoccb\/reviews\" target=\"_blank\">Rate it!<\/a>"
+  },
   "extensionDescription" : {
     "message" : "Allows you to store and access multiple elements in clipboard",
     "description" : "Extension description."
@@ -83,12 +86,15 @@
   "optionLocalText" : {
     "message" : "Local"
   },
+  "popupHintText_3" : {
+    "message" : "Boost up your productivity by using <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/iahcjdalmgeeclcjbffpkmfhogckipfh\" target=\"_blank\">Templatizer<\/a>"
+  },
   "descriptionPlaceholder" : {
     "message" : "Description",
     "description" : "Placeholder on input field in popup"
   },
   "popupHintText_1" : {
-    "message" : "You can support Permanent Clipboard with donation using link on options screen."
+    "message" : "You can support Permanent Clipboard with donation using link in options screen."
   },
   "popupHintNoElements" : {
     "message" : "No entries yet",
@@ -125,5 +131,8 @@
   },
   "errorFailedToSaveEntry" : {
     "message" : "Failed to save selection: "
+  },
+  "popupHintsCount" : {
+    "message" : "3"
   }
 }

@@ -23,6 +23,9 @@
   "addBtnText" : {
     "message" : "Dodaj"
   },
+  "popupHintText_2" : {
+    "message" : "Podoba Ci się Stały schowek? <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/permanent-clipboard\/hilkjcfodmbdgpadbpehimibheopoccb\/reviews\" target=\"_blank\">Wystaw ocenę!<\/a>"
+  },
   "extensionDescription" : {
     "message" : "Pozwala na zachownie i dostęp do wielu elementów w schowku"
   },
@@ -74,11 +77,14 @@
   "optionLocalText" : {
     "message" : "Lokalna"
   },
+  "popupHintText_1" : {
+    "message" : "Możesz wesprzeć Stały schowek dotacją, klikająć link w opcjach."
+  },
   "descriptionPlaceholder" : {
     "message" : "Opis"
   },
-  "popupHintText_1" : {
-    "message" : "Mo\u0010\u0010\u0010żesz wesprzeć Stały schowek dotacj\u0010ą, klikająć link w opcjach."
+  "popupHintText_3" : {
+    "message" : "Zwiększ swoją produktywność  rozszerzeniem <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/iahcjdalmgeeclcjbffpkmfhogckipfh\" target=\"_blank\">Templatizer<\/a>"
   },
   "popupHintNoElements" : {
     "message" : "Brak wpisów"
@@ -109,5 +115,8 @@
   },
   "errorFailedToSaveEntry" : {
     "message" : "Nie udało się dodać wpisu: "
+  },
+  "popupHintsCount" : {
+    "message" : "3"
   }
 }
