@@ -9,7 +9,7 @@
     "message" : "Zapisano ustawienia"
   },
   "optionsText" : {
-    "message" : "Opcje"
+    "message" : "Ustawienia"
   },
   "insertFromExtension" : {
     "message" : "Wstaw ze stałego schowka"
@@ -38,6 +38,9 @@
   "commonCancel" : {
     "message" : "Anuluj"
   },
+  "optionStorageCardTitle" : {
+    "message" : "Pamięć"
+  },
   "localStorageUsed" : {
     "message" : "Używasz pamięci lokalnej"
   },
@@ -63,7 +66,7 @@
     "message" : "Zamieniono"
   },
   "optionStorageUsage" : {
-    "message" : "Zużycie pamięci synchronizowanej: "
+    "message" : "Zużycie pamięci synchronizowanej "
   },
   "optionSwapStorageText" : {
     "message" : "Przenieś zawartość"
@@ -78,7 +81,7 @@
     "message" : "Lokalna"
   },
   "popupHintText_1" : {
-    "message" : "Możesz wesprzeć Stały schowek dotacją, klikająć link w opcjach."
+    "message" : "Możesz wesprzeć Stały schowek dotacją, klikając link w opcjach."
   },
   "descriptionPlaceholder" : {
     "message" : "Opis"
@@ -102,7 +105,7 @@
     "message" : "Synchronizowana"
   },
   "optionStorageTypeText" : {
-    "message" : "Typ pamięci:"
+    "message" : "Typ pamięci"
   },
   "popupHintTitle" : {
     "message" : "Czy wiesz, \u0010\u0010\u0010że?"

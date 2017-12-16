@@ -13,76 +13,85 @@
 
   </head>
   <body class='grey lighten-4'>
+    <div class="navbar-fixed">
+    <nav class="blue">
+      <div class="nav-wrapper">
+        <a id="title" class="brand-logo"></a>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" id="donate_form">
+              <input type="hidden" name="cmd" value="_s-xclick">
+              <input type="hidden" name="hosted_button_id" value="X4LEC9EWL4V24">
+              <a id="donate_button"></a>
+            </form>
+          </li>
+          <li><a class="waves-effect waves-light" id="save"></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
     <main>
-      <h3 id="title"></h3>
-      <div class="row">
-        <div class="col s12 m6">
-          <div class="card">
+        <h6 class="option-card-title" id="storage-card-title"></h6>
+          <div class="card option-card">
+
             <div class="card-content">
-              <div class="card-title" id="option_sync_type_text">
-                <a id="modal-trigger" href="#modal_storage_type">
-                  <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x.png 2x" class="right" />
-                </a>
-              </div>
-              <select id="storage_type">
-                <option value="sync" id="option_sync_text">Synchronized</option>
-                <option value="local" id="option_local_text">Local</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="col s12 m6">
-          <div class="card">
-            <div class="card-content">
-              <div class="card-title" id="option_swap_storages_text">
-                <a id="modal-trigger" href="#modal_swap_storage">
-                  <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x.png 2x" class="right" />
-                </a>
-              </div>
-                <a class="waves-effect waves-light btn" id="option_swap_storage_btn_text"></a>
-              </div>
-            <div class="tip"></div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="col s12 m6">
-          <div class="card">
-            <div class="card-content">
-              <div class="card-title">
-                <div id="option_storage_usage" class="left"></div>
-                <a id="modal-trigger" href="#modal_used_storage">
-                  <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x.png 2x" class="right" />
-                </a>
-              </div>
-              <div class="progress">
-                <div class="determinate" id="progress_progress" style="width: 0%"></div>
+              <div class="option-entry">
+                <div class="option-entry__name">
+                  <p id="option_sync_type_text" class="option-name option-entry__name"></p>
+                </div>
+                <div class="option-entry__action">
+                  <select id="storage_type">
+                    <option value="sync" id="option_sync_text">Synchronized</option>
+                    <option value="local" id="option_local_text">Local</option>
+                  </select>
+                </div>
+                <div class="option-entry__help">
+                  <a id="modal-trigger" href="#modal_storage_type">
+                    <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x.png 2x"/>
+                  </a>
+                </div>
               </div>
             </div>
+
+            <li class="divider"></li>
+
+            <div class="card-content">
+              <div class="option-entry">
+                <div class="option-entry__name">
+                  <p id="option_swap_storages_text" ></p>
+                </div>
+                <div class="option-entry__action">
+                  <a class="waves-effect waves-light btn" id="option_swap_storage_btn_text"></a>
+                </div>
+                <div class="option-entry__help">
+                  <a id="modal-trigger" href="#modal_swap_storage" class="help-button option-entry__help">
+                    <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x.png 2x" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <li class="divider"></li>
+            <div class="card-content">
+              <div class="option-entry">
+                <div class="option-entry__name">
+                  <p id="option_storage_usage" class="option-name left"></p>
+                </div>
+                <div class="option-entry__action">
+                  <div class="progress">
+                    <div class="determinate" id="progress_progress" style="width: 0%"></div>
+                  </div>
+                </div>
+                <div clsas="option-entry__help">
+                  <a id="modal-trigger" href="#modal_used_storage">
+                    <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x.png 2x" />
+                  </a>
+                </div>
+            </div>
+            </div>
           </div>
-        </div>
-      </div>
 
     </main>
-    <footer class="page-footer">
-      <div class="container">
-        <div class="row">
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="left">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="X4LEC9EWL4V24">
-            <input type="submit" id="donate_button" value="" class="btn" border="0" name="submit" alt="PayPal">
-          </form>
-
-          <a class="waves-effect waves-light btn right" id="save"></a>
-        </div>
-      </div>
-    </footer>
 
     <div id="modal_storage_type" class="modal">
       <div class="modal-content">

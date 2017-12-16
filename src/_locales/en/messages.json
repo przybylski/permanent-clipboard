@@ -12,7 +12,7 @@
     "message" : "Currently synchronized storage size is limited by Google and cannot be increased. If you fill your space you should consider switching to local storage, which is unlimited. Don't forget to swap your storages."
   },
   "optionsText" : {
-    "message" : "Options",
+    "message" : "Settings",
     "description" : "Text displayed on top of options page"
   },
   "insertFromExtension" : {
@@ -43,6 +43,9 @@
   "commonCancel" : {
     "message" : "Cancel"
   },
+  "optionStorageCardTitle" : {
+    "message" : "Storage"
+  },
   "localStorageUsed" : {
     "message" : "Using local storage"
   },
@@ -70,7 +73,7 @@
     "message" : "Success"
   },
   "optionStorageUsage" : {
-    "message" : "Synchronized storage usage: "
+    "message" : "Synchronized storage usage "
   },
   "optionSyncTip" : {
     "message" : "Local storage is kept only on this chrome instance.\nSynchronized storage is shared across all your chrome instances (it might working a bit slower then local storage)."
@@ -115,7 +118,7 @@
     "message" : "Synchornized"
   },
   "optionStorageTypeText" : {
-    "message" : "Storage type:",
+    "message" : "Storage type",
     "description" : "Field description before combo on options screen"
   },
   "popupHintTitle" : {

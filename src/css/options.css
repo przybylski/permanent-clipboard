@@ -5,11 +5,63 @@ body {
 
 main {
   flex: 1 0 auto;
-  margin-left: 20pt;
 }
 
 #title {
-  background-image: url('../img/icon-64.png');
-  background-repeat: no-repeat;
-  padding: 8px 0 8px 66px;
+  margin-left: 66px;
+  font-size: 1.5rem;
+}
+
+.option-card-title {
+  width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20pt;
+  font-weight: 500;
+  padding-left: 10pt;
+}
+
+.option-card {
+  width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20pt;
+}
+
+.option-entry {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  min-height: 46px;
+}
+
+.option-entry__name {
+  flex-grow: 2;
+  font-size: 1rem;
+  align-items: flex-start;
+  margin: auto 0;
+}
+
+.option-entry__action {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 2;
+  align-self: flex-end;
+  margin: auto 9pt;
+}
+
+/* Materialize css hack to remove bottom margin of select input */
+.option-entry__action > div.select-wrapper > input.select-dropdown {
+  margin-bottom: 0;
+}
+
+.option-entry__help {
+  flex-shrink: 0;
+  align-self: flex-end;
+  margin: auto 0;
+}
+.select-dropdown {
+  margin-bottom: 0;
 }

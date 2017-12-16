@@ -90,13 +90,18 @@ function init_i18n() {
   $("#option_swap_storages_text").append(chrome.i18n.getMessage("optionSwapStorageText"));
   $("#option_swap_storage_btn_text").text(chrome.i18n.getMessage("optionSwapText"));
   $("#option_local_text").html(chrome.i18n.getMessage("optionLocalText"));
+  $("#storage-card-title").text(chrome.i18n.getMessage("optionStorageCardTitle"));
 
   $("#option_sync_tip").append(chrome.i18n.getMessage("optionSyncTip"));
   $("#option_used_storage_tip").append(chrome.i18n.getMessage("optionsStorageSizeHelp"));
   $("#option_swap_tip").append(chrome.i18n.getMessage("optionsSwapStoragesHelp"));
 
   $("#save").text(chrome.i18n.getMessage("optionsSave"));
-  $('#donate_button').val(chrome.i18n.getMessage('donateWithPaypal'));
+  $('#donate_button').append(chrome.i18n.getMessage('donateWithPaypal'));
+}
+
+function submitDonateForm() {
+  $('#donate_form').submit();
 }
 
 $(document).ready(function() {
@@ -107,5 +112,6 @@ $(document).ready(function() {
   calculateAndSetFillBar();
   $("#save").click(saveOptions);
   $('#option_swap_storage_btn_text').click(swapStorage);
+  $('#donate_button').click(submitDonateForm);
   analytics.trackEvent('Options', 'Opened');
 });
