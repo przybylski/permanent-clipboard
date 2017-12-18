@@ -63,7 +63,7 @@ function getStorageColorClass(percent) {
 }
 
 function calculateAndSetFillBar() {
-  chrome.storage.sync.get('clipboard', function(syncItems) {
+  chrome.storage.sync.get({'clipboard':[]}, function(syncItems) {
     if (!(syncItems.clipboard instanceof Array))
       return;
 
