@@ -57,7 +57,7 @@ main {
   margin-bottom: 0;
 }
 
-.option-entry__help {
+.option-entry__decorator {
   flex-shrink: 0;
   align-self: flex-end;
   margin: auto 0;

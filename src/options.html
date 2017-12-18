@@ -1,5 +1,6 @@
 <html>
   <head>
+    <meta charset="utf-8">
     <link href="css/material-icons.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
@@ -38,7 +39,7 @@
             <div class="card-content">
               <div class="option-entry">
                 <div class="option-entry__name">
-                  <p id="option_sync_type_text" class="option-name option-entry__name"></p>
+                  <p id="option_sync_type_text" class="option-name"></p>
                 </div>
                 <div class="option-entry__action">
                   <select id="storage_type">
@@ -46,7 +47,7 @@
                     <option value="local" id="option_local_text">Local</option>
                   </select>
                 </div>
-                <div class="option-entry__help">
+                <div class="option-entry__decorator">
                   <a id="modal-trigger" href="#modal_storage_type">
                     <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x.png 2x"/>
                   </a>
@@ -59,13 +60,13 @@
             <div class="card-content">
               <div class="option-entry">
                 <div class="option-entry__name">
-                  <p id="option_swap_storages_text" ></p>
+                  <p id="option_swap_storages_text" class="option-name"></p>
                 </div>
                 <div class="option-entry__action">
                   <a class="waves-effect waves-light btn" id="option_swap_storage_btn_text"></a>
                 </div>
-                <div class="option-entry__help">
-                  <a id="modal-trigger" href="#modal_swap_storage" class="help-button option-entry__help">
+                <div class="option-entry__decorator">
+                  <a id="modal-trigger" href="#modal_swap_storage" class="help-button option-entry__decorator">
                     <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x.png 2x" />
                   </a>
                 </div>
@@ -75,19 +76,35 @@
             <div class="card-content">
               <div class="option-entry">
                 <div class="option-entry__name">
-                  <p id="option_storage_usage" class="option-name left"></p>
+                  <p id="option_storage_usage" class="option-name"></p>
                 </div>
                 <div class="option-entry__action">
                   <div class="progress">
                     <div class="determinate" id="progress_progress" style="width: 0%"></div>
                   </div>
                 </div>
-                <div clsas="option-entry__help">
+                <div clsas="option-entry__decorator">
                   <a id="modal-trigger" href="#modal_used_storage">
                     <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x.png 2x" />
                   </a>
                 </div>
             </div>
+            </div>
+          </div>
+
+          <h6 class="option-card-title" id="translation-card-title"></h6>
+          <div class="card option-card">
+            <div class="card-content">
+              <div class="option-entry">
+                <div class="option-entry__name">
+                  <p class="option-name" id="option-name__translation-credits"></p>
+                </div>
+                <div class="option-entry__decorator">
+                  <a href="translators.html">
+                    <i class="material-icons">keyboard_arrow_right</i>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 

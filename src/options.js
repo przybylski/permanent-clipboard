@@ -91,6 +91,7 @@ function init_i18n() {
   $("#option_swap_storage_btn_text").text(chrome.i18n.getMessage("optionSwapText"));
   $("#option_local_text").html(chrome.i18n.getMessage("optionLocalText"));
   $("#storage-card-title").text(chrome.i18n.getMessage("optionStorageCardTitle"));
+  $('#option-name__translation-credits').text(chrome.i18n.getMessage('translatorsTitle'));
 
   $("#option_sync_tip").append(chrome.i18n.getMessage("optionSyncTip"));
   $("#option_used_storage_tip").append(chrome.i18n.getMessage("optionsStorageSizeHelp"));

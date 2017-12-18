@@ -1,0 +1,15 @@
+.option-entry__language {
+  flex-grow: 2;
+  font-size: 1rem;
+  align-items: flex-start;
+  margin: auto 0;
+}
+
+.option-entry__translator {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 2;
+  align-self: flex-end;
+  margin: auto 9pt;
+  font-size: 1rem;
+}

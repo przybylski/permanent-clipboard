@@ -298,8 +298,10 @@ function setupDidYouKnowContainer() {
 }
 
 window.onload = function() {
-  initialize();
-  document.body.onpageshow = loadStorageItems;
+  document.body.onpageshow = function() {
+    initialize();
+    loadStorageItems();
+  };
 }
 
 function initialize() {
