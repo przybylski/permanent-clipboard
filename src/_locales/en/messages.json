@@ -103,6 +103,9 @@
     "message" : "No entries yet",
     "description" : "Hint visible when no elements are available"
   },
+  "translatorsTitle" : {
+    "message" : "Translation"
+  },
   "extensionName" : {
     "message" : "Permanent clipboard",
     "description" : "Extension name."
