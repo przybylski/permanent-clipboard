@@ -12,10 +12,10 @@
     "message" : "Настройки"
   },
   "insertFromExtension" : {
-    "message" : "Вставить из Permanent Clipboard"
+    "message" : "Вставить из буфера обмена"
   },
   "optionsStorageSizeHelp" : {
-    "message" : "Google ограничивает вместимость синхронизированного хранилища, поэтому нельзя ее увеличить. Если вы заполнили всю память, подумайте об использовании синхронизированного хранилища. Только помните о тоб, чтобы перенести содержымое"
+    "message" : "Google ограничивает вместимость синхронизированного хранилища, поэтому нельзя ее увеличить. Если вы заполнили всю память, подумайте об использовании синхронизированного хранилища. Только помните о том, чтобы перенести содержимое"
   },
   "showAddFormText" : {
     "message" : "Добавить новую запись"
@@ -24,7 +24,7 @@
     "message" : "Добавить"
   },
   "popupHintText_2" : {
-    "message" : "Вам нравиться приложение?"
+    "message" : "Вам нравиться расширение? <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/permanent-clipboard\/hilkjcfodmbdgpadbpehimibheopoccb\/reviews\" target=\"_blank\">Оцените!<\/a>"
   },
   "extensionDescription" : {
     "message" : "Позволяет сохранить и дает доступ к множеству элементов в хранилище"
@@ -57,13 +57,13 @@
     "message" : "Задонатить через PayPal"
   },
   "addToExtensionDB" : {
-    "message" : "Добавь в Permanent Clipboard"
+    "message" : "Добавь в буфер обмена"
   },
   "optionsSuccess" : {
     "message" : "Заменено"
   },
   "optionStorageUsage" : {
-    "message" : "Использование синхронизированной памяти"
+    "message" : "Использование синхронизированной памяти "
   },
   "optionSwapStorageText" : {
     "message" : "Поменять местами"
@@ -75,7 +75,7 @@
     "message" : "Локальная память будет видна только на этом компьютере. Cинхронизированная память будет видна во всех браузерах Google Chrome, на которых есть учетная запись Google (может работать медленнее чем локальная память)"
   },
   "optionLocalText" : {
-    "message" : "Mестная"
+    "message" : "Локальная"
   },
   "popupHintText_3" : {
     "message" : "Увеличьте свою продуктивность испольэуя расширение <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/iahcjdalmgeeclcjbffpkmfhogckipfh\" target=\"_blank\">Templatizer<\/a>"
@@ -93,7 +93,7 @@
     "message" : "Перевод"
   },
   "extensionName" : {
-    "message" : "Permanent Clipboard"
+    "message" : "ПОСТОЯННЫЙ БУФЕР ОБМЕНА"
   },
   "newDirectoryName" : {
     "message" : "Hовый каталог"
