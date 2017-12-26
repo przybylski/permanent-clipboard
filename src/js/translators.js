@@ -34,6 +34,7 @@ var cardContentTemplate =
   '<li class="divider"></li>';
 
 var translatorsData = {
+  'Deutsch': 'Aleksandra Dubaniowska',
   'English': 'Bartosz Przybylski',
   'Polski': 'Bartosz Przybylski',
   'Русский': 'Eldar Khalmatov'

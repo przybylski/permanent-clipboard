@@ -1,0 +1,125 @@
+{
+  "optionsSave" : {
+    "message" : "Speichern"
+  },
+  "optionSwapText" : {
+    "message" : "Plätze wechseln"
+  },
+  "optionsSavedToastText" : {
+    "message" : "Einstellungen wurden gespeichert"
+  },
+  "insertFromExtension" : {
+    "message" : "Aus Permanent Clipboard einfügen"
+  },
+  "optionsStorageSizeHelp" : {
+    "message" : "Speicherplatz synchronisierter Permanent Clipboard ist von Google begrenzt und kann nicht vergrößert werden. Wenn der Speicherplatz voll wird, empfiehlt man, synchronisierte Permanent Clipboard zu nutzen. Denk jedoch daran, den Inhalt zu übertragen."
+  },
+  "optionsText" : {
+    "message" : "Einstellungen"
+  },
+  "showAddFormText" : {
+    "message" : "Neuen Eintrag anlegen"
+  },
+  "addBtnText" : {
+    "message" : "Hinzufügen"
+  },
+  "popupHintText_2" : {
+    "message" : "Gefällt dir Permanent Clipboard? <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/permanent-clipboard\/hilkjcfodmbdgpadbpehimibheopoccb\/reviews\" target=\"_blank\">Bewerte sie!<\/a>"
+  },
+  "extensionDescription" : {
+    "message" : "Es lässt die Elemente in der Zwischenablage aufbewahren und macht sie zugänglich."
+  },
+  "popupBack" : {
+    "message" : "Zurück"
+  },
+  "optionsSwapStoragesHelp" : {
+    "message" : "Speicherplatz synchronisierter Zwischenablage ist von Google begrenzt und kann nicht vergrößert werden. Wenn der Speicherplatz voll wird, empfiehlt man, synchronisierte Zwischenablage zu nutzen. Denk jedoch daran, den Inhalt zu übertragen."
+  },
+  "optionStorageCardTitle" : {
+    "message" : "Speicher"
+  },
+  "commonCancel" : {
+    "message" : "Abbrechen"
+  },
+  "localStorageUsed" : {
+    "message" : "Lokaler Speicher wird genutzt"
+  },
+  "popupNewElement" : {
+    "message" : "Aus Systemzwischenablage einfügen"
+  },
+  "deleteEntryIconTitle" : {
+    "message" : "Löschen"
+  },
+  "storageSwappingFailedMessage" : {
+    "message" : "Der Inhalt wurde nicht geändert: "
+  },
+  "donateWithPaypal" : {
+    "message" : "Via PayPal dotieren"
+  },
+  "addToExtensionDB" : {
+    "message" : "In die Permanent Clipboard einfügen"
+  },
+  "optionsSuccess" : {
+    "message" : "Geändert"
+  },
+  "popupHintText_1" : {
+    "message" : "Klicke auf den Link in Optionen um Permanent Clipboard zu dotieren"
+  },
+  "optionStorageUsage" : {
+    "message" : "Synchronisierter Speicherplatzverbrauch "
+  },
+  "editEntryIconTitle" : {
+    "message" : "Bearbeiten"
+  },
+  "optionSwapStorageText" : {
+    "message" : "Inhalt übertragen"
+  },
+  "optionLocalText" : {
+    "message" : "Lokal"
+  },
+  "optionSyncTip" : {
+    "message" : "Lokalspeicher ist nur auf diesem Rechner sichtbar. Synchronisierter Speicher ist im Google Chrome Browser sichtbar, wenn man angemeldet ist (es kann langsamer als Lokalspeicher funktionieren)"
+  },
+  "descriptionPlaceholder" : {
+    "message" : "Beschreibung"
+  },
+  "popupHintText_3" : {
+    "message" : "Produktivität durch <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/iahcjdalmgeeclcjbffpkmfhogckipfh\" target=\"_blank\">Templatizer-Erweiterung<\/a> steigern"
+  },
+  "popupHintNoElements" : {
+    "message" : "Keine Einträge"
+  },
+  "translatorsTitle" : {
+    "message" : "Übersetzung"
+  },
+  "extensionName" : {
+    "message" : "Permanent Clipboard"
+  },
+  "newDirectoryName" : {
+    "message" : "Neuer Katalog"
+  },
+  "contentPlaceholder" : {
+    "message" : "Inhalt"
+  },
+  "optionSyncText" : {
+    "message" : "Synchronisiert"
+  },
+  "optionStorageTypeText" : {
+    "message" : "Speicherart"
+  },
+  "popupHintTitle" : {
+    "message" : "Weißt du, dass…?"
+  },
+  "popupHint" : {
+    "message" : "Klicke auf den Eintrag, um ihn in synchronisierte Zwischenablage zu kopieren"
+  },
+  "popupHintsCount" : {
+    "message" : "3"
+  },
+  "errorFailedToSaveEntry" : {
+    "message" : "Der Eintrag wurde nicht angelegt:"
+  },
+  "syncedStorageUsed" : {
+    "message" : "Synchronisierter Speicher wird genutzt"
+  }
+}
