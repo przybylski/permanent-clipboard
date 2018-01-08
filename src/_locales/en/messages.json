@@ -34,6 +34,9 @@
     "message" : "Allows you to store and access multiple elements in clipboard",
     "description" : "Extension description."
   },
+  "popupHintText_4" : {
+    "message" : "<a href=\"https:\/\/medium.com\/@przybylski\/permanent-clipboard-2017-summary-d915a277b09e\" target=\"_blank\">2017 Summary<\/a>"
+  },
   "popupBack" : {
     "message" : "Back"
   },
@@ -139,6 +142,6 @@
     "message" : "Failed to save selection: "
   },
   "popupHintsCount" : {
-    "message" : "3"
+    "message" : "4"
   }
 }

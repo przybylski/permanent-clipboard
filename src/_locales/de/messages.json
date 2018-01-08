@@ -114,7 +114,7 @@
     "message" : "Klicke auf den Eintrag, um ihn in synchronisierte Zwischenablage zu kopieren"
   },
   "popupHintsCount" : {
-    "message" : "3"
+    "message" : "4"
   },
   "errorFailedToSaveEntry" : {
     "message" : "Der Eintrag wurde nicht angelegt:"
