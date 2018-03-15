@@ -83,7 +83,7 @@ function computeObjectSize(object) {
 }
 
 function readBackup() {
-
+  $("#backup_files_input").click();
 }
 
 function makeBackup() {
@@ -128,12 +128,19 @@ function handleDragover(e) {
   ee.dataTransfer.dropEffect = 'copy';
 }
 
+function handleInputSelection(e) {
+    restoreFromFile(e.originalEvent.target.files[0]);
+}
+
 function handleDrop(e) {
   var ee = e.originalEvent;
   ee.stopPropagation();
   ee.preventDefault();
   var file = ee.dataTransfer.files[0];
+  restoreFromFile(file);
+}
 
+function restoreFromFile(file) {
   var reader = new FileReader();
   reader.onload = function(f) {
     var object = JSON.parse(this.result);
@@ -201,5 +208,6 @@ $(document).ready(function() {
   $('#option_read_backup').click(readBackup);
   $('#option_read_backup').on('dragover', handleDragover);
   $('#option_read_backup').on('drop', handleDrop);
+  $('#backup_files_input').on('change', handleInputSelection);
   analytics.trackEvent('Options', 'Opened');
 });
