@@ -1,4 +1,10 @@
 {
+  "optionBackupCreateButton" : {
+    "message" : "Create"
+  },
+  "optionBackupRestoreButton" : {
+    "message" : "Read"
+  },
   "optionsSave" : {
     "message" : "Save"
   },
@@ -102,6 +108,9 @@
   "popupHintText_1" : {
     "message" : "You can support Permanent Clipboard with donation using link in options screen."
   },
+  "optionBackupTitle" : {
+    "message" : "Backup"
+  },
   "popupHintNoElements" : {
     "message" : "No entries yet",
     "description" : "Hint visible when no elements are available"
@@ -115,6 +124,9 @@
   },
   "newDirectoryName" : {
     "message" : "New directory"
+  },
+  "optionBackupTip" : {
+    "message" : "The backup will only be made from, and be restored to local storage. Sychronized storage is automatically backed up by Google when you sign in to your Google Account in Chrome."
   },
   "contentPlaceholder" : {
     "message" : "Content",

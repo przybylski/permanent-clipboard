@@ -72,7 +72,9 @@
                 </div>
               </div>
             </div>
+
             <li class="divider"></li>
+
             <div class="card-content">
               <div class="option-entry">
                 <div class="option-entry__name">
@@ -88,7 +90,27 @@
                     <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x.png 2x" />
                   </a>
                 </div>
+              </div>
             </div>
+
+            <li class="divider"></li>
+
+            <div class="card-content">
+              <div class="option-entry">
+                <div class="option-entry__name">
+                  <p id="option_storage_backup" class="option-name"></p>
+                </div>
+                <div class="option-entry__action">
+                  <a class="waves-effect waves-light btn" id="option_make_backup"></a>
+                  &nbsp;
+                  <a class="waves-effect waves-light btn" id="option_read_backup"></a>
+                </div>
+                <div class="option-entry__decorator">
+                  <a id="modal-trigger" href="#modal_backup_storage">
+                    <img srcset="img/icons/ic_help_1x.png, img/icons/ic_help_2x 2x" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -131,6 +153,15 @@
     <div id="modal_used_storage" class="modal">
       <div class="modal-content">
         <p id="option_used_storage_tip" class="flow-text"></p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">OK</a>
+      </div>
+    </div>
+
+    <div id="modal_backup_storage" class="modal">
+      <div class="modal-content">
+        <p id="option_backup_tip" class="flow-text"></p>
       </div>
       <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">OK</a>

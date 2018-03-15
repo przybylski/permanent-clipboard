@@ -82,8 +82,86 @@ function computeObjectSize(object) {
   return JSON.stringify(object).length;
 }
 
+function readBackup() {
+
+}
+
+function makeBackup() {
+  chrome.storage.local.get({'clipboard':[]}, function(items) {
+    if (chrome.runtime.lastError) {
+      Materialize.toast("Creating backup failed", 4000);
+      return;
+    }
+    var stringifiedContent = JSON.stringify(items.clipboard);
+    var base64Content = btoa(stringifiedContent);
+    var backupObject = { content: base64Content, hash: calculateChecksum(base64Content) };
+    downloadObjectAsFile(backupObject);
+  });
+}
+
+function downloadObjectAsFile(s) {
+  var a = window.document.createElement('a');
+  a.href = window.URL.createObjectURL(new Blob([JSON.stringify(s)], {type:'application/json'}));
+  a.download = 'permanentClipboard.backup';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function calculateChecksum(s) {
+  var hashCode = stringHashCode(s);
+  return hashCode.toString(16);
+}
+
+function stringHashCode(s) {
+  var h = 0, l = s.length, i = 0;
+  if ( l > 0 )
+    while (i < l)
+      h = (h << 5) - h + s.charCodeAt(i++) | 0;
+  return h;
+};
+
+function handleDragover(e) {
+  var ee = e.originalEvent;
+  ee.stopPropagation();
+  ee.preventDefault();
+  ee.dataTransfer.dropEffect = 'copy';
+}
+
+function handleDrop(e) {
+  var ee = e.originalEvent;
+  ee.stopPropagation();
+  ee.preventDefault();
+  var file = ee.dataTransfer.files[0];
+
+  var reader = new FileReader();
+  reader.onload = function(f) {
+    var object = JSON.parse(this.result);
+    var clipboardContent = object.content;
+    var clipboardHashcode = object.hash;
+    if (calculateChecksum(clipboardContent) !== clipboardHashcode) {
+      Materialize.toast("Backup corrupted", 4000);
+      return;
+    }
+    var restoreObject = JSON.parse(atob(clipboardContent));
+    chrome.storage.local.set({'clipboard':restoreObject}, function() {
+      if (chrome.runtime.lastError) {
+        Materialize.toast("Backup restore failed", 4000);
+        return;
+      } else {
+        Materialize.toast(chrome.i18n.getMessage('optionsSuccess'), 4000);
+        chrome.runtime.sendMessage({event:'rebuildMenus'});
+        return;
+      }
+
+    })
+  };
+  reader.readAsText(file);
+}
+
 function init_i18n() {
   document.title = chrome.i18n.getMessage("optionsText");
+  var msg = chrome.i18n.getMessage;
   $("#title").append(chrome.i18n.getMessage("optionsText"));
   $("#option_sync_type_text").append(chrome.i18n.getMessage("optionStorageTypeText"));
   $("#option_sync_text").html(chrome.i18n.getMessage("optionSyncText"));
@@ -93,9 +171,14 @@ function init_i18n() {
   $("#storage-card-title").text(chrome.i18n.getMessage("optionStorageCardTitle"));
   $('#option-name__translation-credits').text(chrome.i18n.getMessage('translatorsTitle'));
 
+  $('#option_storage_backup').text(chrome.i18n.getMessage('optionBackupTitle'));
+  $('#option_make_backup').text(msg('optionBackupCreateButton'));
+  $('#option_read_backup').text(msg('optionBackupRestoreButton'));
+
   $("#option_sync_tip").append(chrome.i18n.getMessage("optionSyncTip"));
   $("#option_used_storage_tip").append(chrome.i18n.getMessage("optionsStorageSizeHelp"));
   $("#option_swap_tip").append(chrome.i18n.getMessage("optionsSwapStoragesHelp"));
+  $('#option_backup_tip').append(msg("optionBackupTip"));
 
   $("#save").text(chrome.i18n.getMessage("optionsSave"));
   $('#donate_button').append(chrome.i18n.getMessage('donateWithPaypal'));
@@ -114,5 +197,9 @@ $(document).ready(function() {
   $("#save").click(saveOptions);
   $('#option_swap_storage_btn_text').click(swapStorage);
   $('#donate_button').click(submitDonateForm);
+  $('#option_make_backup').click(makeBackup);
+  $('#option_read_backup').click(readBackup);
+  $('#option_read_backup').on('dragover', handleDragover);
+  $('#option_read_backup').on('drop', handleDrop);
   analytics.trackEvent('Options', 'Opened');
 });
