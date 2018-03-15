@@ -143,25 +143,28 @@ function handleDrop(e) {
 function restoreFromFile(file) {
   var reader = new FileReader();
   reader.onload = function(f) {
-    var object = JSON.parse(this.result);
-    var clipboardContent = object.content;
-    var clipboardHashcode = object.hash;
-    if (calculateChecksum(clipboardContent) !== clipboardHashcode) {
-      Materialize.toast("Backup corrupted", 4000);
-      return;
-    }
-    var restoreObject = JSON.parse(atob(clipboardContent));
-    chrome.storage.local.set({'clipboard':restoreObject}, function() {
-      if (chrome.runtime.lastError) {
-        Materialize.toast("Backup restore failed", 4000);
-        return;
-      } else {
-        Materialize.toast(chrome.i18n.getMessage('optionsSuccess'), 4000);
-        chrome.runtime.sendMessage({event:'rebuildMenus'});
+    try {
+      var object = JSON.parse(this.result);
+      var clipboardContent = object.content;
+      var clipboardHashcode = object.hash;
+      if (calculateChecksum(clipboardContent) !== clipboardHashcode) {
+        Materialize.toast("Backup corrupted", 4000);
         return;
       }
-
-    })
+      var restoreObject = JSON.parse(atob(clipboardContent));
+      chrome.storage.local.set({'clipboard':restoreObject}, function() {
+        if (chrome.runtime.lastError) {
+          Materialize.toast("Backup restore failed", 4000);
+          return;
+        } else {
+          Materialize.toast(chrome.i18n.getMessage('optionsSuccess'), 4000);
+          chrome.runtime.sendMessage({event:'rebuildMenus'});
+          return;
+        }
+      })
+    } catch (err) {
+      Materialize.toast("Invalid backup file", 4000);
+    }
   };
   reader.readAsText(file);
 }
