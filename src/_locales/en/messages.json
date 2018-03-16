@@ -1,15 +1,15 @@
 {
-  "optionBackupCreateButton" : {
-    "message" : "Create"
+  "optionsBackupInvalidFile" : {
+    "message" : "Invalid backup file"
   },
-  "optionBackupRestoreButton" : {
-    "message" : "Read"
+  "optionBackupTitle" : {
+    "message" : "Backup"
   },
-  "optionsSave" : {
-    "message" : "Save"
+  "donateWithPaypal" : {
+    "message" : "Donate with PayPal"
   },
-  "optionSwapText" : {
-    "message" : "Swap"
+  "optionsSwapStoragesHelp" : {
+    "message" : "Swapping storages will replace the content of synchronized storage with the content of local storage and the other way around. This operation will fail if not enough space is available in synchronized storage."
   },
   "optionsSavedToastText" : {
     "message" : "Options saved"
@@ -17,53 +17,31 @@
   "optionsStorageSizeHelp" : {
     "message" : "Currently synchronized storage size is limited by Google and cannot be increased. If you fill your space you should consider switching to local storage, which is unlimited. Don't forget to swap your storages."
   },
-  "optionsText" : {
-    "message" : "Settings",
-    "description" : "Text displayed on top of options page"
+  "optionsSave" : {
+    "message" : "Save"
   },
-  "insertFromExtension" : {
-    "message" : "Insert from Permanent clipboard",
-    "description" : "Context menu text on editable elements."
+  "popupHintTitle" : {
+    "message" : "Did you know?"
   },
-  "showAddFormText" : {
-    "message" : "Add new entry",
-    "description" : "Link text for new entry div trigger"
+  "optionStorageUsage" : {
+    "message" : "Synchronized storage usage "
   },
-  "addBtnText" : {
-    "message" : "Add",
-    "description" : "Text on add button in popup"
+  "optionSyncText" : {
+    "message" : "Synchornized"
   },
-  "popupHintText_2" : {
-    "message" : "Enjoying PermanentClipboard? <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/permanent-clipboard\/hilkjcfodmbdgpadbpehimibheopoccb\/reviews\" target=\"_blank\">Rate it!<\/a>"
+  "editEntryIconTitle" : {
+    "message" : "Edit",
+    "description" : "Hover text on edit icon"
   },
-  "extensionDescription" : {
-    "message" : "Allows you to store and access multiple elements in clipboard",
-    "description" : "Extension description."
-  },
-  "popupHintText_4" : {
-    "message" : "<a href=\"https:\/\/medium.com\/@przybylski\/permanent-clipboard-2017-summary-d915a277b09e\" target=\"_blank\">2017 Summary<\/a>"
-  },
-  "popupBack" : {
-    "message" : "Back"
-  },
-  "optionsSwapStoragesHelp" : {
-    "message" : "Swapping storages will replace the content of synchronized storage with the content of local storage and the other way around. This operation will fail if not enough space is available in synchronized storage."
-  },
-  "commonCancel" : {
-    "message" : "Cancel"
-  },
-  "optionStorageCardTitle" : {
-    "message" : "Storage"
+  "extensionName" : {
+    "message" : "Permanent clipboard",
+    "description" : "Extension name."
   },
   "localStorageUsed" : {
     "message" : "Using local storage"
   },
-  "popupNewElement" : {
-    "message" : "Add from system clipboard",
-    "description" : "New element title in popup"
-  },
-  "manageText" : {
-    "message" : "Manage"
+  "optionsBackupRestoreFailed" : {
+    "message" : "Backup restore failed"
   },
   "deleteEntryIconTitle" : {
     "message" : "Delete"
@@ -71,89 +49,126 @@
   "storageSwappingFailedMessage" : {
     "message" : "Swapping storage failed, aborting: "
   },
-  "donateWithPaypal" : {
-    "message" : "Donate with PayPal"
+  "optionBackupCreateButton" : {
+    "message" : "Create"
   },
-  "addToExtensionDB" : {
-    "message" : "Add to Permanent clipboard",
-    "description" : "Context menu text on selected text."
+  "optionBackupTip" : {
+    "message" : "The backup will only be made from, and be restored to local storage. Sychronized storage is automatically backed up by Google when you sign in to your Google Account in Chrome."
   },
-  "optionsSuccess" : {
-    "message" : "Success"
-  },
-  "optionStorageUsage" : {
-    "message" : "Synchronized storage usage "
-  },
-  "optionSyncTip" : {
-    "message" : "Local storage is kept only on this chrome instance.\nSynchronized storage is shared across all your chrome instances (it might working a bit slower then local storage)."
-  },
-  "editEntryIconTitle" : {
-    "message" : "Edit",
-    "description" : "Hover text on edit icon"
+  "optionsText" : {
+    "message" : "Settings",
+    "description" : "Text displayed on top of options page"
   },
   "optionSwapStorageText" : {
     "message" : "Swap storages contents",
     "description" : ""
   },
-  "optionLocalText" : {
-    "message" : "Local"
+  "popupHint" : {
+    "message" : "Click on the element to store it in system clipboard",
+    "description" : "Hint text showed in popup"
   },
-  "popupHintText_3" : {
-    "message" : "Boost up your productivity by using <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/iahcjdalmgeeclcjbffpkmfhogckipfh\" target=\"_blank\">Templatizer<\/a>"
-  },
-  "descriptionPlaceholder" : {
-    "message" : "Description",
-    "description" : "Placeholder on input field in popup"
-  },
-  "popupHintText_1" : {
-    "message" : "You can support Permanent Clipboard with donation using link in options screen."
-  },
-  "optionBackupTitle" : {
-    "message" : "Backup"
-  },
-  "popupHintNoElements" : {
-    "message" : "No entries yet",
-    "description" : "Hint visible when no elements are available"
-  },
-  "translatorsTitle" : {
-    "message" : "Translation"
-  },
-  "extensionName" : {
-    "message" : "Permanent clipboard",
-    "description" : "Extension name."
-  },
-  "newDirectoryName" : {
-    "message" : "New directory"
-  },
-  "optionBackupTip" : {
-    "message" : "The backup will only be made from, and be restored to local storage. Sychronized storage is automatically backed up by Google when you sign in to your Google Account in Chrome."
-  },
-  "contentPlaceholder" : {
-    "message" : "Content",
-    "description" : "Placeholder hint for content input box"
-  },
-  "optionSyncText" : {
-    "message" : "Synchornized"
+  "optionsBackupRestored" : {
+    "message" : "Backup restored"
   },
   "optionStorageTypeText" : {
     "message" : "Storage type",
     "description" : "Field description before combo on options screen"
   },
-  "popupHintTitle" : {
-    "message" : "Did you know?"
+  "optionStorageCardTitle" : {
+    "message" : "Storage"
   },
-  "popupHint" : {
-    "message" : "Click on the element to store it in system clipboard",
-    "description" : "Hint text showed in popup"
+  "translatorsTitle" : {
+    "message" : "Translation"
+  },
+  "optionBackupRestoreButton" : {
+    "message" : "Read"
+  },
+  "optionSwapText" : {
+    "message" : "Swap"
+  },
+  "addToExtensionDB" : {
+    "message" : "Add to Permanent clipboard",
+    "description" : "Context menu text on selected text."
+  },
+  "popupBack" : {
+    "message" : "Back"
+  },
+  "insertFromExtension" : {
+    "message" : "Insert from Permanent clipboard",
+    "description" : "Context menu text on editable elements."
+  },
+  "optionsBackupCorrupted" : {
+    "message" : "Backup file corrupted, can't restore"
+  },
+  "popupHintNoElements" : {
+    "message" : "No entries yet",
+    "description" : "Hint visible when no elements are available"
+  },
+  "dropOverlayPromptText" : {
+    "message" : "Drop backup file to restore"
+  },
+  "showAddFormText" : {
+    "message" : "Add new entry",
+    "description" : "Link text for new entry div trigger"
+  },
+  "contentPlaceholder" : {
+    "message" : "Content",
+    "description" : "Placeholder hint for content input box"
+  },
+  "errorFailedToSaveEntry" : {
+    "message" : "Failed to save selection: "
+  },
+  "addBtnText" : {
+    "message" : "Add",
+    "description" : "Text on add button in popup"
+  },
+  "extensionDescription" : {
+    "message" : "Allows you to store and access multiple elements in clipboard",
+    "description" : "Extension description."
+  },
+  "manageText" : {
+    "message" : "Manage"
+  },
+  "commonCancel" : {
+    "message" : "Cancel"
+  },
+  "descriptionPlaceholder" : {
+    "message" : "Description",
+    "description" : "Placeholder on input field in popup"
+  },
+  "popupHintsCount" : {
+    "message" : "4"
+  },
+  "popupHintText_1" : {
+    "message" : "You can support Permanent Clipboard with donation using link in options screen."
+  },
+  "popupHintText_2" : {
+    "message" : "Enjoying PermanentClipboard? <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/permanent-clipboard\/hilkjcfodmbdgpadbpehimibheopoccb\/reviews\" target=\"_blank\">Rate it!<\/a>"
+  },
+  "optionSyncTip" : {
+    "message" : "Local storage is kept only on this chrome instance.\nSynchronized storage is shared across all your chrome instances (it might working a bit slower then local storage)."
+  },
+  "popupHintText_3" : {
+    "message" : "Boost up your productivity by using <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/iahcjdalmgeeclcjbffpkmfhogckipfh\" target=\"_blank\">Templatizer<\/a>"
+  },
+  "popupNewElement" : {
+    "message" : "Add from system clipboard",
+    "description" : "New element title in popup"
+  },
+  "popupHintText_4" : {
+    "message" : "<a href=\"https:\/\/medium.com\/@przybylski\/permanent-clipboard-2017-summary-d915a277b09e\" target=\"_blank\">2017 Summary<\/a>"
+  },
+  "newDirectoryName" : {
+    "message" : "New directory"
   },
   "syncedStorageUsed" : {
     "message" : "Using synchronized storage",
     "description" : ""
   },
-  "errorFailedToSaveEntry" : {
-    "message" : "Failed to save selection: "
+  "optionsSuccess" : {
+    "message" : "Success"
   },
-  "popupHintsCount" : {
-    "message" : "4"
+  "optionLocalText" : {
+    "message" : "Local"
   }
 }

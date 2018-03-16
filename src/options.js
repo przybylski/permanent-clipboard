@@ -121,23 +121,8 @@ function stringHashCode(s) {
   return h;
 };
 
-function handleDragover(e) {
-  var ee = e.originalEvent;
-  ee.stopPropagation();
-  ee.preventDefault();
-  ee.dataTransfer.dropEffect = 'copy';
-}
-
 function handleInputSelection(e) {
     restoreFromFile(e.originalEvent.target.files[0]);
-}
-
-function handleDrop(e) {
-  var ee = e.originalEvent;
-  ee.stopPropagation();
-  ee.preventDefault();
-  var file = ee.dataTransfer.files[0];
-  restoreFromFile(file);
 }
 
 function restoreFromFile(file) {
@@ -148,7 +133,7 @@ function restoreFromFile(file) {
       var clipboardContent = object.content;
       var clipboardHashcode = object.hash;
       if (calculateChecksum(clipboardContent) !== clipboardHashcode) {
-        Materialize.toast("Backup corrupted", 4000);
+        Materialize.toast(chrome.i18n.getMessage('optionsBackupCorrupted'), 4000);
         return;
       }
       var restoreObject = JSON.parse(atob(clipboardContent));
@@ -157,16 +142,40 @@ function restoreFromFile(file) {
           Materialize.toast("Backup restore failed", 4000);
           return;
         } else {
-          Materialize.toast(chrome.i18n.getMessage('optionsSuccess'), 4000);
+          Materialize.toast(chrome.i18n.getMessage('optionsBackupRestored'), 4000);
           chrome.runtime.sendMessage({event:'rebuildMenus'});
           return;
         }
       })
     } catch (err) {
-      Materialize.toast("Invalid backup file", 4000);
+      Materialize.toast(chrome.i18n.getMessage('optionsBackupInvalidFile'), 4000);
     }
   };
   reader.readAsText(file);
+}
+
+function handleDragoverOnDocument(e) {
+  var ee = e.originalEvent;
+  ee.stopPropagation();
+  ee.preventDefault();
+  ee.dataTransfer.dropEffect = 'copy';
+  $('#dropzone').removeClass('hidden');
+}
+
+function handleDragleave(e) {
+  var ee = e.originalEvent;
+  ee.stopPropagation();
+  ee.preventDefault();
+  $('#dropzone').addClass('hidden');
+}
+
+function handleDropOnDocument(e) {
+  var ee = e.originalEvent;
+  ee.stopPropagation();
+  ee.preventDefault();
+  $('#dropzone').addClass('hidden');
+  var file = ee.dataTransfer.files[0];
+  restoreFromFile(file);
 }
 
 function init_i18n() {
@@ -180,6 +189,8 @@ function init_i18n() {
   $("#option_local_text").html(chrome.i18n.getMessage("optionLocalText"));
   $("#storage-card-title").text(chrome.i18n.getMessage("optionStorageCardTitle"));
   $('#option-name__translation-credits').text(chrome.i18n.getMessage('translatorsTitle'));
+
+  $('#drop-overlay-content').text(msg('dropOverlayPromptText'));
 
   $('#option_storage_backup').text(chrome.i18n.getMessage('optionBackupTitle'));
   $('#option_make_backup').text(msg('optionBackupCreateButton'));
@@ -209,8 +220,15 @@ $(document).ready(function() {
   $('#donate_button').click(submitDonateForm);
   $('#option_make_backup').click(makeBackup);
   $('#option_read_backup').click(readBackup);
-  $('#option_read_backup').on('dragover', handleDragover);
-  $('#option_read_backup').on('drop', handleDrop);
   $('#backup_files_input').on('change', handleInputSelection);
+  $(window).bind({
+    dragenter: handleDragoverOnDocument
+  });
+  $('#dropzone').bind({
+    dragenter: handleDragoverOnDocument,
+    dragover: handleDragoverOnDocument,
+    drop: handleDropOnDocument,
+    dragleave: handleDragleave
+  });
   analytics.trackEvent('Options', 'Opened');
 });

@@ -1,9 +1,9 @@
 {
-  "optionBackupCreateButton" : {
-    "message" : "Utwórz"
+  "errorFailedToSaveEntry" : {
+    "message" : "Nie udało się dodać wpisu: "
   },
-  "optionBackupRestoreButton" : {
-    "message" : "Wczytaj"
+  "popupHintsCount" : {
+    "message" : "4"
   },
   "optionsSave" : {
     "message" : "Zapisz"
@@ -32,8 +32,17 @@
   "popupHintText_2" : {
     "message" : "Podoba Ci się Stały schowek? <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/permanent-clipboard\/hilkjcfodmbdgpadbpehimibheopoccb\/reviews\" target=\"_blank\">Wystaw ocenę!<\/a>"
   },
+  "optionsBackupCorrupted" : {
+    "message" : "Plik z kopią uszkodzony. Odzyskiwanie wstrzymane"
+  },
   "extensionDescription" : {
     "message" : "Pozwala na zachownie i dostęp do wielu elementów w schowku"
+  },
+  "optionsBackupRestoreFailed" : {
+    "message" : "Nie udało się odtworzyć kopii zapasowej"
+  },
+  "optionsBackupRestored" : {
+    "message" : "Odtworzono"
   },
   "popupBack" : {
     "message" : "Wstecz"
@@ -104,11 +113,20 @@
   "translatorsTitle" : {
     "message" : "Tłumaczenie"
   },
+  "dropOverlayPromptText" : {
+    "message" : "Upuść plik kopii zapasowej żeby odtworzyć zawartość"
+  },
   "extensionName" : {
     "message" : "Stały schowek"
   },
   "newDirectoryName" : {
     "message" : "Nowy katalog"
+  },
+  "optionsBackupInvalidFile" : {
+    "message" : "Niepoprawny plik kopii zapasowej"
+  },
+  "optionBackupTip" : {
+    "message" : "Kopia zapasowa wykonuje, i odtwarza, tylko zawartość schowka lokalnego. Schowek synchronizowany jest automatycznie kopiowany przez Google po zalogowaniu się na koncie Google w przeglądarce Chrome."
   },
   "contentPlaceholder" : {
     "message" : "Zawartość"
@@ -122,16 +140,16 @@
   "popupHintTitle" : {
     "message" : "Czy wiesz, \u0010\u0010\u0010że?"
   },
+  "optionBackupRestoreButton" : {
+    "message" : "Wczytaj"
+  },
   "popupHint" : {
     "message" : "Kliknij we wpis żeby zapisać go do schowka systemowego"
   },
+  "optionBackupCreateButton" : {
+    "message" : "Utwórz"
+  },
   "syncedStorageUsed" : {
     "message" : "Używasz pamięci synchronizowanej"
-  },
-  "errorFailedToSaveEntry" : {
-    "message" : "Nie udało się dodać wpisu: "
-  },
-  "popupHintsCount" : {
-    "message" : "4"
   }
 }

@@ -62,6 +62,42 @@ main {
   align-self: flex-end;
   margin: auto 0;
 }
+
 .select-dropdown {
   margin-bottom: 0;
+}
+
+.drop-overlay {
+  width: 60%;
+  height: 60%;
+  margin-left: 20%;
+  margin-top: 10%;
+  position: absolute;
+  background-color: #505050aa;
+  z-index: -1;
+  border-radius: 10pt;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  pointer-events:none;
+}
+
+.drop-overlay_content {
+  color: white;
+  font-size: 25pt;
+  pointer-events:none;
+}
+
+.hidden {
+  display: none;
+}
+
+.dropzone {
+  box-sizing: border-box;
+	position: fixed;
+	width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 99999;
 }
