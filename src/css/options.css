@@ -86,6 +86,8 @@ main {
   color: white;
   font-size: 25pt;
   pointer-events:none;
+  margin: 10pt;
+  text-align:center;
 }
 
 .hidden {
