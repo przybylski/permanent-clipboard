@@ -90,11 +90,13 @@ function makeBackup() {
   chrome.storage.local.get({'clipboard':[]}, function(items) {
     if (chrome.runtime.lastError) {
       Materialize.toast("Creating backup failed", 4000);
+      analytics.trackEvent('Backup', 'Create failed');
       return;
     }
     var stringifiedContent = JSON.stringify(items.clipboard);
     var base64Content = btoa(stringifiedContent);
     var backupObject = { content: base64Content, hash: calculateChecksum(base64Content) };
+    analytics.trackEvent('Backup', 'Create success');
     downloadObjectAsFile(backupObject);
   });
 }
@@ -122,7 +124,8 @@ function stringHashCode(s) {
 };
 
 function handleInputSelection(e) {
-    restoreFromFile(e.originalEvent.target.files[0]);
+  analytics.trackEvent('Backup', 'Selection restore');
+  restoreFromFile(e.originalEvent.target.files[0]);
 }
 
 function restoreFromFile(file) {
@@ -175,6 +178,7 @@ function handleDropOnDocument(e) {
   ee.preventDefault();
   $('#dropzone').addClass('hidden');
   var file = ee.dataTransfer.files[0];
+  analytics.trackEvent('Backup', 'Drop restore');
   restoreFromFile(file);
 }
 
