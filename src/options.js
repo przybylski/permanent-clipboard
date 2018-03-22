@@ -95,7 +95,7 @@ function makeBackup() {
     }
     var stringifiedContent = JSON.stringify(items.clipboard);
     var base64Content = btoa(stringifiedContent);
-    var backupObject = { content: base64Content, hash: calculateChecksum(base64Content) };
+    var backupObject = { content: base64Content, hash: calculateChecksum(base64Content), version: 1 };
     analytics.trackEvent('Backup', 'Create success');
     downloadObjectAsFile(backupObject);
   });
@@ -135,8 +135,13 @@ function restoreFromFile(file) {
       var object = JSON.parse(this.result);
       var clipboardContent = object.content;
       var clipboardHashcode = object.hash;
-      if (calculateChecksum(clipboardContent) !== clipboardHashcode) {
+      var backupMechanismVersion = object.version;
+      if (backupMechanismVersion == undefined || calculateChecksum(clipboardContent) !== clipboardHashcode) {
         Materialize.toast(chrome.i18n.getMessage('optionsBackupCorrupted'), 4000);
+        return;
+      }
+      if (backupMechanismVersion > 1) {
+        Materialize.toast(chrome.i18n.getMessage('optionBackupNewerFile'), 4000);
         return;
       }
       var restoreObject = JSON.parse(atob(clipboardContent));

@@ -1,9 +1,9 @@
 {
-  "errorFailedToSaveEntry" : {
-    "message" : "Nie udało się dodać wpisu: "
+  "optionsBackupRestoreFailed" : {
+    "message" : "Nie udało się odtworzyć kopii zapasowej"
   },
-  "popupHintsCount" : {
-    "message" : "4"
+  "popupHint" : {
+    "message" : "Kliknij we wpis żeby zapisać go do schowka systemowego"
   },
   "optionsSave" : {
     "message" : "Zapisz"
@@ -32,14 +32,14 @@
   "popupHintText_2" : {
     "message" : "Podoba Ci się Stały schowek? <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/permanent-clipboard\/hilkjcfodmbdgpadbpehimibheopoccb\/reviews\" target=\"_blank\">Wystaw ocenę!<\/a>"
   },
-  "optionsBackupCorrupted" : {
-    "message" : "Plik z kopią uszkodzony. Odzyskiwanie wstrzymane"
+  "optionBackupCreateButton" : {
+    "message" : "Utwórz"
   },
   "extensionDescription" : {
     "message" : "Pozwala na zachownie i dostęp do wielu elementów w schowku"
   },
-  "optionsBackupRestoreFailed" : {
-    "message" : "Nie udało się odtworzyć kopii zapasowej"
+  "syncedStorageUsed" : {
+    "message" : "Używasz pamięci synchronizowanej"
   },
   "optionsBackupRestored" : {
     "message" : "Odtworzono"
@@ -128,11 +128,17 @@
   "optionBackupTip" : {
     "message" : "Kopia zapasowa wykonuje, i odtwarza, tylko zawartość schowka lokalnego. Schowek synchronizowany jest automatycznie kopiowany przez Google po zalogowaniu się na koncie Google w przeglądarce Chrome."
   },
+  "optionBackupNewerFile" : {
+    "message" : "Kopia utworzona nowszą wersją schowka. Zaktualizuj swoje oprogramowanie."
+  },
   "contentPlaceholder" : {
     "message" : "Zawartość"
   },
   "optionSyncText" : {
     "message" : "Synchronizowana"
+  },
+  "popupHintsCount" : {
+    "message" : "4"
   },
   "optionStorageTypeText" : {
     "message" : "Typ pamięci"
@@ -143,13 +149,10 @@
   "optionBackupRestoreButton" : {
     "message" : "Wczytaj"
   },
-  "popupHint" : {
-    "message" : "Kliknij we wpis żeby zapisać go do schowka systemowego"
+  "errorFailedToSaveEntry" : {
+    "message" : "Nie udało się dodać wpisu: "
   },
-  "optionBackupCreateButton" : {
-    "message" : "Utwórz"
-  },
-  "syncedStorageUsed" : {
-    "message" : "Używasz pamięci synchronizowanej"
+  "optionsBackupCorrupted" : {
+    "message" : "Plik z kopią uszkodzony. Odzyskiwanie wstrzymane"
   }
 }

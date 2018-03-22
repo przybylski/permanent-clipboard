@@ -40,6 +40,9 @@
   "localStorageUsed" : {
     "message" : "Using local storage"
   },
+  "optionBackupNewerFile" : {
+    "message" : "Backup created with newer version of software. Please update your software."
+  },
   "optionsBackupRestoreFailed" : {
     "message" : "Backup restore failed"
   },
@@ -132,15 +135,15 @@
   "commonCancel" : {
     "message" : "Cancel"
   },
-  "descriptionPlaceholder" : {
-    "message" : "Description",
-    "description" : "Placeholder on input field in popup"
+  "popupHintText_1" : {
+    "message" : "You can support Permanent Clipboard with donation using link in options screen."
   },
   "popupHintsCount" : {
     "message" : "4"
   },
-  "popupHintText_1" : {
-    "message" : "You can support Permanent Clipboard with donation using link in options screen."
+  "descriptionPlaceholder" : {
+    "message" : "Description",
+    "description" : "Placeholder on input field in popup"
   },
   "popupHintText_2" : {
     "message" : "Enjoying PermanentClipboard? <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/permanent-clipboard\/hilkjcfodmbdgpadbpehimibheopoccb\/reviews\" target=\"_blank\">Rate it!<\/a>"
@@ -158,12 +161,12 @@
   "popupHintText_4" : {
     "message" : "<a href=\"https:\/\/medium.com\/@przybylski\/permanent-clipboard-2017-summary-d915a277b09e\" target=\"_blank\">2017 Summary<\/a>"
   },
-  "newDirectoryName" : {
-    "message" : "New directory"
-  },
   "syncedStorageUsed" : {
     "message" : "Using synchronized storage",
     "description" : ""
+  },
+  "newDirectoryName" : {
+    "message" : "New directory"
   },
   "optionsSuccess" : {
     "message" : "Success"
