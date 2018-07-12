@@ -94,7 +94,7 @@ function makeBackup() {
       return;
     }
     var stringifiedContent = JSON.stringify(items.clipboard);
-    var base64Content = btoa(stringifiedContent);
+    var base64Content = btoa(unescape(encodeURIComponent(stringifiedContent)));
     var backupObject = { content: base64Content, hash: calculateChecksum(base64Content), version: 1 };
     analytics.trackEvent('Backup', 'Create success');
     downloadObjectAsFile(backupObject);
@@ -144,7 +144,7 @@ function restoreFromFile(file) {
         Materialize.toast(chrome.i18n.getMessage('optionBackupNewerFile'), 4000);
         return;
       }
-      var restoreObject = JSON.parse(atob(clipboardContent));
+      var restoreObject = JSON.parse(decodeURIComponent(escape(atob(clipboardContent))));
       chrome.storage.local.set({'clipboard':restoreObject}, function() {
         if (chrome.runtime.lastError) {
           Materialize.toast("Backup restore failed", 4000);
