@@ -24,6 +24,6 @@
    "name": "__MSG_extensionName__",
    "options_page": "options.html",
    "permissions": [ "clipboardWrite", "clipboardRead", "storage", "contextMenus", "tabs", "activeTab", "http://*/", "https://*/" ],
-   "version": "2.3.0",
+   "version": "2.4.0",
    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
 }
