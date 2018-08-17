@@ -299,6 +299,7 @@ function setupDidYouKnowContainer() {
 
 window.onload = function() {
   document.body.onpageshow = function() {
+    chrome.runtime.sendMessage({event:'rebuildMenus'});
     initialize();
     loadStorageItems();
   };
