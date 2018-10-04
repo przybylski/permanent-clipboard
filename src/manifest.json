@@ -12,7 +12,8 @@
    },
    "content_scripts": [ {
       "js": [ "contentscript.js" ],
-      "matches": [ "http://*/*", "https://*/*" ]
+      "matches": [ "http://*/*", "https://*/*" ],
+      "all_frames": true
    } ],
    "default_locale": "en",
    "description": "__MSG_extensionDescription__",
