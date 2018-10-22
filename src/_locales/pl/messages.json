@@ -1,69 +1,48 @@
 {
-  "optionsBackupRestoreFailed" : {
-    "message" : "Nie udało się odtworzyć kopii zapasowej"
+  "optionsBackupInvalidFile" : {
+    "message" : "Niepoprawny plik kopii zapasowej"
   },
-  "popupHint" : {
-    "message" : "Kliknij we wpis żeby zapisać go do schowka systemowego"
+  "optionBackupTitle" : {
+    "message" : "Kopia zapasowa"
   },
-  "optionsSave" : {
-    "message" : "Zapisz"
-  },
-  "optionSwapText" : {
-    "message" : "Zamień miejscami"
-  },
-  "optionsSavedToastText" : {
-    "message" : "Zapisano ustawienia"
-  },
-  "optionsText" : {
-    "message" : "Ustawienia"
-  },
-  "insertFromExtension" : {
-    "message" : "Wstaw ze stałego schowka"
-  },
-  "optionsStorageSizeHelp" : {
-    "message" : "Pojemność schowka synchronizowanego jest ograniczona przez Google i nie można jej zwiększyć. Jeśli zapełnisz tą przestrzeń, rozważ użycie schowka synchronizowanego. Tylko pamiętaj, żeby przenieść zawartość."
-  },
-  "showAddFormText" : {
-    "message" : "Dodaj nowy wpis"
-  },
-  "addBtnText" : {
-    "message" : "Dodaj"
-  },
-  "popupHintText_2" : {
-    "message" : "Podoba Ci się Stały schowek? <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/permanent-clipboard\/hilkjcfodmbdgpadbpehimibheopoccb\/reviews\" target=\"_blank\">Wystaw ocenę!<\/a>"
-  },
-  "optionBackupCreateButton" : {
-    "message" : "Utwórz"
-  },
-  "extensionDescription" : {
-    "message" : "Pozwala na zachownie i dostęp do wielu elementów w schowku"
-  },
-  "syncedStorageUsed" : {
-    "message" : "Używasz pamięci synchronizowanej"
-  },
-  "optionsBackupRestored" : {
-    "message" : "Odtworzono"
-  },
-  "popupBack" : {
-    "message" : "Wstecz"
+  "donateWithPaypal" : {
+    "message" : "Dotuj przez PayPal"
   },
   "optionsSwapStoragesHelp" : {
     "message" : "Zamiana miejscami sprawia, że zawartość synchronizowanego schowka, znajdzie się na miejscu schowka lokalnego, i odwrotnie.\nZamiana nie powiedzie się jeśli nie ma wystarczająco dużo miejsca w schowku synchronizowanym."
   },
-  "commonCancel" : {
-    "message" : "Anuluj"
+  "optionsSavedToastText" : {
+    "message" : "Zapisano ustawienia"
   },
-  "optionStorageCardTitle" : {
-    "message" : "Pamięć"
+  "optionsStorageSizeHelp" : {
+    "message" : "Pojemność schowka synchronizowanego jest ograniczona przez Google i nie można jej zwiększyć. Jeśli zapełnisz tą przestrzeń, rozważ użycie schowka synchronizowanego. Tylko pamiętaj, żeby przenieść zawartość."
+  },
+  "optionsSave" : {
+    "message" : "Zapisz"
+  },
+  "popupHintTitle" : {
+    "message" : "Czy wiesz, \u0010\u0010\u0010że?"
+  },
+  "optionStorageUsage" : {
+    "message" : "Zużycie pamięci synchronizowanej "
+  },
+  "optionSyncText" : {
+    "message" : "Synchronizowana"
+  },
+  "editEntryIconTitle" : {
+    "message" : "Edytuj"
+  },
+  "extensionName" : {
+    "message" : "Stały schowek"
   },
   "localStorageUsed" : {
     "message" : "Używasz pamięci lokalnej"
   },
-  "popupNewElement" : {
-    "message" : "Dodaj ze schowka systemowego"
+  "optionBackupNewerFile" : {
+    "message" : "Kopia utworzona nowszą wersją schowka. Zaktualizuj swoje oprogramowanie."
   },
-  "manageText" : {
-    "message" : ""
+  "optionsBackupRestoreFailed" : {
+    "message" : "Nie udało się odtworzyć kopii zapasowej"
   },
   "deleteEntryIconTitle" : {
     "message" : "Usuń"
@@ -71,29 +50,83 @@
   "storageSwappingFailedMessage" : {
     "message" : "Nie udało się podmienić zawartości: "
   },
-  "donateWithPaypal" : {
-    "message" : "Dotuj przez PayPal"
+  "noMoreSpace" : {
+    "message" : "brak miejsca"
   },
-  "addToExtensionDB" : {
-    "message" : "Dodaj do stałego schowka"
+  "optionBackupCreateButton" : {
+    "message" : "Utwórz"
   },
-  "optionsSuccess" : {
-    "message" : "Zamieniono"
+  "optionBackupTip" : {
+    "message" : "Kopia zapasowa wykonuje, i odtwarza, tylko zawartość schowka lokalnego. Schowek synchronizowany jest automatycznie kopiowany przez Google po zalogowaniu się na koncie Google w przeglądarce Chrome."
   },
-  "optionStorageUsage" : {
-    "message" : "Zużycie pamięci synchronizowanej "
+  "optionsText" : {
+    "message" : "Ustawienia"
   },
   "optionSwapStorageText" : {
     "message" : "Przenieś zawartość"
   },
-  "editEntryIconTitle" : {
-    "message" : "Edytuj"
+  "popupHint" : {
+    "message" : "Kliknij we wpis żeby zapisać go do schowka systemowego"
   },
-  "optionSyncTip" : {
-    "message" : "Pamięć lokalna jest widoczna tylko na tym komputerze.\nPamięć synchronizowana jest widoczna na wszystkich przeglądarkach Google Chrome, na których jesteś zalgowany (może działać wolniej niż pamięć lokalna)."
+  "optionsBackupRestored" : {
+    "message" : "Odtworzono"
   },
-  "optionLocalText" : {
-    "message" : "Lokalna"
+  "optionStorageTypeText" : {
+    "message" : "Typ pamięci"
+  },
+  "optionStorageCardTitle" : {
+    "message" : "Pamięć"
+  },
+  "translatorsTitle" : {
+    "message" : "Tłumaczenie"
+  },
+  "optionBackupRestoreButton" : {
+    "message" : "Wczytaj"
+  },
+  "optionSwapText" : {
+    "message" : "Zamień miejscami"
+  },
+  "addToExtensionDB" : {
+    "message" : "Dodaj do stałego schowka"
+  },
+  "popupBack" : {
+    "message" : "Wstecz"
+  },
+  "insertFromExtension" : {
+    "message" : "Wstaw ze stałego schowka"
+  },
+  "optionsBackupCorrupted" : {
+    "message" : "Plik z kopią uszkodzony. Odzyskiwanie wstrzymane"
+  },
+  "popupHintNoElements" : {
+    "message" : "Brak wpisów"
+  },
+  "dropOverlayPromptText" : {
+    "message" : "Upuść plik kopii zapasowej żeby odtworzyć zawartość"
+  },
+  "showAddFormText" : {
+    "message" : "Dodaj nowy wpis"
+  },
+  "unknownError" : {
+    "message" : "Nieznany błąd"
+  },
+  "contentPlaceholder" : {
+    "message" : "Zawartość"
+  },
+  "addBtnText" : {
+    "message" : "Dodaj"
+  },
+  "errorFailedToSaveEntry" : {
+    "message" : "Nie udało się dodać wpisu: "
+  },
+  "extensionDescription" : {
+    "message" : "Pozwala na zachownie i dostęp do wielu elementów w schowku"
+  },
+  "manageText" : {
+    "message" : ""
+  },
+  "commonCancel" : {
+    "message" : "Anuluj"
   },
   "popupHintText_1" : {
     "message" : "Możesz wesprzeć Stały schowek dotacją, klikając link w opcjach."
@@ -101,58 +134,31 @@
   "descriptionPlaceholder" : {
     "message" : "Opis"
   },
+  "popupHintsCount" : {
+    "message" : "4"
+  },
+  "popupHintText_2" : {
+    "message" : "Podoba Ci się Stały schowek? <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/permanent-clipboard\/hilkjcfodmbdgpadbpehimibheopoccb\/reviews\" target=\"_blank\">Wystaw ocenę!<\/a>"
+  },
+  "optionSyncTip" : {
+    "message" : "Pamięć lokalna jest widoczna tylko na tym komputerze.\nPamięć synchronizowana jest widoczna na wszystkich przeglądarkach Google Chrome, na których jesteś zalgowany (może działać wolniej niż pamięć lokalna)."
+  },
   "popupHintText_3" : {
     "message" : "Zwiększ swoją produktywność rozszerzeniem <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/iahcjdalmgeeclcjbffpkmfhogckipfh\" target=\"_blank\">Templatizer<\/a>"
   },
-  "optionBackupTitle" : {
-    "message" : "Kopia zapasowa"
-  },
-  "popupHintNoElements" : {
-    "message" : "Brak wpisów"
-  },
-  "translatorsTitle" : {
-    "message" : "Tłumaczenie"
-  },
-  "dropOverlayPromptText" : {
-    "message" : "Upuść plik kopii zapasowej żeby odtworzyć zawartość"
-  },
-  "extensionName" : {
-    "message" : "Stały schowek"
+  "popupNewElement" : {
+    "message" : "Dodaj ze schowka systemowego"
   },
   "newDirectoryName" : {
     "message" : "Nowy katalog"
   },
-  "optionsBackupInvalidFile" : {
-    "message" : "Niepoprawny plik kopii zapasowej"
+  "syncedStorageUsed" : {
+    "message" : "Używasz pamięci synchronizowanej"
   },
-  "optionBackupTip" : {
-    "message" : "Kopia zapasowa wykonuje, i odtwarza, tylko zawartość schowka lokalnego. Schowek synchronizowany jest automatycznie kopiowany przez Google po zalogowaniu się na koncie Google w przeglądarce Chrome."
+  "optionsSuccess" : {
+    "message" : "Zamieniono"
   },
-  "optionBackupNewerFile" : {
-    "message" : "Kopia utworzona nowszą wersją schowka. Zaktualizuj swoje oprogramowanie."
-  },
-  "contentPlaceholder" : {
-    "message" : "Zawartość"
-  },
-  "optionSyncText" : {
-    "message" : "Synchronizowana"
-  },
-  "popupHintsCount" : {
-    "message" : "4"
-  },
-  "optionStorageTypeText" : {
-    "message" : "Typ pamięci"
-  },
-  "popupHintTitle" : {
-    "message" : "Czy wiesz, \u0010\u0010\u0010że?"
-  },
-  "optionBackupRestoreButton" : {
-    "message" : "Wczytaj"
-  },
-  "errorFailedToSaveEntry" : {
-    "message" : "Nie udało się dodać wpisu: "
-  },
-  "optionsBackupCorrupted" : {
-    "message" : "Plik z kopią uszkodzony. Odzyskiwanie wstrzymane"
+  "optionLocalText" : {
+    "message" : "Lokalna"
   }
 }

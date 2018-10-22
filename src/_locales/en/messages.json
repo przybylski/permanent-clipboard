@@ -52,6 +52,9 @@
   "storageSwappingFailedMessage" : {
     "message" : "Swapping storage failed, aborting: "
   },
+  "noMoreSpace" : {
+    "message" : "no more space left"
+  },
   "optionBackupCreateButton" : {
     "message" : "Create"
   },
@@ -113,6 +116,9 @@
   "showAddFormText" : {
     "message" : "Add new entry",
     "description" : "Link text for new entry div trigger"
+  },
+  "unknownError" : {
+    "message" : "Unknown error"
   },
   "contentPlaceholder" : {
     "message" : "Content",
