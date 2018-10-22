@@ -27,9 +27,9 @@ function addToPermClipboardFromRecent() {
       document.getElementById('recent_text').innerText,
       function(error) {
         if (error != undefined) {
-          analytics.trackEvent('Popup', 'Recent save', 'fail', error.message);
+          analytics.trackEvent('Popup', 'Recent save fail', error.message);
         } else {
-          analytics.trackEvent('Popup', 'Recent saved', 'success');
+          analytics.trackEvent('Popup', 'Recent saved success');
           $('#add_elements_collapsible').collapsible({onClose: function() {
             $('#recent_add_element').fadeOut('fast').delay().addClass('hide');
             $('#add_elements_collapsible').collapsible({onClose: null});
@@ -50,14 +50,14 @@ function addToPermClipboardFromManually() {
         text,
         function(error) {
           if (error != undefined) {
-            analytics.trackEvent('Popup', 'Manually add', 'fail', error.message);
+            analytics.trackEvent('Popup', 'Manually add fail', error.message);
           } else {
             $('#new_name').val('');
             $('#new_content').val('');
             $('#new_content').trigger('autoresize');
             $('#add_elements_collapsible').collapsible('close', 0);
 
-            analytics.trackEvent('Popup', 'Manually add', 'success');
+            analytics.trackEvent('Popup', 'Manually add success');
           }
         });
   }
