@@ -11,8 +11,8 @@ Analytics.prototype = {
 		ga('create', this.userCode(), 'auto');
 		ga('set', 'checkProtocolTask', null);
 	},
-	trackEvent: function(category, action) {
-		ga('send', 'event', category, action);
+	trackEvent: function(category, action, label, value) {
+		ga('send', 'event', category, action, label, value);
 	}
 }
 

@@ -22,15 +22,21 @@ function rebuildMenusAndReload() {
 }
 
 function addToPermClipboardFromRecent() {
-  addToPermClipboard(document.getElementById('recent_name').value,
-                     document.getElementById('recent_text').innerText);
-  analytics.trackEvent('Popup', 'Recent saved');
-  $('#add_elements_collapsible').collapsible({onClose: function() {
-    $('#recent_add_element').fadeOut('fast').delay().addClass('hide');
-    $('#add_elements_collapsible').collapsible({onClose: null});
-  }})
-  $('#add_elements_collapsible').collapsible('close', 1);
-
+  addToPermClipboard(
+      document.getElementById('recent_name').value,
+      document.getElementById('recent_text').innerText,
+      function(error) {
+        if (error != undefined) {
+          analytics.trackEvent('Popup', 'Recent save', 'fail', error.message);
+        } else {
+          analytics.trackEvent('Popup', 'Recent saved', 'success');
+          $('#add_elements_collapsible').collapsible({onClose: function() {
+            $('#recent_add_element').fadeOut('fast').delay().addClass('hide');
+            $('#add_elements_collapsible').collapsible({onClose: null});
+          }})
+          $('#add_elements_collapsible').collapsible('close', 1);  
+        }
+      });
   return false;
 }
 
@@ -39,21 +45,41 @@ function addToPermClipboardFromManually() {
   // it will be replaced by text eventually
   var text = document.getElementById('new_content').value;
   if (text !== "") {
-    addToPermClipboard(document.getElementById('new_name').value, text);
+    addToPermClipboard(
+        document.getElementById('new_name').value,
+        text,
+        function(error) {
+          if (error != undefined) {
+            analytics.trackEvent('Popup', 'Manually add', 'fail', error.message);
+          } else {
+            $('#new_name').val('');
+            $('#new_content').val('');
+            $('#new_content').trigger('autoresize');
+            $('#add_elements_collapsible').collapsible('close', 0);
 
-    $('#new_name').val('');
-    $('#new_content').val('');
-    $('#new_content').trigger('autoresize');
-    $('#add_elements_collapsible').collapsible('close', 0);
-
-    analytics.trackEvent('Popup', 'Manually add');
+            analytics.trackEvent('Popup', 'Manually add', 'success');
+          }
+        });
   }
   return false;
 }
 
-function addToPermClipboard(name, text) {
+function addToPermClipboard(name, text, callback) {
   traverseArray[traverseArray.length-1].push({ desc: name, value: text });
-  storage.setData(null, {'clipboard':traverseArray[0], 'recent':0}, rebuildMenusAndReload);
+  storage.setData(null, {'clipboard':traverseArray[0], 'recent':0}, function(context, lastError) {
+    if (lastError == null) {
+      rebuildMenusAndReload()
+    } else {
+      var errorMessage = chrome.i18n.getMessage("unknownError");
+      if (lastError.message.match(/^QUOTA_BYTES_PER_ITEM/)) {
+        errorMessage = chrome.i18n.getMessage("noMoreSpace");
+      }
+      Materialize.toast(chrome.i18n.getMessage("errorFailedToSaveEntry") + errorMessage, 3000);
+    }
+    if (callback != undefined) {
+      callback(lastError);
+    }
+  });
 }
 
 function removeElement(s) {
