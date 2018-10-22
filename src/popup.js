@@ -14,6 +14,11 @@ function rebuildTable() {
   var tail = traverseArray[traverseArray.length-1];
   $('#current_div').empty().append(createTable(tail));
   $('#hint').empty().append(chrome.i18n.getMessage(tail.length == 0 ? "popupHintNoElements" : "popupHint"));
+  $('.tooltipped').tooltip({
+      options: {
+        enterDelay: 100
+      }
+  });
 }
 
 function rebuildMenusAndReload() {
@@ -209,7 +214,12 @@ function createEntry(item, id) {
     a.appendChild(document.createTextNode(item.desc));
     if (item.value != null) {
       a.onclick = copyToClipboard;
-      a.title = item.value;
+      a.classList.add("tooltipped");
+      a.dataset.position = "top";
+      let elipssisTextLength = 35;
+      a.dataset.tooltip = item.value.length > elipssisTextLength+3
+          ? item.value.substr(0, elipssisTextLength) + "..."
+          : item.value;
     } else {
       a.onclick = function(e) {
         traverseArray.push(item.e);
@@ -337,7 +347,11 @@ function initialize() {
   $('#recent_btn').click(addToPermClipboardFromRecent);
   $('#new_btn').click(addToPermClipboardFromManually);
   $('#new_dir_button').click(createNewDirectory);
-  $('.tooltipped').tooltip();
+  $('.tooltipped').tooltip({
+        options: {
+          enterDelay: 100
+        }
+      });
   setupDidYouKnowContainer();
 
   var elem = document.getElementById('current_div');

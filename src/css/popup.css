@@ -23,6 +23,9 @@ div.rowrow {
   min-height: 40px;
   margin-bottom: 0;
 }
+.material-tooltip {
+  white-space: pre;
+}
 
 td {
   padding: 10px 10px;
