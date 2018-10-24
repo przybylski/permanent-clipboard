@@ -214,6 +214,7 @@ function createEntry(item, id) {
     a.appendChild(document.createTextNode(item.desc));
     if (item.value != null) {
       a.onclick = copyToClipboard;
+      a.title = item.value;
       a.classList.add("tooltipped");
       a.dataset.position = "top";
       let elipssisTextLength = 35;
