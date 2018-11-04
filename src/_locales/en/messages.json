@@ -5,6 +5,9 @@
   "optionBackupTitle" : {
     "message" : "Backup"
   },
+  "popup_copiedToClipboard" : {
+    "message" : "Copied to system clipboard"
+  },
   "donateWithPaypal" : {
     "message" : "Donate with PayPal"
   },

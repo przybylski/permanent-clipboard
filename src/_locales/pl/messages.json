@@ -5,6 +5,9 @@
   "optionBackupTitle" : {
     "message" : "Kopia zapasowa"
   },
+  "popup_copiedToClipboard" : {
+    "message" : "Skopiowano do schowka"
+  },
   "donateWithPaypal" : {
     "message" : "Dotuj przez PayPal"
   },

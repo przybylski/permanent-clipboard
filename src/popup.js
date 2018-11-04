@@ -175,6 +175,9 @@ function copyToClipboard(s) {
   document.execCommand('SelectAll');
   document.execCommand("Copy", false, null);
   document.body.removeChild(copyDiv);
+
+  Materialize.toast(chrome.i18n.getMessage("popup_copiedToClipboard"), 2000);
+
   analytics.trackEvent('Popup', 'Element clicked');
 }
 
