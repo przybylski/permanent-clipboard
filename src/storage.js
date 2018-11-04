@@ -15,6 +15,9 @@ Storage.prototype = {
 	},
 	getData: function(context, data, callback) {
 		this.getDefaultStorage().get(data, function(items) {
+            if (callback == undefined)
+              return;
+
 			if (chrome.runtime.lastError != null) {
 				callback(context, items, chrome.runtime.lastError);
 			} else {
@@ -24,6 +27,9 @@ Storage.prototype = {
 	},
 	setData: function(context, data, callback) {
 		this.getDefaultStorage().set(data, function() {
+            if (callback == undefined)
+              return;
+
 			if (chrome.runtime.lastError != null) {
 				callback(context, chrome.runtime.lastError);
 			} else {

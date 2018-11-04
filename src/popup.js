@@ -89,6 +89,22 @@ function addToPermClipboard(name, text, callback) {
   });
 }
 
+function discardNewEntry() {
+  localStorage.removeItem('unsaved_name');
+  localStorage.removeItem('unsaved_content');
+  $("#new_name").val("");
+  $("#new_content").val("");
+  $("#add_elements_collapsible").collapsible('close', 0);
+}
+
+function discardRecentEntry() {
+  $("#recent_name").val("");
+  $("#recent_text").text("");
+  $("#add_elements_collapsible").collapsible('close', 1);
+  $("#recent_add_element").fadeOut();
+  storage.setData(null, {'recent':0});
+}
+
 function removeElement(s) {
   var elem = $(this.parentNode.parentNode);
   var e = parseInt(elem.attr('data-entryId'));
@@ -149,6 +165,8 @@ function init_i18n() {
   $("#recent_title").text(chrome.i18n.getMessage("popupNewElement"));
 
   $("#new_btn").text(chrome.i18n.getMessage("addBtnText"));
+  $("#discard_new_btn").text(chrome.i18n.getMessage("popup_buttonDiscard"));
+  $("#discard_recent_btn").text(chrome.i18n.getMessage("popup_buttonDiscard"));
   $("#new_name_label").text(chrome.i18n.getMessage("descriptionPlaceholder"));
   $("#new_content_label").text(chrome.i18n.getMessage("contentPlaceholder"));
 
@@ -353,6 +371,9 @@ function initialize() {
   $('#recent_btn').click(addToPermClipboardFromRecent);
   $('#new_btn').click(addToPermClipboardFromManually);
   $('#new_dir_button').click(createNewDirectory);
+  $('#discard_new_btn').click(discardNewEntry);
+  $('#discard_recent_btn').click(discardRecentEntry);
+
   $('.tooltipped').tooltip({
         options: {
           enterDelay: 100

@@ -166,5 +166,8 @@
   },
   "optionLocalText" : {
     "message" : "Lokalna"
+  },
+  "popup_ButtonDiscard" : {
+    "message" : "Odrzuć"
   }
 }

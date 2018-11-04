@@ -185,5 +185,8 @@
   },
   "optionLocalText" : {
     "message" : "Local"
+  },
+  "popup_ButtonDiscard" : {
+    "message" : "Discard"
   }
 }
