@@ -1,4 +1,7 @@
 {
+  "popup_unsavedChanges" : {
+    "message" : "Niezapisane zmiany"
+  },
   "optionsBackupInvalidFile" : {
     "message" : "Niepoprawny plik kopii zapasowej"
   },

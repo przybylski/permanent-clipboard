@@ -1,4 +1,7 @@
 {
+  "popup_unsavedChanges" : {
+    "message" : "Unsaved changes"
+  },
   "optionsBackupInvalidFile" : {
     "message" : "Invalid backup file"
   },
