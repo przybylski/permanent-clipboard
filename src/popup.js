@@ -171,7 +171,13 @@ function init_i18n() {
   $("#new_content_label").text(chrome.i18n.getMessage("contentPlaceholder"));
 
   $("#new_item_content_trigger").text(chrome.i18n.getMessage("showAddFormText"));
-  $("#storage_type_text").text(chrome.i18n.getMessage(localStorage["storage_type"] == "local" ? "localStorageUsed" : "syncedStorageUsed"));
+  $("#storage_type_icon").attr("data-tooltip", chrome.i18n.getMessage(localStorage["storage_type"] == "local" ? "localStorageUsed" : "syncedStorageUsed"));
+  $("#storage_type_icon").text(
+      localStorage["storage_type"] == "local"
+      ? "fiber_manual_record"
+      : "sync");
+
+  $("#options_text").attr("data-tooltip", chrome.i18n.getMessage("optionsText"));
 
   $("#delete_label").text(chrome.i18n.getMessage("deleteEntryIconTitle"));
   $("#cancel_label").text(chrome.i18n.getMessage("commonCancel"));
