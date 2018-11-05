@@ -187,7 +187,7 @@ function init_i18n() {
 }
 
 function copyToClipboard(s) {
-  var textArr = s.srcElement.title.split('\n');
+  var textArr = s.srcElement.dataset.contents.split('\n');
   $(s.srcElement).animate({opacity:0.5}, defaultAnimationDuration).delay().animate({opacity:1}, defaultAnimationDuration);
   var copyDiv = document.createElement('div');
   copyDiv.contentEditable = true;
@@ -243,7 +243,7 @@ function createEntry(item, id) {
     a.appendChild(document.createTextNode(item.desc));
     if (item.value != null) {
       a.onclick = copyToClipboard;
-      a.title = item.value;
+      a.dataset.contents = item.value;
       a.classList.add("tooltipped");
       a.dataset.position = "top";
       let elipssisTextLength = 35;
