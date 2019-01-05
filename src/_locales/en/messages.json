@@ -99,14 +99,14 @@
     "message" : "Swap"
   },
   "addToExtensionDB" : {
-    "message" : "Add to Permanent clipboard",
+    "message" : "Copy",
     "description" : "Context menu text on selected text."
   },
   "popupBack" : {
     "message" : "Back"
   },
   "insertFromExtension" : {
-    "message" : "Insert from Permanent clipboard",
+    "message" : "Paste",
     "description" : "Context menu text on editable elements."
   },
   "optionsBackupCorrupted" : {

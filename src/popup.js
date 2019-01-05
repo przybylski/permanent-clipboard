@@ -236,7 +236,7 @@ function createEntry(item, id) {
 
   var main = document.createElement('div');
   main.classList.add('col');
-  main.classList.add('s9');
+  main.classList.add('s10');
 
   {
     var a = document.createElement('a');
@@ -270,11 +270,9 @@ function createEntry(item, id) {
 
   {
     var d = document.createElement('div');
-    d.classList.add('btn-action');
-    d.classList.add('btn-flat');
+    d.classList.add('btn-action', 'btn-flat');
     var i = document.createElement('i');
-    i.classList.add('material-icons');
-    i.classList.add('edit_icon');
+    i.classList.add('material-icons', 'edit_icon');
     i.appendChild(document.createTextNode('mode_edit'));
 
 

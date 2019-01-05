@@ -93,13 +93,13 @@
     "message" : "Zamień miejscami"
   },
   "addToExtensionDB" : {
-    "message" : "Dodaj do stałego schowka"
+    "message" : "Kopiuj"
   },
   "popupBack" : {
     "message" : "Wstecz"
   },
   "insertFromExtension" : {
-    "message" : "Wstaw ze stałego schowka"
+    "message" : "Wklej"
   },
   "optionsBackupCorrupted" : {
     "message" : "Plik z kopią uszkodzony. Odzyskiwanie wstrzymane"
