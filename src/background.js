@@ -1,5 +1,7 @@
 var storage = new Storage();
 
+let storagePercentageThreshold = 70;
+
 function IndexPath(string) {
   var separated = string.split('_');
   this._elements = [];
@@ -26,6 +28,8 @@ function onMenuClicked(info, tab) {
 	if (info.menuItemId == "selmenu") {
 		analytics.trackEvent('Menu', 'Selection added');
 		chrome.tabs.sendMessage(tab.id, {event: 'addSelection'});
+  } else if (info.menuItemId == "runningOutOfSpace") {
+    chrome.tabs.create({ url: "https://bartosz.im/permanent-clipboard/contact/index.html" });
 	} else {
 		storage.getData(null, 'clipboard', function(context, data, error) {
 			if (error != null) {
@@ -90,6 +94,22 @@ function rebuildMenus() {
     
 		var title = chrome.i18n.getMessage("addToExtensionDB");
 		chrome.contextMenus.create({"title": title, "contexts":["selection"], "id": "selmenu"});
+
+    storage.getStorageUsagePercentage(function(usage) {
+        if (usage > storagePercentageThreshold) {
+          chrome.contextMenus.create({
+            "id": "sep",
+            "type": "separator",
+            "parentId": ""
+          });
+          chrome.contextMenus.create({
+            "title": chrome.i18n.getMessage("menuRunningOutOfSpace"),
+            "contexts": ["selection", "editable"],
+            "id": "runningOutOfSpace",
+            "parentId": ""
+          });
+        }
+      });
 	});
 }
 
@@ -135,5 +155,3 @@ chrome.runtime.onInstalled.addListener(function() {
 	rebuildMenus();
 	installContentScriptInTabs();
 });
-
-

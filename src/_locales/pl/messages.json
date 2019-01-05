@@ -169,5 +169,8 @@
   },
   "popup_ButtonDiscard" : {
     "message" : "Odrzuć"
+  },
+  "menuRunningOutOfSpace" : {
+    "message" : "Kończy Ci się miejsce? Kliknij tutaj!"
   }
 }

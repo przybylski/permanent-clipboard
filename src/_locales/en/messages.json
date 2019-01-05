@@ -188,5 +188,8 @@
   },
   "popup_ButtonDiscard" : {
     "message" : "Discard"
+  },
+  "menuRunningOutOfSpace" : {
+    "message" : "Running out of space? Click here!"
   }
 }

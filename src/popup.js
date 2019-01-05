@@ -1,5 +1,3 @@
-// Array Remove - By John Resig (MIT Licensed)
-// adjusted by Bartosz Przybylski to avoid members extension of array proto
 function arrayRemove(a, idx) {
   var rest = a.slice(idx + 1 || a.length);
   a.length = idx < 0 ? a.length + idx : idx;
