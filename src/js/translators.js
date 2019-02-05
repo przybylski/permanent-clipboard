@@ -36,8 +36,7 @@ var cardContentTemplate =
 var translatorsData = {
   'Deutsch': 'Aleksandra Dubaniowska',
   'English': 'Bartosz Przybylski',
-  'Polski': 'Bartosz Przybylski',
-  'Русский': 'Eldar Khalmatov'
+  'Polski': 'Bartosz Przybylski'
 };
 
 $(document).ready(function() {
