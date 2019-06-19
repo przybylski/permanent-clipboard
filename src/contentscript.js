@@ -1,10 +1,10 @@
 chrome.runtime.onMessage.addListener(
   function(message, sender, sendResponse) {
     switch (message.event) {
-      case 'insertText':
+      case ACTION__INSERT_TEXT:
         document.execCommand("insertText", true, message.value);
         break;
-      case 'addSelection':
+      case ACTION__ADD_SELECTION:
         var selection = document.getSelection().toString();
         if (selection.length > 0)
           chrome.runtime.sendMessage({event: 'addNewEntry', value: selection}, function(response) {

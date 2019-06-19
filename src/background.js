@@ -27,9 +27,9 @@ function traverseWithIndexPath(indexPath, data) {
 function onMenuClicked(info, tab) {
 	if (info.menuItemId == "selmenu") {
 		analytics.trackEvent('Menu', 'Selection added');
-		chrome.tabs.sendMessage(tab.id, {event: 'addSelection'});
+		chrome.tabs.sendMessage(tab.id, {event: ACTION__ADD_SELECTION});
   } else if (info.menuItemId == "runningOutOfSpace") {
-    chrome.tabs.create({ url: "https://bartosz.im/permanent-clipboard/contact/index.html" });
+    chrome.tabs.create({ url: CONTACT_PAGE_URL });
 	} else {
 		storage.getData(null, 'clipboard', function(context, data, error) {
 			if (error != null) {
@@ -40,7 +40,7 @@ function onMenuClicked(info, tab) {
       var val = traverseWithIndexPath(indexPath, data.clipboard);
 
 			analytics.trackEvent('Menu', 'Inserting text');
-			chrome.tabs.sendMessage(tab.id, {event:'insertText', value: val});
+			chrome.tabs.sendMessage(tab.id, {event:ACTION__INSERT_TEXT, value: val});
 		});
 	}
 }

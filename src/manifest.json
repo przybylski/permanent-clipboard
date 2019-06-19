@@ -1,7 +1,7 @@
 {
    "background": {
       "persistent": false,
-      "scripts": [ "analytics.js", "storage.js", "background.js" ]
+      "scripts": [ "constants.js", "analytics.js", "storage.js", "background.js" ]
    },
    "browser_action": {
       "default_icon": {
@@ -11,7 +11,7 @@
       "default_popup": "popup.html"
    },
    "content_scripts": [ {
-      "js": [ "contentscript.js" ],
+      "js": [ "constants.js", "contentscript.js" ],
       "matches": [ "http://*/*", "https://*/*" ],
       "all_frames": true
    } ],

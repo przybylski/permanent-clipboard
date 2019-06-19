@@ -14,14 +14,13 @@ function rebuildTable() {
   $('#hint').empty().append(chrome.i18n.getMessage(tail.length == 0 ? "popupHintNoElements" : "popupHint"));
   $('.tooltipped').tooltip({
       options: {
-        enterDelay: 100
+        enterDelay: defaultAnimationDuration
       }
   });
 }
 
 function rebuildMenusAndReload() {
-  chrome.runtime.sendMessage({event:'rebuildMenus'});
-  rebuildTable();
+  chrome.runtime.sendMessage({event:'rebuildMenus'}, rebuildTable);
 }
 
 function addToPermClipboardFromRecent() {
@@ -378,7 +377,7 @@ function initialize() {
 
   $('.tooltipped').tooltip({
         options: {
-          enterDelay: 100
+          enterDelay: defaultAnimationDuration
         }
       });
   setupDidYouKnowContainer();
