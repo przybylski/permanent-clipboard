@@ -157,50 +157,46 @@ function createDirectoryEditForm(name, id) {
 }
 
 function init_i18n() {
-  $("#recent_btn").text(chrome.i18n.getMessage("addBtnText"));
-  $("#recent_name_label").text(chrome.i18n.getMessage("descriptionPlaceholder"));
-  $("#recent_title").text(chrome.i18n.getMessage("popupNewElement"));
+  const T = chrome.i18n.getMessage;
+  $("#recent_btn").text(T("addBtnText"));
+  $("#recent_name_label").text(T("descriptionPlaceholder"));
+  $("#recent_title").text(T("popupNewElement"));
 
-  $("#new_btn").text(chrome.i18n.getMessage("addBtnText"));
-  $("#discard_new_btn").text(chrome.i18n.getMessage("popup_buttonDiscard"));
-  $("#discard_recent_btn").text(chrome.i18n.getMessage("popup_buttonDiscard"));
-  $("#new_name_label").text(chrome.i18n.getMessage("descriptionPlaceholder"));
-  $("#new_content_label").text(chrome.i18n.getMessage("contentPlaceholder"));
+  $("#new_btn").text(T("addBtnText"));
+  $("#discard_new_btn").text(T("popup_buttonDiscard"));
+  $("#discard_recent_btn").text(T("popup_buttonDiscard"));
+  $("#new_name_label").text(T("descriptionPlaceholder"));
+  $("#new_content_label").text(T("contentPlaceholder"));
 
-  $("#new_item_content_trigger").text(chrome.i18n.getMessage("showAddFormText"));
-  $("#storage_type_icon").attr("data-tooltip", chrome.i18n.getMessage(localStorage["storage_type"] == "local" ? "localStorageUsed" : "syncedStorageUsed"));
-  $("#storage_type_icon").text(
-      localStorage["storage_type"] == "local"
-      ? "fiber_manual_record"
-      : "sync");
+  $("#new_item_content_trigger").text(T("showAddFormText"));
+  const isLocalStorage = localStorage.storage_type == "local";
+  $("#storage_type_icon").attr("data-tooltip", T(isLocalStorage ? "localStorageUsed" : "syncedStorageUsed"));
+  $("#storage_type_icon").text(isLocalStorage ? "fiber_manual_record" : "sync");
 
-  $("#options_text").attr("data-tooltip", chrome.i18n.getMessage("optionsText"));
+  $("#options_text").attr("data-tooltip", T("optionsText"));
 
-  $("#delete_label").text(chrome.i18n.getMessage("deleteEntryIconTitle"));
-  $("#cancel_label").text(chrome.i18n.getMessage("commonCancel"));
+  $("#delete_label").text(T("deleteEntryIconTitle"));
+  $("#cancel_label").text(T("commonCancel"));
 
-  $('#back_button').attr('data-tooltip', chrome.i18n.getMessage('popupBack'));
-  $('#new_dir_button').attr('data-tooltip', chrome.i18n.getMessage('newDirectoryName'));
+  $('#back_button').attr('data-tooltip', T('popupBack'));
+  $('#new_dir_button').attr('data-tooltip', T('newDirectoryName'));
 }
 
 function copyToClipboard(s) {
-  var textArr = s.srcElement.dataset.contents.split('\n');
-  $(s.srcElement).animate({opacity:0.5}, defaultAnimationDuration).delay().animate({opacity:1}, defaultAnimationDuration);
-  var copyDiv = document.createElement('div');
-  copyDiv.contentEditable = true;
-  document.body.appendChild(copyDiv);
-  for (var te in textArr) {
-    copyDiv.appendChild(document.createTextNode(textArr[te]));
-    copyDiv.appendChild(document.createElement('br'));
-  }
-  copyDiv.unselectable = "off";
-  copyDiv.focus();
-  document.execCommand('SelectAll');
-  document.execCommand("Copy", false, null);
-  document.body.removeChild(copyDiv);
+  $(s.srcElement)
+      .animate({opacity:0.5}, defaultAnimationDuration)
+      .delay()
+      .animate({opacity:1}, defaultAnimationDuration);
+
+  var copyArea = document.createElement('textarea');
+  copyArea.value = s.srcElement.dataset.contents;
+  document.body.appendChild(copyArea);
+
+  copyArea.select();
+  document.execCommand("Copy");
+  document.body.removeChild(copyArea);
 
   Materialize.toast(chrome.i18n.getMessage("popup_copiedToClipboard"), 2000);
-
   analytics.trackEvent('Popup', 'Element clicked');
 }
 
@@ -212,16 +208,13 @@ function createEntry(item, id) {
 
   var top1 = document.createElement('div');
   var top = document.createElement('div');
+  top.classList.add('row', 'rowrow', 'valign-wrapper');
   top1.appendChild(top);
   top1.setAttribute('data-entryId', id);
-  top.classList.add('row');
-  top.classList.add('rowrow');
-  top.classList.add('valign-wrapper');
   top.setAttribute('data-entryId', id);
 
   var left = document.createElement('div');
-  left.classList.add('col');
-  left.classList.add('s1');
+  left.classList.add('col', 's1');
 
   if (item.e != null) {
     var i = document.createElement('img');
@@ -232,8 +225,7 @@ function createEntry(item, id) {
   top.appendChild(left);
 
   var main = document.createElement('div');
-  main.classList.add('col');
-  main.classList.add('s10');
+  main.classList.add('col', 's10');
 
   {
     var a = document.createElement('a');
@@ -261,9 +253,7 @@ function createEntry(item, id) {
 
   var edit = document.createElement('div');
 
-  edit.classList.add('col');
-  edit.classList.add('c1');
-  edit.classList.add('btn-action-wrapper');
+  edit.classList.add('col', 'c1', 'btn-action-wrapper');
 
   {
     var d = document.createElement('div');
@@ -313,12 +303,10 @@ function createEntry(item, id) {
   top.appendChild(edit);
 
   var remove = document.createElement('div');
-  remove.classList.add('col');
-  remove.classList.add('c1');
+  remove.classList.add('col', 'c1');
   {
     var d = document.createElement('div');
-    d.classList.add('btn-action');
-    d.classList.add('btn-flat');
+    d.classList.add('btn-action', 'btn-flat');
     d.onclick = removeElement;
     var i = document.createElement('i');
     i.classList.add('material-icons');
