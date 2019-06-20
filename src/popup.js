@@ -188,16 +188,14 @@ function copyToClipboard(s) {
       .delay()
       .animate({opacity:1}, defaultAnimationDuration);
 
-  var copyArea = document.createElement('textarea');
-  copyArea.value = s.srcElement.dataset.contents;
-  document.body.appendChild(copyArea);
-
-  copyArea.select();
-  document.execCommand("Copy");
-  document.body.removeChild(copyArea);
-
-  Materialize.toast(chrome.i18n.getMessage("popup_copiedToClipboard"), 2000);
-  analytics.trackEvent('Popup', 'Element clicked');
+  navigator.clipboard.writeText(s.srcElement.dataset.contents)
+    .then(() => {
+      Materialize.toast(chrome.i18n.getMessage("popup_copiedToClipboard"), 2000);
+      analytics.trackEvent('Popup', 'Element clicked');
+    },
+    e => {
+      Materialize.toast("Failed to store in clipboard");
+    });
 }
 
 function createEntry(item, id) {
