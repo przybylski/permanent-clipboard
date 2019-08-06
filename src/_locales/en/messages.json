@@ -59,7 +59,7 @@
     "message" : "Swapping storage failed, aborting: "
   },
   "noMoreSpace" : {
-    "message" : "no more space left"
+    "message" : "No more space left"
   },
   "optionBackupCreateButton" : {
     "message" : "Create"
@@ -132,6 +132,9 @@
   },
   "errorFailedToSaveEntry" : {
     "message" : "Failed to save selection: "
+  },
+  "errorFailedToCreateDirectory": {
+    "message" : "Failed to create directory: "
   },
   "addBtnText" : {
     "message" : "Add",

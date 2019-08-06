@@ -116,7 +116,8 @@ function rebuildMenus() {
 chrome.runtime.onMessage.addListener(
 	function(message, sender, sendResponse) {
 		if (message.event == "rebuildMenus") {
-			rebuildMenus();
+      rebuildMenus();
+      sendResponse({});
       return;
 		} else if (message.event == 'saveRecentItem') {
 			storage.setData(null, {'recent': message.value}, function(context, error) {

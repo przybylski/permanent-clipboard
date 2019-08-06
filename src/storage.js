@@ -21,7 +21,6 @@ Storage.prototype = {
       if (callback !== undefined) {
         callback(context, items, chrome.runtime.lastError);
       }
-      chrome.runtime.lastError = null;
 		});
 	},
 	setData: function(context, data, callback) {
@@ -29,7 +28,6 @@ Storage.prototype = {
       if (callback !== undefined) {
         callback(context, chrome.runtime.lastError);
       }
-			chrome.runtime.lastError = null;
 		});
 	},
   getStorageUsagePercentage: function(callback) {

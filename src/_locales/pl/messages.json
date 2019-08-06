@@ -125,6 +125,9 @@
   "errorFailedToSaveEntry" : {
     "message" : "Nie udało się dodać wpisu: "
   },
+  "errorFailedToCreateDirectory": {
+    "message" : "Nie udało się utworzyć katalogu: "
+  },
   "extensionDescription" : {
     "message" : "Pozwala na zachownie i dostęp do wielu elementów w schowku"
   },

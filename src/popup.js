@@ -74,6 +74,7 @@ function addToPermClipboard(name, text, callback) {
     if (lastError == null) {
       rebuildMenusAndReload()
     } else {
+      traverseArray[traverseArray.length-1].pop();
       var errorMessage = chrome.i18n.getMessage("unknownError");
       if (lastError.message.match(/^QUOTA_BYTES_PER_ITEM/)) {
         errorMessage = chrome.i18n.getMessage("noMoreSpace");
@@ -333,8 +334,18 @@ function createTable(items) {
 
 function createNewDirectory(s) {
   traverseArray[traverseArray.length-1].push({desc:chrome.i18n.getMessage('newDirectoryName'), e:[]});
-  storage.setData(null, {clipboard: traverseArray[0]}, rebuildMenusAndReload);
-  analytics.trackEvent('Popup', 'Directory created');
+  storage.setData(null, {clipboard: traverseArray[0]}, function(context, error) {
+    if (error == null) {
+      rebuildMenusAndReload();
+      analytics.trackEvent('Popup', 'Directory created');
+    } else {
+      var errorMessage = chrome.i18n.getMessage("unknownError");
+      if (error.message.match(/^QUOTA_BYTES_PER_ITEM/)) {
+        errorMessage = chrome.i18n.getMessage("noMoreSpace");
+      }
+      Materialize.toast(chrome.i18n.getMessage("errorFailedToCreateDirectory") + errorMessage, 3000);
+    }
+  });
 }
 
 function setupDidYouKnowContainer() {
