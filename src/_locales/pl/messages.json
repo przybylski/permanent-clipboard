@@ -144,16 +144,13 @@
     "message" : "Opis"
   },
   "popupHintsCount" : {
-    "message" : "4"
+    "message" : "2"
   },
   "popupHintText_2" : {
     "message" : "Podoba Ci się Stały schowek? <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/permanent-clipboard\/hilkjcfodmbdgpadbpehimibheopoccb\/reviews\" target=\"_blank\">Wystaw ocenę!<\/a>"
   },
   "optionSyncTip" : {
     "message" : "Pamięć lokalna jest widoczna tylko na tym komputerze.\nPamięć synchronizowana jest widoczna na wszystkich przeglądarkach Google Chrome, na których jesteś zalgowany (może działać wolniej niż pamięć lokalna)."
-  },
-  "popupHintText_3" : {
-    "message" : "Zwiększ swoją produktywność rozszerzeniem <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/iahcjdalmgeeclcjbffpkmfhogckipfh\" target=\"_blank\">Templatizer<\/a>"
   },
   "popupNewElement" : {
     "message" : "Dodaj ze schowka systemowego"

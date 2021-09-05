@@ -83,9 +83,6 @@
   "descriptionPlaceholder" : {
     "message" : "Beschreibung"
   },
-  "popupHintText_3" : {
-    "message" : "Produktivität durch <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/iahcjdalmgeeclcjbffpkmfhogckipfh\" target=\"_blank\">Templatizer-Erweiterung<\/a> steigern"
-  },
   "popupHintNoElements" : {
     "message" : "Keine Einträge"
   },
@@ -114,7 +111,7 @@
     "message" : "Klicke auf den Eintrag, um ihn in synchronisierte Zwischenablage zu kopieren"
   },
   "popupHintsCount" : {
-    "message" : "4"
+    "message" : "2"
   },
   "errorFailedToSaveEntry" : {
     "message" : "Der Eintrag wurde nicht angelegt:"

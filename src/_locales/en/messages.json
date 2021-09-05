@@ -154,7 +154,7 @@
     "message" : "You can support Permanent Clipboard with donation using link in options screen."
   },
   "popupHintsCount" : {
-    "message" : "4"
+    "message" : "2"
   },
   "descriptionPlaceholder" : {
     "message" : "Description",
@@ -166,15 +166,9 @@
   "optionSyncTip" : {
     "message" : "Local storage is kept only on this chrome instance.\nSynchronized storage is shared across all your chrome instances (it might working a bit slower then local storage)."
   },
-  "popupHintText_3" : {
-    "message" : "Boost up your productivity by using <a href=\"https:\/\/chrome.google.com\/webstore\/detail\/iahcjdalmgeeclcjbffpkmfhogckipfh\" target=\"_blank\">Templatizer<\/a>"
-  },
   "popupNewElement" : {
     "message" : "Add from system clipboard",
     "description" : "New element title in popup"
-  },
-  "popupHintText_4" : {
-    "message" : "<a href=\"https:\/\/medium.com\/@przybylski\/permanent-clipboard-2018-summary-e5d79f144a90\" target=\"_blank\">2018 Summary<\/a>"
   },
   "syncedStorageUsed" : {
     "message" : "Using synchronized storage",
