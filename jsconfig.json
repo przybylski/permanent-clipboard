@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "module": "commonJS",
+        "target": "es2019"
+    },
+    "typeAcquisition": {"include": ["chrome"]},
+    "exclude": [
+        "node_modules"
+    ]
+} 
