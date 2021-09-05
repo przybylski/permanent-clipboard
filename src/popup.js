@@ -181,6 +181,7 @@ function init_i18n() {
 
   $('#back_button').attr('data-tooltip', T('popupBack'));
   $('#new_dir_button').attr('data-tooltip', T('newDirectoryName'));
+  $('#missing_permissions').attr('data-tooltip', T('popup_missingPermissionsWarning'));
 }
 
 function copyToClipboard(s) {
@@ -360,6 +361,7 @@ window.onload = function() {
     chrome.runtime.sendMessage({event:'rebuildMenus'});
     initialize();
     loadStorageItems();
+    checkPermissions();
   };
 }
 
@@ -383,6 +385,9 @@ function initialize() {
 
   $("#options_text").click(function() {
     chrome.tabs.create({url:'options.html'});
+  });
+  $("#missing_permissions").click(() => {
+    chrome.tabs.create({url:'permissions.html'});
   });
 
   $('#back_button').click(function(e) {
@@ -435,6 +440,23 @@ function initialize() {
   });
 
 };
+
+function checkPermissions() {
+  navigator.permissions.query({name: 'clipboard-write'}).then(
+    result => {
+      if (result.state !== 'granted') {
+        $("#missing_permissions").removeClass('hide');
+      }
+    }
+  );
+  navigator.permissions.query({name: 'clipboard-read'}).then(
+    result => {
+      if (result.state !== 'granted') {
+        $("#missing_permissions").removeClass('hide');
+      }
+    }
+  );
+}
 
 function loadStorageItems() {
   storage.getData(null, {'clipboard':[], 'recent':null}, function(context, items, error) {

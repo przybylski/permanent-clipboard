@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="css/material-icons.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <link type="text/css" rel="stylesheet" href="css/options.css" />
+
+    <script type="text/javascript" src="jquery-ui/external/jquery/jquery.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    <script src="analytics.js"></script>
+    <script src="permissions.js"></script>
+
+  </head>
+  <body class='grey lighten-4'>
+
+    <main>
+        <h6 class="option-card-title" id="permissions-title"></h6>
+          <div class="card option-card">
+
+            <div class="card-content" id="permission-read">
+              <div class="option-entry">
+                <div class="title-container">
+                    <div class="option-entry__title">
+                      <p class="option-name"></p>
+                    </div>
+                    <div class="option-entry__subtitle">
+                        <p id="option-name"></p>
+                    </div>
+                </div>
+                <div class="option-entry__action hide"  id="action">
+                  <a class="waves-effect waves-light btn" id="option_swap_storage_btn_text"></a>
+                </div>
+                <div class="option-entry__decorator hide" id="decorator">
+                  <i class="material-icons green-text">check</i>
+                </div>
+              </div>
+            </div>
+
+            <li class="divider"></li>
+
+            <div class="card-content" id="permission-write">
+              <div class="option-entry">
+                <div class="title-container">
+                    <div class="option-entry__title">
+                        <p class="option-name"></p>
+                    </div>
+                    <div class="option-entry__subtitle">
+                        <p id="option-name"></p>
+                    </div>
+                </div>
+                <div class="option-entry__action hide" id="action">
+                  <a class="waves-effect waves-light btn" id="option_swap_storage_btn_text"></a>
+                </div>
+                <div class="option-entry__decorator hide" id="decorator">
+                    <i class="material-icons green-text">check</i>
+                </div>
+              </div>
+            </div>
+        </div>
+        <h6 class="option-card-title" id="permissions-thankYou"></h6>
+    </main>
+  </body>
+
+</html>

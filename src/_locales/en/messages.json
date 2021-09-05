@@ -194,5 +194,29 @@
   },
   "menuRunningOutOfSpace" : {
     "message" : "Running out of space? Click here!"
+  },
+  "popup_missingPermissionsWarning": {
+    "message" : "Some permissions are missing. Click to fix"
+  },
+  "permissions_clipboardRead": {
+    "message" : "Reading clipboard"
+  },
+  "permissions_clipboardRead_rationale": {
+    "message": "Required to read data from the system clipboard to simplify the process of adding new entries."
+  },
+  "permissions_clipboardWrite": {
+    "message": "Writing to clipboard"
+  },
+  "permissions_clipboardWrite_rationale": {
+    "message": "Required to put a selected snippet into the system clipboard for easier access to your data."
+  },
+  "permissions_grantPermission": {
+    "message": "Grant"
+  },
+  "permissions_title": {
+    "message": "Permanent Clipboard needs the following permissions to function properly."
+  },
+  "permissions_thankYou": {
+    "message": "All permissions granted. Thank you!"
   }
 }

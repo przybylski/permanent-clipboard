@@ -44,6 +44,25 @@ main {
   margin: auto 0;
 }
 
+.title-container {
+  flex-grow: 2;
+  align-items: flex-start;
+  margin: auto 0;
+}
+
+.option-entry__title {
+  flex-grow: 2;
+  font-size: 1rem;
+  align-items: flex-start;
+  margin: auto 0;
+  font-weight: bold;
+}
+
+.option-entry__subtitle {
+  flex-grow: 2;
+  font-size: 0.7rem;
+}
+
 .option-entry__action {
   display: flex;
   justify-content: flex-end;
