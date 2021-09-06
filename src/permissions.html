@@ -10,27 +10,27 @@
     <script type="text/javascript" src="js/materialize.min.js"></script>
 
     <script src="analytics.js"></script>
-    <script src="permissions.js"></script>
+    <script src="permissions.js" type="module"></script>
 
   </head>
   <body class='grey lighten-4'>
 
     <main>
-        <h6 class="option-card-title" id="permissions-title"></h6>
+        <h6 class="option-card-title">__MSG_permissions_title__</h6>
           <div class="card option-card">
 
             <div class="card-content" id="permission-read">
               <div class="option-entry">
                 <div class="title-container">
                     <div class="option-entry__title">
-                      <p class="option-name"></p>
+                      <p class="option-name">__MSG_permissions_clipboardRead__</p>
                     </div>
                     <div class="option-entry__subtitle">
-                        <p id="option-name"></p>
+                        <p id="option-name">__MSG_permissions_clipboardRead_rationale__</p>
                     </div>
                 </div>
                 <div class="option-entry__action hide"  id="action">
-                  <a class="waves-effect waves-light btn" id="option_swap_storage_btn_text"></a>
+                  <a class="waves-effect waves-light btn" id="option_swap_storage_btn_text">__MSG_permissions_grantPermission__</a>
                 </div>
                 <div class="option-entry__decorator hide" id="decorator">
                   <i class="material-icons green-text">check</i>
@@ -44,14 +44,14 @@
               <div class="option-entry">
                 <div class="title-container">
                     <div class="option-entry__title">
-                        <p class="option-name"></p>
+                        <p class="option-name">__MSG_permissions_clipboardWrite__</p>
                     </div>
                     <div class="option-entry__subtitle">
-                        <p id="option-name"></p>
+                        <p id="option-name">__MSG_permissions_clipboardWrite_rationale__</p>
                     </div>
                 </div>
                 <div class="option-entry__action hide" id="action">
-                  <a class="waves-effect waves-light btn" id="option_swap_storage_btn_text"></a>
+                  <a class="waves-effect waves-light btn" id="option_swap_storage_btn_text">__MSG_permissions_grantPermission__</a>
                 </div>
                 <div class="option-entry__decorator hide" id="decorator">
                     <i class="material-icons green-text">check</i>
@@ -59,7 +59,7 @@
               </div>
             </div>
         </div>
-        <h6 class="option-card-title" id="permissions-thankYou"></h6>
+        <h6 class="option-card-title" id="permissions-thankYou">__MSG_permissions_thankYou__</h6>
     </main>
   </body>
 

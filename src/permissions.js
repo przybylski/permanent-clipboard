@@ -1,5 +1,7 @@
+import { internacionalizeContent } from './js/i18n.js';
+
 window.onload = () => {
-    localize();
+    internacionalizeContent(document.body);
     let readGranted = false;
     let writeGranted = false;
     navigator.permissions.query({'name': 'clipboard-read'}).then(
@@ -41,25 +43,14 @@ function updateTitle(readGranted, writeGranted) {
 function processPermission(permission, parentElement, actionHandler) {
     $(parentElement + " #action a").click(actionHandler);
     if (permission.state === 'granted') {
-        $(parentElement + " #decorator").removeClass('hide', 5000);
-        $(parentElement + " #action").addClass('hide', 5000);
-        $(parentElement).addClass("green lighten-5", 5000);
-        $(parentElement).removeClass("red", 5000);
+        $(parentElement + " #decorator").removeClass('hide');
+        $(parentElement + " #action").addClass('hide');
+        $(parentElement).addClass("green lighten-5");
+        $(parentElement).removeClass("red");
     } else {
-        $(parentElement + " #decorator").addClass('hide', 5000);
-        $(parentElement + " #action").removeClass('hide', 5000);
-        $(parentElement).addClass("red lighten-5", 5000);
-        $(parentElement).removeClass("green", 5000);
+        $(parentElement + " #decorator").addClass('hide');
+        $(parentElement + " #action").removeClass('hide');
+        $(parentElement).addClass("red lighten-5");
+        $(parentElement).removeClass("green");
     }
-}
-
-function localize() {
-    $("#permissions-title").text(chrome.i18n.getMessage("permissions_title"));
-    $("#permissions-thankYou").text(chrome.i18n.getMessage("permissions_thankYou"));
-    $("#permission-read .option-entry__title p").text(chrome.i18n.getMessage("permissions_clipboardRead"));
-    $("#permission-read .option-entry__subtitle p").text(chrome.i18n.getMessage("permissions_clipboardRead_rationale"));
-    $("#permission-read .option-entry__action a").text(chrome.i18n.getMessage("permissions_grantPermission"));
-    $("#permission-write .option-entry__title p").text(chrome.i18n.getMessage("permissions_clipboardWrite"));
-    $("#permission-write .option-entry__subtitle p").text(chrome.i18n.getMessage("permissions_clipboardWrite_rationale"));
-    $("#permission-write .option-entry__action a").text(chrome.i18n.getMessage("permissions_grantPermission"));
 }
