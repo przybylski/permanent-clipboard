@@ -16,31 +16,37 @@ Storage.prototype = {
 			return chrome.storage.local;
 		return chrome.storage.sync;
 	},
-	getData: function(context, data, callback) {
-		this.getDefaultStorage().get(data, function(items) {
-      if (callback !== undefined) {
-        callback(context, items, chrome.runtime.lastError);
-      }
+	getData: function(data) {
+		return new Promise((resolve, reject) => {
+			this.getDefaultStorage().get(data, (result) => {
+				if (chrome.runtime.lastError)
+					return reject(chrome.runtime.lastError);
+				resolve(result);
+			});
 		});
 	},
-	setData: function(context, data, callback) {
-		this.getDefaultStorage().set(data, function() {
-      if (callback !== undefined) {
-        callback(context, chrome.runtime.lastError);
-      }
+	setData: function(data) {
+		return new Promise((resolve, reject) => {
+			this.getDefaultStorage().set(data, () => {
+				if (chrome.runtime.lastError)
+					return reject(chrome.runtime.lastError);
+				resolve();
+			});
 		});
 	},
-  getStorageUsagePercentage: function(callback) {
-    this.getData(null, {'clipboard':[]}, function(context, data, error) {
-      if (error != null) {
-        callback(0.0);
-      }
-      let dataLength = JSON.stringify(data.clipboard).length;
-      let usage = dataLength / (localStorage['storage_type'] == 'local' ? LOCAL_QUOTA : SYNC_QUOTA);
-      if (callback != undefined) {
-        callback(usage * 100.0);
-      }
-    });
+  getStorageUsagePercentage: function() {
+		return new Promise((resolve) => {
+			this.getData(null, {'clipboard':[]}, function(context, data, error) {
+				if (error != null) {
+					resolve(0.0);
+				}
+				let dataLength = JSON.stringify(data.clipboard).length;
+				let usage = dataLength / (localStorage['storage_type'] == 'local' ? LOCAL_QUOTA : SYNC_QUOTA);
+				if (callback != undefined) {
+					resolve(usage * 100.0);
+				}
+			});
+		});
   }
 }
 
