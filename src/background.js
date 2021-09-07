@@ -45,6 +45,8 @@ function buildMenuLevel(menu, parentId) {
   var cnt = 0;
   for (var e in menu) {
     var elem = menu[e];
+    if (!elem)
+      continue;
     if (elem.e != null) {
       var newId = parentId + cnt + '_';
       chrome.contextMenus.create({"title": elem.desc, "parentId": parentId, "contexts": ["editable"], "id": newId});
@@ -59,15 +61,13 @@ function buildMenuLevel(menu, parentId) {
 
 function rebuildMenus() {
 	chrome.contextMenus.removeAll(function() {
-    storage.getData(null, {'clipboard':[]}, function(context, items, error) {
-      if (error != null) {
-        console.error("Failed to get data for menu filling: " + error.message);
-        return;
-      }
+    storage.getData({'clipboard':[]}).then(items => {
       if (items.clipboard.length == 0) return;
       var title = chrome.i18n.getMessage("insertFromExtension");
       chrome.contextMenus.create({"title":title, "contexts":["editable"], "id": ""});
       buildMenuLevel(items.clipboard, "");
+    }, error => {
+      console.error("Failed to get data for menu filling: " + error.message);
     });
     
 		var title = chrome.i18n.getMessage("addToExtensionDB");
