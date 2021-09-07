@@ -26,19 +26,17 @@ function rebuildMenusAndReload() {
 function addToPermClipboardFromRecent() {
   addToPermClipboard(
       document.getElementById('recent_name').value,
-      document.getElementById('recent_text').innerText,
-      function(error) {
-        if (error != undefined) {
-          analytics.trackEvent('Popup', 'Recent save fail', error.message);
-        } else {
-          analytics.trackEvent('Popup', 'Recent saved success');
-          $('#add_elements_collapsible').collapsible({onClose: function() {
-            $('#recent_add_element').fadeOut('fast').delay().addClass('hide');
-            $('#add_elements_collapsible').collapsible({onClose: null});
-          }})
-          $('#add_elements_collapsible').collapsible('close', 1);  
-        }
-      });
+      document.getElementById('recent_text').innerText)
+      .then(() => {
+        analytics.trackEvent('Popup', 'Recent saved success');
+        $('#add_elements_collapsible').collapsible({onClose: function() {
+          $('#recent_add_element').fadeOut('fast').delay().addClass('hide');
+          $('#add_elements_collapsible').collapsible({onClose: null});
+        }})
+        $('#add_elements_collapsible').collapsible('close', 1);  
+      }, (error) =>
+        analytics.trackEvent('Popup', 'Recent save fail', error.message)
+      );
   return false;
 }
 
@@ -47,44 +45,37 @@ function addToPermClipboardFromManually() {
   // it will be replaced by text eventually
   var text = document.getElementById('new_content').value;
   if (text !== "") {
-    addToPermClipboard(
-        document.getElementById('new_name').value,
-        text,
-        function(error) {
-          if (error != undefined) {
-            analytics.trackEvent('Popup', 'Manually add fail', error.message);
-          } else {
-            $('#new_name').val('');
-            $('#new_content').val('');
-            $('#new_content').trigger('autoresize');
-            $('#add_elements_collapsible').collapsible('close', 0);
-            localStorage.removeItem('unsaved_name');
-            localStorage.removeItem('unsaved_content');
+    addToPermClipboard(document.getElementById('new_name').value, text)
+    .then(
+      () => {
+        $('#new_name').val('');
+        $('#new_content').val('');
+        $('#new_content').trigger('autoresize');
+        $('#add_elements_collapsible').collapsible('close', 0);
+        localStorage.removeItem('unsaved_name');
+        localStorage.removeItem('unsaved_content');
 
-            analytics.trackEvent('Popup', 'Manually add success');
-          }
-        });
+        analytics.trackEvent('Popup', 'Manually add success');
+      }, (error) =>
+        analytics.trackEvent('Popup', 'Manually add fail', error.message)
+      );
   }
   return false;
 }
 
-function addToPermClipboard(name, text, callback) {
+function addToPermClipboard(name, text) {
   traverseArray[traverseArray.length-1].push({ desc: name, value: text });
-  storage.setData(null, {'clipboard':traverseArray[0], 'recent':0}, function(context, lastError) {
-    if (lastError == null) {
-      rebuildMenusAndReload()
-    } else {
+  return storage.setData({'clipboard':traverseArray[0], 'recent':0})
+  .then(() => {
+    rebuildMenusAndReload();
+  }, (error) => {
       traverseArray[traverseArray.length-1].pop();
       var errorMessage = chrome.i18n.getMessage("unknownError");
-      if (lastError.message.match(/^QUOTA_BYTES_PER_ITEM/)) {
+      if (error.message.match(/^QUOTA_BYTES_PER_ITEM/)) {
         errorMessage = chrome.i18n.getMessage("noMoreSpace");
       }
       Materialize.toast(chrome.i18n.getMessage("errorFailedToSaveEntry") + errorMessage, 3000);
-    }
-    if (callback != undefined) {
-      callback(lastError);
-    }
-  });
+    });
 }
 
 function discardNewEntry() {
@@ -100,7 +91,7 @@ function discardRecentEntry() {
   $("#recent_text").text("");
   $("#add_elements_collapsible").collapsible('close', 1);
   $("#recent_add_element").fadeOut();
-  storage.setData(null, {'recent':0});
+  storage.setData({'recent':0});
 }
 
 function removeElement(s) {
@@ -108,7 +99,7 @@ function removeElement(s) {
   var e = parseInt(elem.attr('data-entryId'));
   elem.parent().slideUp('fast', function() {;
     arrayRemove(traverseArray[traverseArray.length-1], e);
-    storage.setData(null, {'clipboard':traverseArray[0]}, rebuildMenusAndReload);
+    storage.setData({'clipboard':traverseArray[0]}).then(rebuildMenusAndReload);
     rebuildTable();
     analytics.trackEvent('Popup', 'Remove element');
   });
@@ -283,9 +274,7 @@ function createEntry(item, id) {
           traverseArray[traverseArray.length-1][id].desc = $('#editName_'+id).val();
           if (item.value != null)
             traverseArray[traverseArray.length-1][id].value = $('#editContent_'+id).val();
-          storage.setData(null, {'clipboard':traverseArray[0]}, function(context, error) {
-          });
-          rebuildMenusAndReload();
+          storage.setData({'clipboard':traverseArray[0]}).then(rebuildMenusAndReload);
         });
       });
 
@@ -335,17 +324,15 @@ function createTable(items) {
 
 function createNewDirectory(s) {
   traverseArray[traverseArray.length-1].push({desc:chrome.i18n.getMessage('newDirectoryName'), e:[]});
-  storage.setData(null, {clipboard: traverseArray[0]}, function(context, error) {
-    if (error == null) {
-      rebuildMenusAndReload();
-      analytics.trackEvent('Popup', 'Directory created');
-    } else {
-      var errorMessage = chrome.i18n.getMessage("unknownError");
-      if (error.message.match(/^QUOTA_BYTES_PER_ITEM/)) {
-        errorMessage = chrome.i18n.getMessage("noMoreSpace");
-      }
-      Materialize.toast(chrome.i18n.getMessage("errorFailedToCreateDirectory") + errorMessage, 3000);
+  storage.setData({clipboard: traverseArray[0]}).then(() => {
+    rebuildMenusAndReload();
+    analytics.trackEvent('Popup', 'Directory created');
+  }, (error) => {
+    var errorMessage = chrome.i18n.getMessage("unknownError");
+    if (error.message.match(/^QUOTA_BYTES_PER_ITEM/)) {
+      errorMessage = chrome.i18n.getMessage("noMoreSpace");
     }
+    Materialize.toast(chrome.i18n.getMessage("errorFailedToCreateDirectory") + errorMessage, 3000);
   });
 }
 
@@ -459,17 +446,16 @@ function checkPermissions() {
 }
 
 function loadStorageItems() {
-  storage.getData(null, {'clipboard':[], 'recent':null}, function(context, items, error) {
-    if (error != null) {
-      console.log(error.message);
-      return;
-    }
+  storage.getData({'clipboard':[], 'recent':null}).then((items) => {
     if (items.recent) {
       $('#recent_text').empty().text(items.recent);
       $('#recent_add_element').removeClass('hide');
     }
     traverseArray.push(items.clipboard);
     rebuildTable();
+  }, (error) => {
+    if (error != null)
+      console.log(error.message);
   });
 
   if ((!localStorage.unsaved_name || localStorage.unsaved_name === "") &&
@@ -492,7 +478,7 @@ function relocateElement(from, to) {
   var elem = traverseArray[traverseArray.length-1][from];
   arrayRemove(traverseArray[traverseArray.length-1], from);
   traverseArray[traverseArray.length-1].splice(to, 0, elem);
-  storage.setData(null, {'clipboard':traverseArray[0]}, rebuildMenusAndReload);
+  storage.setData({'clipboard':traverseArray[0]}).then(rebuildMenusAndReload);
 
   analytics.trackEvent('Popup', 'Rearrange');
 }

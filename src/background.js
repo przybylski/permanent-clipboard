@@ -31,38 +31,16 @@ function onMenuClicked(info, tab) {
   } else if (info.menuItemId == "runningOutOfSpace") {
     chrome.tabs.create({ url: CONTACT_PAGE_URL });
 	} else {
-		storage.getData(null, 'clipboard', function(context, data, error) {
-			if (error != null) {
-				console.error(error);
-				return;
-			}
+		storage.getData('clipboard').then((data) => {
       var indexPath = new IndexPath(info.menuItemId);
       var val = traverseWithIndexPath(indexPath, data.clipboard);
 
 			analytics.trackEvent('Menu', 'Inserting text');
 			chrome.tabs.sendMessage(tab.id, {event:ACTION__INSERT_TEXT, value: val});
-		});
+		}, (error) => console.error(error));
 	}
 }
-/*
-var test = [
-  {desc: 'Opis', value: 'Opis'},
-  {desc: 'Opis1', value: 'Opis1'},
-  {desc: 'Dir', e: [
-    {desc: 'Sub1', value: 'Sub1'},
-    {desc: 'Dir2', e:[
-      {desc: 'Opis1', value: 'Sub1Opis1'},
-      {desc: 'Opis2', value: 'Sub1Opis2'},
-      {desc: 'Opis3', value: 'Sub1Opis3'}
-    ]},
-    {desc: 'Opis1', value: 'DirOpis1'}
-  ]},
-  {desc: 'Opis2', value: 'Opis2'},
-  {desc: 'Opis3', value: 'Opis3'},
-];
 
-storage.setData(null, {clipboard:test}, function(){});
-*/
 function buildMenuLevel(menu, parentId) {
   var cnt = 0;
   for (var e in menu) {
@@ -95,7 +73,7 @@ function rebuildMenus() {
 		var title = chrome.i18n.getMessage("addToExtensionDB");
 		chrome.contextMenus.create({"title": title, "contexts":["selection"], "id": "selmenu"});
 
-    storage.getStorageUsagePercentage(function(usage) {
+    storage.getStorageUsagePercentage().then((usage) => {
         if (usage > storagePercentageThreshold) {
           chrome.contextMenus.create({
             "id": "sep",
@@ -120,22 +98,21 @@ chrome.runtime.onMessage.addListener(
       sendResponse({});
       return;
 		} else if (message.event == 'saveRecentItem') {
-			storage.setData(null, {'recent': message.value}, function(context, error) {
-        sendResponse({'error': error})
-      });
+			storage.setData({'recent': message.value}).then(() => {
+        sendResponse({});
+      }, (error) => sendResponse({'error': error}));
 		} else if (message.event == 'addNewEntry') {
-			storage.getData(null, 'clipboard', function(context, data, error) {
-				if (error != null) {
-					sendResponse({'error': error});
-					return;
-				}
+			storage.getData('clipboard').then((data) => {
 				var clipboard = data.clipboard || [];
 				clipboard.push({value: message.value, desc: message.value});
-				storage.setData(null, {'clipboard': clipboard}, function(context, error) {
-					sendResponse({'error': error});
+				storage.setData({'clipboard': clipboard}).then(() => {
+					sendResponse({});
           rebuildMenus();
-				});
-			});
+				}, (error) => {
+          sendResponse({'error': error});
+          rebuildMenus();
+        });
+			}, (error) => sendResponse({'error': error}));
 		}
   return true;
 });
